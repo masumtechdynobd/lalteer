@@ -1,0 +1,1125 @@
+/* Home page all section */
+.top-carousel-section {
+  margin-top: -30px;
+  `
+}
+
+.top-carousel-section-border {
+  border: 1px solid rgb(6, 167, 6);
+}
+
+
+
+
+
+
+
+/*** Single Page Hero Header Start ***/
+.bg-breadcrumb {
+  position: relative;
+  overflow: hidden;
+  background: url('/web//img/Group 51.png');
+  width: auto;
+  height: 637px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 140px 0 60px 0;
+  transition: 0.5s;
+}
+
+@media (min-width: 992px) {
+  .bg-breadcrumb {
+    padding: 140px 0 60px 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .bg-breadcrumb {
+    padding: 60px 0 60px 0;
+  }
+}
+
+.bg-breadcrumb .breadcrumb {
+  position: relative;
+}
+
+.bg-breadcrumb .breadcrumb .breadcrumb-item a {
+  color: var(--bs-white);
+}
+
+
+/* about our ofganization */
+.organization-top-margin {
+  margin-top: 75px;
+}
+
+.about-organization-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.about-organization-custom-gap>div {
+  margin-right: 335px;
+}
+
+.about-organization-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.custom-letter-spacing {
+  letter-spacing: 5px;
+}
+
+@media (max-width: 768px) {
+  .about-org-content {
+    margin-top: 20px;
+  }
+}
+
+/* board of directory */
+.boardofdirectory-margin-top {
+  margin-top: 70px;
+}
+
+.about-boardofdirectory-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.about-boardofdirectory-custom-gap>div {
+  margin-right: 350px;
+}
+
+.about-boardofdirectory-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.board-dicrescotry-sm-text {
+  background-color: #04A652;
+  width: 504px;
+  height: 376px;
+  position: relative;
+}
+
+.aboutus-image-container {
+  top: -60px;
+  /* Move the image upward */
+  left: 50%;
+}
+
+.text-content {
+  padding-top: 80px;
+  /* Space below the image */
+  text-align: center;
+  padding-top: 10rem !important;
+}
+
+.second-row-boardofdirectory {
+  margin-top: 130px;
+}
+
+.red-bg-boardofdirectory {
+  margin-top: 30px;
+  background-color: rgb(177, 11, 11);
+  border-radius: 40px;
+  width: auto;
+  height: 497px;
+  margin-bottom: -50px;
+
+}
+
+.combined-row-boardofdirectory {
+  background-color: white;
+  padding-top: 100px;
+  padding-bottom: 40px;
+  border-radius: 40px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: -450px;
+}
+
+/* .total-boarddirectory-content{
+  z-index: 1;
+  position: relative;
+} */
+
+@media (max-width: 1400px) and (min-width: 1201px) {
+  .board-dicrescotry-sm-text {
+    width: 330px;
+    height: 330px;
+  }
+}
+
+@media (max-width: 1200px) and (min-width: 992px) {
+  .board-dicrescotry-sm-text {
+    width: 300px;
+    height: 350px;
+  }
+}
+
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .board-dicrescotry-sm-text {
+    width: 250px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 767px) {
+  .board-dicrescotry-sm-text {
+    width: 530px;
+    height: 400px;
+    margin-bottom: 130px;
+  }
+
+  .second-row-boardofdirectory {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 767px) {
+  .board-dicrescotry-sm-text {
+    width: 530px;
+    height: 400px;
+    margin-bottom: 130px;
+  }
+
+  .second-row-boardofdirectory {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 450px) {
+  .board-dicrescotry-sm-text {
+    width: 250px;
+    height: 400px;
+    margin-bottom: 130px;
+  }
+}
+
+
+/* our mission and vission */
+.mission-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.mission-custom-gap>div {
+  margin-right: 355px;
+}
+
+.mission-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.mission-bg-color {
+  background-color: #E6F6EE;
+  padding: 40px;
+  padding: 40px;
+}
+
+
+.our-mission-bg {
+  background: url('/img/mission-background1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: auto;
+  height: 460px;
+  display: flex;
+  /* Enables Flexbox for the section */
+  flex-direction: column;
+  /* Stacks child elements vertically */
+  justify-content: center;
+  /* Centers content vertically */
+  align-items: center;
+  /* Centers content horizontally */
+  text-align: center;
+  /* Ensures text alignment */
+}
+
+.vission-custom-gap {
+  margin-bottom: -30px;
+}
+
+.vission-custom-gap>div {
+  margin-right: 180px;
+}
+
+.vission-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.our-mission-bg {
+  background: url('/web/img/mission-background 1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: auto;
+  height: 460px;
+  display: flex;
+  /* Enables Flexbox for the section */
+  flex-direction: column;
+  /* Stacks child elements vertically */
+  justify-content: center;
+  /* Centers content vertically */
+  align-items: center;
+  /* Centers content horizontally */
+  text-align: center;
+  /* Ensures text alignment */
+  padding: 20px;
+  /* Adds some inner spacing */
+}
+
+.vission-custom-gap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  /* Adds a consistent gap between items */
+}
+
+.vission-custom-gap>div img {
+  max-width: 80px;
+  /* Ensure images resize on smaller screens */
+  height: auto;
+}
+
+.row-cols-md-5 {
+  row-gap: 20px;
+  /* Adds vertical spacing for rows */
+}
+
+
+/* Media Query: Small Devices (Below 768px) */
+@media (max-width: 767px) {
+  .our-mission-bg {
+    height: auto;
+    /* Let the content define height */
+    padding: 30px 10px;
+    /* Reduce padding for smaller screens */
+  }
+
+  .vission-custom-gap>div img {
+    max-width: 60px;
+    /* Reduce image size */
+  }
+
+  h2.text-center {
+    font-size: 24px;
+    /* Smaller heading size */
+  }
+
+  .card-title {
+    font-size: 16px;
+    /* Adjusts font size for card titles */
+  }
+
+  .card-text {
+    font-size: 14px;
+    /* Adjusts font size for card text */
+  }
+
+  .row-cols-md-5 {
+    display: flex;
+    flex-wrap: wrap;
+    /* Wrap cards to the next line */
+    justify-content: center;
+    /* Center cards on smaller screens */
+    gap: 15px;
+  }
+
+  .row-cols-md-5>.col {
+    flex: 1 0 100%;
+    /* Makes cards full-width */
+    max-width: 300px;
+    /* Optional: Limit card width */
+  }
+}
+
+
+/* Media Query: Extra Small Devices (Below 576px) */
+@media (max-width: 576px) {
+  .row-cols-md-5>.col {
+    max-width: 100%;
+    /* Cards occupy full width */
+  }
+
+  h2.text-center {
+    font-size: 20px;
+  }
+
+  .card-text {
+    font-size: 12px;
+  }
+
+  .vission-custom-gap {
+    gap: 10px;
+  }
+}
+
+
+
+
+/* about us history section start */
+.about-history-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.about-history-custom-gap>div {
+  margin-right: 300px;
+}
+
+.about-history-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+/* our sister concern */
+.sister-concern-bg {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-radius: 40px;
+  display: flex;
+  /* Enables Flexbox */
+  justify-content: center;
+  /* Centers image horizontally */
+  align-items: center;
+  /* Centers image vertically */
+  height: 589px;
+  /* Ensures the container has consistent height */
+}
+
+.about-history-sister-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.about-history-sister-custom-gap>div {
+  margin-right: 350px;
+}
+
+.about-history-sister-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+
+
+
+
+/* crops details page all section */
+
+/* top image section */
+.bg-breadcrumb-cropsdetails {
+  position: relative;
+  overflow: hidden;
+  background: url('/web//img/Group 50.png');
+  width: auto;
+  height: 637px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 140px 0 60px 0;
+  transition: 0.5s;
+}
+
+@media (min-width: 992px) {
+  .bg-breadcrumb-cropsdetails {
+    padding: 140px 0 60px 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .bg-breadcrumb-cropsdetails {
+    padding: 60px 0 60px 0;
+  }
+}
+
+.bg-breadcrumb-cropsdetails .breadcrumb {
+  position: relative;
+}
+
+.bg-breadcrumb-cropsdetails .breadcrumb .breadcrumb-item a {
+  color: var(--bs-white);
+}
+
+/* pumpkins seed */
+.pumpkins-seed-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.pumpkins-seed-custom-gap>div {
+  margin-right: 270px;
+}
+
+.pumpkins-seed-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.pumpkins-text-section {
+  background-color: #E6F6EE;
+  border-radius: 15px;
+}
+
+.benefits-pumpkins-seed-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.benefits-pumpkins-seed-custom-gap>div {
+  margin-right: 460px;
+}
+
+.benefits-pumpkins-seed-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.varities-pumpkins-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.varities-pumpkins-custom-gap>div {
+  margin-right: 475px;
+}
+
+.varities-pumpkins-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+/* Varieties Of pumpkins seed */
+.pumpkins-sm-row-content {
+  border-radius: 15px;
+}
+
+.pumpkins-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.pumpkins-table td, th {
+  text-align: left;
+  padding: 8px;
+}
+
+.pumpkins-table tr:nth-child(odd) {
+  background-color: #E6F6EE;
+}
+
+/* Frequently Asked Questions */
+.faq-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.faq-custom-gap>div {
+  margin-right: 430px;
+}
+
+.faq-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.faq-bg {
+  background-color: #E6F6EE;
+}
+
+@media (max-width: 768px) {
+  .full-faq-img {
+    justify-content: center !important;
+  }
+
+
+}
+
+/* ohter crops */
+.other-crops-cropsdetails-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.other-crops-cropsdetails-custom-gap>div {
+  margin-right: 210px;
+}
+
+.other-crops-cropsdetails-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+
+
+
+/* Research And Development */
+
+/* top image section */
+.bg-breadcrumb-rd {
+  position: relative;
+  overflow: hidden;
+  background: url('/web//img/Group 51.png');
+  width: auto;
+  height: 637px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 140px 0 60px 0;
+  transition: 0.5s;
+}
+
+@media (min-width: 992px) {
+  .bg-breadcrumb-rd {
+    padding: 140px 0 60px 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .bg-breadcrumb-rd {
+    padding: 60px 0 60px 0;
+  }
+}
+
+.bg-breadcrumb-rd .breadcrumb {
+  position: relative;
+}
+
+.bg-breadcrumb-rd .breadcrumb .breadcrumb-item a {
+  color: var(--bs-white);
+}
+
+/* R & D AT LAL TEER SEED LIMITED, BASHON, GAZIPUR */
+.rd-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.rd-custom-gap>div {
+  margin-right: 690px;
+}
+
+.rd-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+/* ESTABLISMENT OF R&D FARM AT MODHUPUR, TANGAIL */
+.rd-establisment-custom-gap {
+  display: flex;
+  margin-bottom: -45px;
+}
+
+.rd-establisment-custom-gap>div {
+  margin-right: 605px;
+}
+
+.rd-establisment-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+/* ESTABLISHMENT OF SALINE R&D CENTER AT RAMPAL, BAGERHAT */
+.rd-bagerhat-custom-gap {
+  display: flex;
+  margin-bottom: -45px;
+}
+
+.rd-bagerhat-custom-gap>div {
+  margin-right: 710px;
+}
+
+.rd-bagerhat-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+
+
+
+
+
+/* Research And Development details page*/
+
+/* research and development area */
+.row.equal-height {
+  display: flex;
+}
+
+.row.equal-height>[class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
+.rd-details-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.rd-details-custom-gap>div {
+  margin-right: 565px;
+}
+
+.rd-details-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+.rd-details-research-bg {
+  margin-top: 60px;
+}
+
+.rd-details-research-fourimg {
+  position: absolute;
+  z-index: 11;
+  margin-left: 50px;
+}
+
+.rd-details-research-img1 {
+  position: absolute;
+  z-index: 1;
+}
+
+.rd-details-research-img2 {
+  margin-left: 280px;
+}
+
+.rd-details-research-img3 {
+  position: absolute;
+  z-index: 1;
+}
+
+.rd-details-research-img4 {
+  position: absolute;
+  z-index: 1;
+  margin-left: 200px;
+  margin-top: -15px;
+}
+
+@media (max-width: 1400px) {
+  .rd-details-research-bg {
+    width: 350px;
+    height: 265px;
+  }
+
+  .rd-details-research-img1 {
+    width: 220px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img2 {
+    margin-left: 205px !important;
+    width: 290px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img3 {
+    width: 220px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img4 {
+    margin-left: 200px;
+    margin-top: -15px;
+    width: 290px !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .rd-details-research-fourimg {
+    margin-left: 25px;
+  }
+
+  .rd-details-research-img1 {
+    width: 200px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img2 {
+    margin-left: 190px !important;
+    width: 270px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img3 {
+    width: 190px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img4 {
+    margin-left: 185px;
+    margin-top: -15px;
+    width: 240px !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .rd-details-research-fourimg {
+    margin-left: 0px;
+  }
+
+  .rd-details-research-bg {
+    margin-top: 0px;
+  }
+
+  .rd-details-research-fourimg {
+    margin-left: 25px;
+    margin-top: 90px;
+  }
+
+  .rd-details-research-img1 {
+    width: 170px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img2 {
+    margin-left: 160px !important;
+    width: 230px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img3 {
+    width: 160px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img4 {
+    margin-left: 140px;
+    margin-top: -15px;
+    width: 220px !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .rd-details-research-textcontent {
+    margin-top: 230px;
+  }
+}
+
+
+
+
+
+/* Farmer`s Success Story */
+
+/* success story */
+.success-story-rounded-pill-end {
+  border-top-right-radius: 50rem;
+  border-bottom-right-radius: 50rem;
+}
+
+
+
+
+
+/* farmer`s success Story details */
+.farmers-details-custom-gap {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.farmers-details-custom-gap>div {
+  margin-right: 412px;
+}
+
+.farmers-details-custom-gap>div:last-child {
+  margin-right: 0;
+}
+
+
+
+
+
+
+/* galley */
+/* Hover Content Styling */
+.gallery-hover-content {
+  background-color: rgba(255, 0, 0, 0.377);
+  /* Semi-transparent black background */
+  opacity: 0;
+  /* Hidden initially */
+  transition: opacity 0.3s ease-in-out;
+  top: 0;
+  /* Covers the image entirely */
+  bottom: 0;
+  left: 80px;
+  right: 0;
+  width: 799px;
+  height: 532px;
+  z-index: 2;
+}
+
+/* Show hover content on hover */
+.card-gallery-hover-content:hover .gallery-hover-content {
+  opacity: 1;
+  /* Makes hover content visible */
+}
+
+/* Hide bottom text on hover */
+.card-gallery-hover-content:hover .gallry-bottom-text {
+  visibility: hidden;
+  /* Hides the text without disrupting layout */
+  opacity: 0;
+  /* Smooth fade-out effect */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-gallery-image:hover {
+  width: 100%;
+  height: auto;
+}
+
+
+
+
+
+
+/* project details page */
+.project-aims-text {
+  position: absolute;
+  /* Changed from absolute for proper flow */
+  z-index: 1;
+  margin-top: 0;
+  padding: 20px;
+  /* Add padding for better spacing */
+}
+
+.project-aims-call {
+  background-color: #04A65278;
+  /* Semi-transparent green background */
+  border-radius: 8px;
+  /* Optional: Rounded corners */
+  padding: 20px;
+  /* Add padding around the content */
+  text-align: center;
+  /* Center align the content inside */
+}
+
+.project-aims-call-img {
+  display: block;
+  /* Ensures it behaves like a block element */
+  margin: 0 auto;
+  /* Centers the image horizontally */
+  max-width: 100px;
+  /* Adjust the image size as needed */
+  height: auto;
+  /* Maintain aspect ratio */
+  margin-bottom: 15px;
+  /* Add space between the image and text */
+}
+
+.project-aims-call-text {
+  margin: 0;
+  /* Remove unnecessary margin */
+}
+
+.project-aims-call-text span {
+  color: white;
+  /* Makes text stand out */
+  text-align: center;
+  /* Center align the text */
+  font-size: 16px;
+  /* Adjust font size as needed */
+  display: block;
+  /* Ensure each span is on a new line */
+  margin-bottom: 5px;
+  /* Space between lines */
+}
+
+@media (max-width: 1400px) {
+  .project-aims-text-title {
+    margin-bottom: 210px !important;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .project-aims-text-title {
+    margin-bottom: 210px !important;
+  }
+
+  .project-aims-text {
+    padding: 10px;
+    /* Reduce padding on smaller screens */
+  }
+
+  .project-aims-call {
+    padding: 15px;
+    /* Adjust padding for smaller screens */
+  }
+
+  .project-aims-call-img {
+    max-width: 80px;
+    /* Reduce image size */
+  }
+
+  .project-aims-call-text span {
+    font-size: 14px;
+    /* Smaller font size */
+  }
+}
+
+@media (max-width: 576px) {
+  .project-aims-call {
+    text-align: center;
+    /* Ensure content stays centered */
+  }
+
+  .project-aims-call-img {
+    max-width: 70px;
+    /* Further reduce image size */
+  }
+
+  .project-aims-call-text span {
+    font-size: 12px;
+    /* Smaller font size for extra small screens */
+  }
+}
+
+
+
+
+
+/* OUR Catalogue */
+.custom-gap-catalogue {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.custom-gap-catalogue>div {
+  margin-right: 215px;
+}
+
+.custom-gap-catalogue>div:last-child {
+  margin-right: 0;
+}
+
+
+
+
+
+
+.bg-breadcrumb-newsletter {
+  position: relative;
+  overflow: hidden;
+  background: url('/web//img/newletter1.png');
+  width: auto;
+  height: 637px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 140px 0 60px 0;
+  transition: 0.5s;
+}
+
+@media (min-width: 992px) {
+  .bg-breadcrumb-newsletter {
+    padding: 140px 0 60px 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .bg-breadcrumb-newsletter {
+    padding: 60px 0 60px 0;
+  }
+}
+
+.bg-breadcrumb-newsletter .breadcrumb {
+  position: relative;
+}
+
+.bg-breadcrumb-newsletter .breadcrumb .breadcrumb-item a {
+  color: var(--bs-white);
+}
+
+
+
+
+/* newsletter */
+.news-hover-card-bg {
+  background-color: #054915;
+}
+
+.news-hover-date-margin {
+  position: relative;
+  margin-top: -20px;
+  z-index: 2;
+}
+
+.news-hover-date-bg {
+  padding: 5px 10px;
+  background-color: rgb(12, 170, 12);
+  border-radius: 5px;
+  margin-top: -30px;
+  font-size: 14px;
+  position: relative;
+  display: inline-block;
+}
+
+.news-read-bg-success {
+  background-color: green;
+}
+
+.news-hover-card-bg {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+.custom-hover-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: transparent;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.custom-hover-button:hover {
+  background-color: green;
+  color: white;
+  text-decoration: none;
+}
+
+
+.card {
+  overflow: hidden;
+  position: relative;
+}
+
+.news-hover-content {
+  background-color: rgb(11, 80, 11);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  border-radius: 40px;
+}
+
+.card:hover .news-hover-content {
+  opacity: 1;
+}
+
+.news-hover-date-bg {
+  background-color: green;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+
+
+
+
+/* contact us page */
+.custom-gap-contact-us {
+  display: flex;
+  margin-bottom: -30px;
+}
+
+.custom-gap-contact-us>div {
+  margin-right: 350px;
+}
+
+.custom-gap-contact-us>div:last-child {
+  margin-right: 0;
+}
+
