@@ -115,6 +115,13 @@
   padding-top: 10rem !important;
 }
 
+.text-content-yo {
+  padding-top: 80px;
+  /* Space below the image */
+  text-align: center;
+  padding-top: 6rem !important;
+}
+
 .second-row-boardofdirectory {
   margin-top: 130px;
 }

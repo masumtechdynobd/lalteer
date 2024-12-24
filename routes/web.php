@@ -196,8 +196,13 @@ Route::middleware(['auth:web', 'XSS'])->name('admin.')->namespace('Admin')->pref
 
     // contact us
     Route::resource('contact_message', 'ContactMessageController');
-
     Route::resource('contact_message_user', 'ContactMessageUserController');
+    Route::resource('contact_map', 'ContactMapController');
+
+    Route::resource('gallery', 'GalleryController');
+
+    Route::resource('wheel_slider', 'WheelSliderController');
+    Route::resource('wheel_slider_center', 'WheelSliderCenterController');
 
     // Route::get('newsletter_photos', [NewsletterPhotosController::class, 'index'])->name('newsletter_photos.index');
     // Route::get('newsletter_photos/create', [NewsletterPhotosController::class, 'create'])->name('newsletter_photos.create');

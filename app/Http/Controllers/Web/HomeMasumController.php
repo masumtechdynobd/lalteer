@@ -8,15 +8,21 @@ use App\Models\About;
 use App\Models\Farmer;
 use App\Models\Member;
 use App\Models\Article;
+use App\Models\Gallery;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Variety;
+use App\Models\ContactMap;
+use App\Models\Designation;
 use App\Models\Testimonial;
+use App\Models\WheelSlider;
 use Illuminate\Http\Request;
 use App\Models\CompanyHistory;
 use App\Models\ContactMessage;
 use App\Models\MissionContent;
 use App\Models\NewsletterPhotos;
+use App\Models\NewsletterVideos;
+use App\Models\WheelSliderCenter;
 use App\Models\ResearchAndDevelop;
 
 use App\Http\Controllers\Controller;
@@ -39,7 +45,12 @@ class HomeMasumController extends Controller
     public function AboutUsHistory()
     {
         $history = CompanyHistory::first();
-        return view("web.pages.aboutushistory", compact('history'));
+
+        $data['rows'] = WheelSlider::orderBy('id', 'desc')->get();
+
+        $data['centers'] = WheelSliderCenter::orderBy('id', 'desc')->get();
+        
+        return view("web.pages.aboutushistory", compact('history', 'data'));
     }
 
     public function CropsDetailsPage($slug)
@@ -125,7 +136,9 @@ class HomeMasumController extends Controller
 
     public function Gallery()
     {
-        return view("web.pages.gallery");
+        $data['rows'] = Gallery::orderBy('id', 'desc')->get();
+
+        return view("web.pages.gallery", $data);
     }
 
     public function ProjectsDetails($slug)
@@ -140,18 +153,30 @@ class HomeMasumController extends Controller
             ->orderBy('id', 'desc')
             ->take(4)
             ->get();
-        
+
         $data['photos'] = NewsletterPhotos::orderBy('id', 'desc')->get();
+
+        $data['videos'] = NewsletterVideos::orderBy('id', 'desc')->get();
 
         return view("web.pages.newsletter", $data);
     }
 
-    public function ContactUs()
+    public function ContactUs(Request $request)
     {
+        $designationId = $request->input('designation_id'); // Get designation_id from the request
+
+        $data['members'] = $designationId
+            ? Member::where('designation_id', $designationId)->get()
+            : Member::all();
+
+        $data['designations'] = Designation::orderBy('title', 'asc')->get(); // Fetch designations dynamically
         $data['rows'] = ContactMessageSubject::orderBy('id', 'desc')->get();
+        $data['contactmaps'] = ContactMap::orderBy('id', 'desc')->get();
 
         return view("web.pages.contactus", $data);
     }
+
+
 
     public function ContactUsStore(Request $request)
     {

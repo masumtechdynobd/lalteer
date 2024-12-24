@@ -99,6 +99,7 @@
                             @endif
                         @endforeach
                     </div>
+                    
 
                     <div class="row g-4 second-row-boardofdirectory">
                         @foreach ($members as $index => $member)

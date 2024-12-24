@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>lal ter</title>
+    <title>lalteer</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -128,8 +128,8 @@
 <!-- Footer Start -->
 <div class="container-fluid footer wow fadeIn mt-4" data-wow-delay="0.2s">
     <div class="image-container footer-logo">
-        <img src="{{ asset('/uploads/setting/' . $setting->logo_path) }}" alt="" class="img-fluid"
-            style="width: 244px; height: 192px;">
+        <img src="{{ asset('/uploads/setting/' . $setting->logo_path) }}" alt="Logo" class="img-fluid"
+            style="width: 244px; height: 192px; filter: brightness(1.2) contrast(1.1);">
     </div>
 
     <div class="py-2 px-4 border-start-0 border-end-0">

@@ -80,7 +80,7 @@
                                             // Strip tags and remove non-numeric characters like '+'
                                             $description = preg_replace('/\D/', '', strip_tags($info->description));
                                         @endphp
-                                        <h2 class="counter" data-target="{{ $description }}">0</h2>
+                                        <h4 class="counter" data-target="{{ $description }}">0</h4>
                                         <span>{{ $info->title }}</span>
                                     </div>
                                 </div>

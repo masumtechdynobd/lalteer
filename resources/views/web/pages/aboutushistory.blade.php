@@ -128,60 +128,21 @@
     </div>
 
     {{-- collaborative works --}}
-    <div class="container-fluid" style="margin-top: 50px;">
+    <div class="container-fluid" style="margin-top: 100px; margin-bottom: 100px;">
         <div class="wheel-slider mx-auto">
             <div class="circle">
-                <!-- Updated with 15 items -->
-                <div class="item" style="--i: 0;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Mango Bar">
-                </div>
-                <div class="item" style="--i: 1;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Puffed Rice">
-                </div>
-                <div class="item" style="--i: 2;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Potato Sticks">
-                </div>
-                <div class="item" style="--i: 3;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Dal">
-                </div>
-                <div class="item" style="--i: 4;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 5">
-                </div>
-                <div class="item" style="--i: 5;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 6">
-                </div>
-                <div class="item" style="--i: 6;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 7">
-                </div>
-                <div class="item" style="--i: 7;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 8">
-                </div>
-                <div class="item" style="--i: 8;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 9">
-                </div>
-                <div class="item" style="--i: 9;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 10">
-                </div>
-                <div class="item" style="--i: 10;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 11">
-                </div>
-                <div class="item" style="--i: 11;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 12">
-                </div>
-                <div class="item" style="--i: 12;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 13">
-                </div>
-                <div class="item" style="--i: 13;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 14">
-                </div>
-                <div class="item" style="--i: 14;">
-                    <img src="{{ asset('/web/img/collaborative-works1.png') }}" alt="Item 15">
-                </div>
+                @foreach ($data['rows'] as $index => $slider)
+                    <div class="item p-4" style="--i: {{ $index }};">
+                        <img src="{{ asset($slider->photos_path) }}" alt="{{ $slider->title }}">
+                    </div>
+                @endforeach
             </div>
             <div class="center-image">
-                <img src="https://www.pranfoods.net/sites/default/files/pran_twister_chips_90pxx90px-65.png"
-                    alt="Potato Chips">
+                @foreach ($data['centers'] as $center)
+                    <img src="{{ asset($center->photos_path) }}" alt="{{ $center->name }}">
+                @endforeach
             </div>
+
             <!-- Navigation Buttons -->
             <button class="nav-btn left" onclick="rotateWheel('left')">&#8592;</button>
             <button class="nav-btn right" onclick="rotateWheel('right')">&#8594;</button>
@@ -229,6 +190,7 @@
         </div>
     </div>
     <style>
+        /* Adjusting the PDF viewer container */
         #pdfViewerContainer {
             width: 100%;
             height: auto;
@@ -247,6 +209,63 @@
             margin: auto;
         }
 
+        /* Wheel slider container */
+        .wheel-slider {
+            position: relative;
+            width: 100%;
+            max-width: 1070px;
+            /* Increase size for bigger display */
+            margin: auto;
+        }
+
+        /* Circular item container */
+        .circle {
+            position: relative;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: rotate(-30deg);
+        }
+
+        .circle .item {
+            position: absolute;
+            width: 50px;
+            /* Size of each circular item */
+            height: 50px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 120px;
+            font-size: 14px;
+            font-weight: bold;
+            color: black;
+            transform: rotate(calc(var(--i) * 30deg)) translate(200px);
+            /* Adjust translate for proper spacing */
+            transform-origin: center center;
+        }
+
+        /* Central image styling */
+        .center-image {
+            position: absolute;
+            width: 200px;
+            /* Larger center image */
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .center-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        /* Navigation buttons */
         .navigation-btn {
             position: absolute;
             top: 50%;
@@ -258,20 +277,23 @@
             font-size: 18px;
             cursor: pointer;
             z-index: 1000;
+            border-radius: 50%;
         }
 
         .left-btn {
-            left: 20px;
+            left: -60px;
+            /* Adjust button position for better layout */
         }
 
         .right-btn {
-            right: 20px;
+            right: -60px;
         }
 
         .navigation-btn:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
 
+        /* Footer controls */
         .footer-controls {
             text-align: center;
             padding: 10px;
@@ -292,6 +314,7 @@
             background-color: #218838;
         }
     </style>
+
 
     <script>
         let angle = 0; // Keeps track of the current rotation angle
@@ -402,5 +425,14 @@
 
         // Load a default PDF
         loadPDF('{{ asset('/uploads/setting/' . $setting->pdf_path) }}');
+
+
+
+
+        function rotateWheel(direction) {
+            const circle = document.querySelector('.circle');
+            const rotation = parseInt(getComputedStyle(circle).getPropertyValue('--rotation')) || 0;
+            circle.style.setProperty('--rotation', rotation + (direction === 'left' ? -30 : 30));
+        }
     </script>
 @endsection

@@ -130,10 +130,32 @@
             </a>
             <ul class="nav-second-level" aria-expanded="false">
                 <li>
-                    <a href="{{ route('admin.contact_message.index') }}">{{ trans_choice('Add Subject', 2) }}</a>
                     <a href="{{ route('admin.contact_message_user.index') }}">{{ trans_choice('Message', 2) }}</a>
+                    <a href="{{ route('admin.contact_message.index') }}">{{ trans_choice('Add Subject', 2) }}</a>
+                    <a href="{{ route('admin.contact_map.index') }}">{{ trans_choice('Map Image', 2) }}</a>
                 </li>
             </ul>
+        </li>
+
+        <li>
+            <a href="javascript: void(0);">
+                <span class="icon"><i class="fas fa-comments"></i></span>
+                <span> {{ trans_choice('Wheel Slider', 2) }} </span>
+                <span class="menu-arrow"></span>
+            </a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li>
+                    <a href="{{ route('admin.wheel_slider.index') }}">{{ trans_choice('Rounded Image', 2) }}</a>
+                    <a href="{{ route('admin.wheel_slider_center.index') }}">{{ trans_choice('Center Image', 2) }}</a>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="{{ route('admin.gallery.index') }}">
+                <span class="icon"><i class="fas fa-tags"></i></span>
+                <span> {{ trans_choice('Gallery', 2) }} </span>
+            </a>
         </li>
 
         {{-- <li>

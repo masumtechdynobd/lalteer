@@ -218,7 +218,7 @@
 /* typography */
 /**/
 .pcss3t .typography {
-  color: #666;
+  color: white;
 }
 
 .pcss3t .typography h1,
@@ -1578,10 +1578,7 @@
   opacity: 1;
 }
 
-.pcss3t-theme-1>ul {
-  border-radius: 5px;
-  box-shadow: 0 3px rgba(0, 0, 0, 0.2);
-}
+.pcss3t-theme-1>ul {}
 
 .pcss3t-theme-1>.tab-content-first:checked~ul {
   border-top-left-radius: 0;
@@ -1810,4 +1807,12 @@
 .pcss3t>ul,
 .pcss3t>ul>li {
   height: 600px;
+}
+
+
+.board-dicrescotry-sm-text-yo {
+  background-color: #04A652;
+  width: 390px;
+  height: 340px;
+  position: relative;
 }

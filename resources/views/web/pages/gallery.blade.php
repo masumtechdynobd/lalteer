@@ -16,122 +16,24 @@
     {{-- gallery section --}}
     <div class="container-fluid" style="margin-top: 80px;">
         <div class="row">
-            <div
-                class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
-                <!-- Image -->
-                <img src="{{ asset('/web/img/gallery-img1.png') }}" class="img-fluid card-gallery-image" alt="..."
-                    style="width: 799px; height: 532px; object-fit: cover;">
-
-                <!-- Hidden Content (will show on hover) -->
+            @foreach ($rows as $row)
                 <div
-                    class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
-                    <h2 class="text-center text-white">We achieved Bangladesh Innovation Award 2022 (Agriculture Category)
-                    </h2>
+                    class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
+                    <a href="{{ route('newsletter') }}">
+                        <!-- Image -->
+                        <img src="{{ asset($row->photos_path) }}" class="img-fluid card-gallery-image" alt="..."
+                            style="width: 799px; height: 532px; object-fit: cover;">
+
+                        <!-- Hidden Content (will show on hover) -->
+                        <div
+                            class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
+                            <h2 class="text-center text-white">{{ $row->text }}</h2>
+                        </div>
+
+                        <!-- Bottom Text (hidden when hovered) -->
+                        <h4 class="gallry-bottom-text text-center">{{ $row->text }}</h4>
+                    </a>
                 </div>
-
-                <!-- Bottom Text (hidden when hovered) -->
-                <h4 class="gallry-bottom-text text-center">We achieved Bangladesh Innovation Award 2022 (Agriculture
-                    Category)</h4>
-            </div>
-
-
-
-            <div
-                class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
-                <!-- Image -->
-                <img src="{{ asset('/web/img/gallery-img1.png') }}" class="img-fluid card-gallery-image" alt="..."
-                    style="width: 799px; height: 532px; object-fit: cover;">
-
-                <!-- Hidden Content (will show on hover) -->
-                <div
-                    class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
-                    <h2 class="text-center text-white">We achieved Bangladesh Innovation Award 2022 (Agriculture Category)
-                    </h2>
-                </div>
-
-                <!-- Bottom Text (hidden when hovered) -->
-                <h4 class="gallry-bottom-text text-center">We achieved Bangladesh Innovation Award 2022 (Agriculture
-                    Category)</h4>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-            <div
-                class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
-                <!-- Image -->
-                <img src="{{ asset('/web/img/gallery-img1.png') }}" class="img-fluid card-gallery-image" alt="..."
-                    style="width: 799px; height: 532px; object-fit: cover;">
-
-                <!-- Hidden Content (will show on hover) -->
-                <div
-                    class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
-                    <h2 class="text-center text-white">We achieved Bangladesh Innovation Award 2022 (Agriculture Category)
-                    </h2>
-                </div>
-
-                <!-- Bottom Text (hidden when hovered) -->
-                <h4 class="gallry-bottom-text text-center">We achieved Bangladesh Innovation Award 2022 (Agriculture
-                    Category)</h4>
-            </div>
-
-
-
-            <div
-                class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
-                <!-- Image -->
-                <img src="{{ asset('/web/img/gallery-img1.png') }}" class="img-fluid card-gallery-image" alt="..."
-                    style="width: 799px; height: 532px; object-fit: cover;">
-
-                <!-- Hidden Content (will show on hover) -->
-                <div
-                    class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
-                    <h2 class="text-center text-white">We achieved Bangladesh Innovation Award 2022 (Agriculture Category)
-                    </h2>
-                </div>
-
-                <!-- Bottom Text (hidden when hovered) -->
-                <h4 class="gallry-bottom-text text-center">We achieved Bangladesh Innovation Award 2022 (Agriculture
-                    Category)</h4>
-            </div>
-        </div>
-
-        <div class="row mt-4">
-            <div
-                class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
-                <!-- Image -->
-                <img src="{{ asset('/web/img/gallery-img1.png') }}" class="img-fluid card-gallery-image" alt="..."
-                    style="width: 799px; height: 532px; object-fit: cover;">
-
-                <!-- Hidden Content (will show on hover) -->
-                <div
-                    class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
-                    <h2 class="text-center text-white">We achieved Bangladesh Innovation Award 2022 (Agriculture Category)
-                    </h2>
-                </div>
-
-                <!-- Bottom Text (hidden when hovered) -->
-                <h4 class="gallry-bottom-text text-center">We achieved Bangladesh Innovation Award 2022 (Agriculture
-                    Category)</h4>
-            </div>
-
-
-
-            <div
-                class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
-                <!-- Image -->
-                <img src="{{ asset('/web/img/gallery-img1.png') }}" class="img-fluid card-gallery-image" alt="..."
-                    style="width: 799px; height: 532px; object-fit: cover;">
-
-                <!-- Hidden Content (will show on hover) -->
-                <div
-                    class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
-                    <h2 class="text-center text-white">We achieved Bangladesh Innovation Award 2022 (Agriculture Category)
-                    </h2>
-                </div>
-
-                <!-- Bottom Text (hidden when hovered) -->
-                <h4 class="gallry-bottom-text text-center">We achieved Bangladesh Innovation Award 2022 (Agriculture
-                    Category)</h4>
-            </div>
+            @endforeach
         </div>
     @endsection
