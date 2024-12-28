@@ -56,7 +56,10 @@
                                                 @endif
                                             </td>
                                             <td>
-
+                                                <a href="{{ route($route.'.show', [$row->id]) }}" class="btn btn-success btn-sm">
+                                                    <i class="fas fa-eye"></i>
+                                                </a>
+                                                
                                                 <a href="{{ route($route . '.edit', [$row->id]) }}"
                                                     class="btn btn-primary btn-sm">
                                                     <i class="far fa-edit"></i>

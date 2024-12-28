@@ -36,7 +36,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <h3 class="text-success mb-3 ms-5">{{ $item->title }}
+                                        <h3 class="text-success mb-3 ms-5 about-org-content-h">{{ $item->title }}
                                         </h3>
                                     </div>
                                 </div>

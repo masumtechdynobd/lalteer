@@ -27,8 +27,8 @@
                               <img src="/web/img/loader 2.png" alt="" class="img-fluid">
                           </div>
                       </div>
-                      <h2 class="text-success ms-5">OUR CHAIRMAN MESSAGE</h2>
-                      <h2 class="ms-5">Explore This Projects</h2>
+                      <h2 class="text-success ms-5 chairman-title-margin-top-h2">OUR CHAIRMAN MESSAGE</h2>
+                      <h2 class="ms-5 chairman-title-margin-top-h2">Explore This Projects</h2>
                   </div>
                   <div class="wow fadeInRight">
                       <div class="mt-4">

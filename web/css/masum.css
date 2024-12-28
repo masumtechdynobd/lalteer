@@ -75,7 +75,18 @@
   .about-org-content {
     margin-top: 20px;
   }
+  .about-org-content-h2{
+    margin-left: 0 !important;
+  }
 }
+
+@media (max-width: 500px) {
+  .about-org-content-h3{
+    margin-left: 0 !important;
+    margin-top: 10px !important;
+  }
+}
+
 
 /* board of directory */
 .boardofdirectory-margin-top {
@@ -800,6 +811,12 @@
   }
 }
 
+@media (max-width: 500px) {
+  .rd-details-research-textcontent-h2{
+    margin-left: 0 !important;
+  }
+}
+
 
 
 
@@ -828,6 +845,12 @@
 
 .farmers-details-custom-gap>div:last-child {
   margin-right: 0;
+}
+
+@media (max-width: 500px) {
+  .farmers-second-part-sec{
+    align-items: start;
+  }
 }
 
 
@@ -1036,6 +1059,13 @@
   color: var(--bs-white);
 }
 
+@media (max-width: 500px) {
+  .newsletter-responsive-links-flex {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
 
 
 
@@ -1128,5 +1158,14 @@
 
 .custom-gap-contact-us>div:last-child {
   margin-right: 0;
+}
+
+@media (max-width: 500px) {
+  .contact-us-h1-title{
+    font-size: 50px !important;
+  }
+  .contact-us-send-msg-button{
+    align-items: center !important;
+  }
 }
 

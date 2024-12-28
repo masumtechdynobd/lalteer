@@ -9,6 +9,13 @@
             /* Updated size */
         }
 
+        @media (max-width: 500px) {
+            .wheel-slider {
+                width: 800px;
+                height: 800px;
+            }
+        }
+
         .circle {
             position: absolute;
             width: 100%;
@@ -110,8 +117,8 @@
                             <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
                         </div>
                     </div>
-                    <h2 class="text-success mb-3 ms-5">COMPANY HISTORY</h2>
-                    <h2 class="mb-4 custom-letter-spacing" style="font-weight: normal;">
+                    <h2 class="text-success mb-3 ms-5 about-org-content-h2">COMPANY HISTORY</h2>
+                    <h2 class="mb-4 custom-letter-spacing about-org-content-h2" style="font-weight: normal;">
                         {{ @$history->title }}
                     </h2>
                     <p class="mb-4">
@@ -189,6 +196,7 @@
             </div>
         </div>
     </div>
+
     <style>
         /* Adjusting the PDF viewer container */
         #pdfViewerContainer {

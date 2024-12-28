@@ -16,7 +16,7 @@
     <div class="container-fluid d-flex justify-content-center align-items-center" style="margin-top: 80px">
         <div class="text-center">
             <!-- Buttons to Toggle Content -->
-            <p class="container d-inline-flex gap-4 justify-content-between">
+            <p class="container d-inline-flex gap-4 justify-content-between newsletter-responsive-links-flex">
                 <a class="bg-danger text-white py-2 rounded-2" style="padding-left: 120px; padding-right: 120px;"
                     href="#" id="showPhotos">Photos</a>
                 <a class="btn btn-danger py-2" style="padding-left: 120px; padding-right: 120px;" href="#"

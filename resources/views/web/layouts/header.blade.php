@@ -49,7 +49,7 @@
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-            <a href="" class="navbar-brand p-0">
+            <a href="{{ url('/') }}" class="navbar-brand p-0">
                 <!-- <h1 class="text-primary"><i class="fas fa-search-dollar me-3"></i>Stocker</h1> -->
                 <img src="{{ asset('/uploads/setting/' . $setting->logo_path) }}" alt="Logo">
             </a>
@@ -79,7 +79,7 @@
                         <div class="dropdown-menu m-0 dropdown-grid">
                             @foreach ($categories as $category)
                                 <a href="{{ route('crops', $category->slug) }}"
-                                    class="dropdown-item">{{ $category->title }}</a>
+                                    class="dropdown-item text-start">{{ $category->title }}</a>
                             @endforeach
                         </div>
                     </div>

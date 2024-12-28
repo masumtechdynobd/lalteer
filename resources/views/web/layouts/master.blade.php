@@ -40,6 +40,10 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css" />
 
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="{{ asset('/web/js/turn.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/web/js/turn.js') }}"></script>
+
     <style>
         .mt-5 {
             margin-top: -8rem !important;
@@ -48,63 +52,44 @@
         .carousel-control-prev,
         .carousel-control-next {
             position: relative !important;
-            /* Make them relative to the parent container */
             display: inline-block;
             top: -30px;
-            /* Adjust this value to place the buttons */
             color: #fff;
             background-color: var(--bs-primary);
             padding: 4px 12px;
-            /* Smaller padding for smaller buttons */
             border-radius: 20px;
-            /* Smaller border-radius for a compact look */
             font-size: 12px;
-            /* Adjust text/icon size */
             transition: 0.3s ease;
             width: 35px;
-            /* Set button width */
             height: 35px;
-            /* Set button height */
             line-height: 35px;
-            /* Center content vertically */
         }
 
         .carousel-control-prev:hover,
         .carousel-control-next:hover {
             background-color: var(--bs-dark);
-            /* Darker background on hover */
         }
 
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
             font-size: 14px;
-            /* Adjust the size of the arrow icons */
             width: 10px;
-            /* Adjust icon width */
             height: 10px;
-            /* Adjust icon height */
         }
 
         .vertical-line {
             position: absolute;
             top: 5%;
-            /* Push down by 5% to center vertically */
             right: 0;
-            /* Align to the right of the column */
             height: 90%;
-            /* 90% of the column height */
             width: 2px;
-            /* Width of the line */
             background-color: #1a1919;
-            /* Color of the line */
         }
 
 
         .carousel-container {
             position: relative;
-            /* Establish stacking context */
             z-index: 10;
-            /* Higher than other content */
         }
 
         .my-5 {

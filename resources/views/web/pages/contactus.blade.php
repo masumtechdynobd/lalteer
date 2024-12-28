@@ -40,8 +40,8 @@
     {{-- get in touch --}}
     <div class="container-fluid" style="margin-top: 35px;">
         <div class="row">
-            <div class="col-md-4">
-                <h1 style="color: #4D4C4C; font-weight: bold; font-size: 100px;">Get in Touch With us</h1>
+            <div class="col-md-4 contact-us-get-in-touch">
+                <h1 class="contact-us-h1-title" style="color: #4D4C4C; font-weight: bold; font-size: 100px;">Get in Touch With us</h1>
                 <p>Have a question or inquiry about our programs, how to get involved, or anything else? We're just an email
                     away.</p>
                 <div class="d-flex">
@@ -98,7 +98,7 @@
                     <div class="row mt-4">
                         <div class="col">
                             <button type="submit"
-                                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">SEND US A
+                                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 contact-us-send-msg-button">SEND US A
                                 MESSAGE</button>
                         </div>
                     </div>

@@ -62,6 +62,22 @@
     .upload-btn:hover {
         background-color: #218838;
     }
+
+
+
+
+
+    #magazine {
+        width: 1152px;
+        height: 752px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    #magazine .turn-page {
+        background-color: #ccc;
+        background-size: 100% 100%;
+    }
 </style>
 
 
@@ -106,6 +122,19 @@
         <canvas id="pdfCanvas"></canvas>
     </div> --}}
 </div>
+
+
+{{-- <div class="container-fluid">
+    <div id="magazine">
+        <div style="background-image:url({{ asset('/web/img/01.jpg') }});"></div>
+        <div style="background-image:url({{ asset('/web/img/02.jpg') }});"></div>
+        <div style="background-image:url({{ asset('/web/img/03.jpg') }});"></div>
+        <div style="background-image:url({{ asset('/web/img/04.jpg') }});"></div>
+        <div style="background-image:url({{ asset('/web/img/05.jpg') }});"></div>
+        <div style="background-image:url({{ asset('/web/img/06.jpg') }});"></div>
+    </div>
+</div> --}}
+
 
 
 
@@ -199,4 +228,31 @@
 
     // Load a default PDF
     loadPDF('{{ asset('/uploads/setting/' . $setting->pdf_path) }}');
+</script>
+
+
+<script type="text/javascript">
+    $(window).ready(function() {
+        $('#magazine').turn({
+            display: 'double',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation: 50,
+            when: {
+                turned: function(e, page) {
+                    console.log('Current view: ', $(this).turn('view'));
+                }
+            }
+        });
+    });
+
+
+    $(window).bind('keydown', function(e) {
+
+        if (e.keyCode == 37)
+            $('#magazine').turn('previous');
+        else if (e.keyCode == 39)
+            $('#magazine').turn('next');
+
+    });
 </script>

@@ -23,7 +23,7 @@
                         <h4 class="header-title">{{ __('dashboard.edit') }}</h4>
                     </div>
                     <form class="needs-validation" novalidate action="{{ route($route . '.update', $row->id) }}"
-                        method="post">
+                        method="POST">
                         @csrf
                         @method('PUT') <!-- Include the method override for PUT -->
 

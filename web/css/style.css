@@ -308,12 +308,39 @@ body {
 .header-carousel .owl-nav .owl-prev {
     bottom: 160px;
     left: 30px;
-    margin-left: 90px;
+    margin-left: 620px;
 }
 
 .header-carousel .owl-nav .owl-next {
-    bottom: 30px;
-    left: 30px;
+    bottom: 160px;
+    left: 740px;
+}
+
+@media (max-width: 1199px) {
+    .header-carousel .owl-nav .owl-next {
+        left: 610px;
+    }
+    .header-carousel .owl-nav .owl-prev {
+        margin-left: 490px;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-carousel .owl-nav .owl-next {
+        left: 500px;
+    }
+    .header-carousel .owl-nav .owl-prev {
+        margin-left: 370px;
+    }
+}
+
+@media (max-width: 500px) {
+    .header-carousel .owl-nav .owl-next {
+        bottom: 110px;
+    }
+    .header-carousel .owl-nav .owl-prev {
+        bottom: 110px;
+    }
 }
 
 .header-carousel .owl-nav .owl-prev:hover,
@@ -899,22 +926,30 @@ body {
 /*** Footer Start ***/
 .footer {
     background: url('/web/img/footer-bg.jpg');
-    background-size: cover; /* Ensures the image covers the entire section */
-    background-position: initial; /* Centers the image */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    color: white; /* Adjust text color for better visibility */
-    padding: 20px; /* Add padding for inner spacing */
+    background-size: cover;
+    /* Ensures the image covers the entire section */
+    background-position: initial;
+    /* Centers the image */
+    background-repeat: no-repeat;
+    /* Prevents the image from repeating */
+    color: white;
+    /* Adjust text color for better visibility */
+    padding: 20px;
+    /* Add padding for inner spacing */
 
 }
 
 .image-container {
     display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically (optional) */
-    height: 100%; /* Optional: Adjust based on your container's height */
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically (optional) */
+    height: 100%;
+    /* Optional: Adjust based on your container's height */
 }
 
-.footer-logo{
+.footer-logo {
     margin-top: 90px;
 }
 
@@ -962,24 +997,31 @@ body {
 
 .subscribe-container {
     position: relative;
-    width: 100%; /* Adjust the width of the container */
-    max-width: 400px; /* Optional: limit the width of the input field */
+    width: 100%;
+    /* Adjust the width of the container */
+    max-width: 400px;
+    /* Optional: limit the width of the input field */
 }
 
 .subscribe-input {
     width: 100%;
-    padding-right: 50px; /* Space for the button inside the input */
-    background-color: rgba(0, 0, 0, 0.459); /* Input background */
+    padding-right: 50px;
+    /* Space for the button inside the input */
+    background-color: rgba(0, 0, 0, 0.459);
+    /* Input background */
     color: white;
 }
 
 .subscribe-btn {
-    top: 1px; /* Position the button inside above the input field */
-    right: 3px; /* Adjust positioning to be on the right side */
+    top: 1px;
+    /* Position the button inside above the input field */
+    right: 3px;
+    /* Adjust positioning to be on the right side */
     padding: 0px 12px;
     font-size: 14px;
     font-weight: bold;
-    z-index: 1; /* Ensure the button is above the input */
+    z-index: 1;
+    /* Ensure the button is above the input */
 }
 
 
@@ -1082,6 +1124,14 @@ body {
 .about-sm-img-custom-gap>div:last-child {
     margin-right: 0;
 }
+
+@media (max-width: 500px) {
+    .about-text-section-h2 {
+        margin-top: 30px !important;
+        margin-left: 0 !important;
+    }
+}
+
 
 
 
@@ -1351,19 +1401,28 @@ body {
     padding-left: 10px;
     background-color: #E6F6EE;
     border-radius: 40px;
-    display: flex; /* Enables Flexbox */
-    justify-content: center; /* Centers image horizontally */
-    align-items: center; /* Centers image vertically */
-    height: 589px; /* Ensures the container has consistent height */
+    display: flex;
+    /* Enables Flexbox */
+    justify-content: center;
+    /* Centers image horizontally */
+    align-items: center;
+    /* Centers image vertically */
+    height: 589px;
+    /* Ensures the container has consistent height */
 }
 
 /* Ensure the image fills the appropriate size */
 .card-img-map {
-    max-width: 100%; /* Prevents overflow */
-    max-height: 100%; /* Prevents overflow */
-    object-fit: contain; /* Keeps aspect ratio and fits image within container */
-    object-position: center; /* Ensures the image is centered */
-    display: block; /* Removes unwanted spacing around images */
+    max-width: 100%;
+    /* Prevents overflow */
+    max-height: 100%;
+    /* Prevents overflow */
+    object-fit: contain;
+    /* Keeps aspect ratio and fits image within container */
+    object-position: center;
+    /* Ensures the image is centered */
+    display: block;
+    /* Removes unwanted spacing around images */
     margin-top: 50px;
 }
 
@@ -1415,19 +1474,26 @@ body {
 }
 
 .view-template {
-    position: relative; /* Required for pseudo-element positioning */
+    position: relative;
+    /* Required for pseudo-element positioning */
     display: inline-block;
-    padding-bottom: 5px; /* Space between text and line */
+    padding-bottom: 5px;
+    /* Space between text and line */
 }
 
 .view-template::after {
-    content: ''; /* Creates a pseudo-element */
+    content: '';
+    /* Creates a pseudo-element */
     position: absolute;
     left: 0;
-    bottom: 0; /* Positions the line at the bottom of the text */
-    width: 100%; /* Makes the line span the full width of the text */
-    height: 2px; /* Thickness of the line */
-    background-color: black; /* Black line color */
+    bottom: 0;
+    /* Positions the line at the bottom of the text */
+    width: 100%;
+    /* Makes the line span the full width of the text */
+    height: 2px;
+    /* Thickness of the line */
+    background-color: black;
+    /* Black line color */
 }
 
 .about-sm-img-custom-gap {
@@ -1443,19 +1509,39 @@ body {
     margin-right: 0;
 }
 
-.about-result-sm-section{
+.about-result-sm-section {
     position: relative;
     margin-top: -30rem !important;
 }
 
-.about-sm-youtube-section{
-    margin-top:350px;
+.about-sm-youtube-section {
+    margin-top: 350px;
 }
 
 @media (max-width: 1200px) {
-    .about-result-sm-section{
+    .about-result-sm-section {
         position: relative;
-        margin-top: -31rem !important;
+        margin-top: -34.5rem !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .chairman-title-margin-top-h2{
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .about-result-sm-section {
+        position: relative;
+        margin-top: -38.5rem !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .about-result-sm-section {
+        margin-top: -47.5rem !important;
+        text-align: center;
     }
 }
 
@@ -1467,7 +1553,8 @@ body {
 
 .chairman-img-margin {
     margin-top: 160px;
-    position: relative; /* Required to position the line relative to this container */
+    position: relative;
+    /* Required to position the line relative to this container */
     display: inline-block;
 }
 
@@ -1475,10 +1562,26 @@ body {
     margin-top: 50px;
 }
 
+@media (max-width: 1200px) {
+    .chairman-title-margin-top-h2 {
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .chairman-title-margin-top-h2 {
+        margin-left: 0 !important;
+    }
+}
+
+
 .chairman-line-design {
-    top: -20px; /* Adjust this value to position the line higher */
-    right: -20px; /* Adjust this value to move the line to the right */
-    position: absolute; /* Allows precise positioning */
+    top: -20px;
+    /* Adjust this value to position the line higher */
+    right: -20px;
+    /* Adjust this value to move the line to the right */
+    position: absolute;
+    /* Allows precise positioning */
     margin-top: 220px;
 }
 
@@ -1493,52 +1596,85 @@ body {
 
 
 .dropdown-menu.dropdown-grid {
-    display:grid !important; 
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 10px; 
-    padding: 10px; 
-    min-width: 600px; 
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    padding: 10px;
+    min-width: 600px;
     left: -160px;
 }
 
-.dropdown-item {
-    white-space:nowrap; 
-    text-align:center; 
+@media (max-width: 500px) {
+    .dropdown-menu.dropdown-grid {
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 10px;
+        padding: 10px;
+        min-width: 0px !important;
+    }
 }
+
+
+
+.dropdown-item {
+    white-space: nowrap;
+    text-align: center;
+}
+
 .slick-prev,
 .slick-next {
     position: absolute;
-    top: 100%; 
+    top: 100%;
     left: 50%;
-    transform: translateX(-50%); 
-    background-color: #57e1ae; 
-    color: #fff; 
-    border-radius: 50%; 
-    width: 50px; 
-    height: 50px; 
+    transform: translateX(-50%);
+    background-color: #57e1ae;
+    color: #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    font-size: 20px; 
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
     border: none;
     z-index: 10;
 }
 
 .slick-prev {
-    left: 48%; /* Slight adjustment to place the previous arrow */
+    left: 48%;
+}
+
+@media (max-width: 1024px) {
+    .slick-prev {
+        left: 46% !important;
+    }
+    .slick-next {
+        left: 54% !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .slick-prev {
+        left: 40% !important;
+    }
+    .slick-next {
+        left: 60% !important;
+    }
 }
 
 .slick-next {
-    left: 52%; /* Slight adjustment to place the next arrow */
+    left: 52%;
+    /* Slight adjustment to place the next arrow */
 }
 
 .slick-prev:before,
 .slick-next:before {
-    content: ""; /* Remove the default text */
+    content: "";
+    /* Remove the default text */
 }
 
 .slick-prev i,
 .slick-next i {
-    color: #fff; /* Ensure icon color matches the button */
+    color: #fff;
+    /* Ensure icon color matches the button */
 }
-

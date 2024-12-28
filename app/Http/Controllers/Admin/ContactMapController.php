@@ -112,7 +112,7 @@ class ContactMapController extends Controller
 
 
 
-    public function edit(ContactMap $newsletter_photo)
+    public function edit(ContactMap $newsletter_photo, $id)
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
@@ -120,7 +120,7 @@ class ContactMapController extends Controller
         $data['path'] = $this->path;
 
         // Pass the resolved model as $row
-        $data['row'] = $newsletter_photo;
+        $data['row'] = $newsletter_photo->find($id);
         $data['newsletter_photos'] = ContactMap::where('status', '1')->get();
 
         return view($this->view . '.edit', $data);

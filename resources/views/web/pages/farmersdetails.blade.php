@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div>
-                            <h2 class="text-success mb-3 ms-5">FARMER'S SUCCESS STORY</h2>
+                            <h2 class="text-success mb-3 ms-5 rd-details-research-textcontent-h2">FARMER'S SUCCESS STORY</h2>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
 
     {{-- ESTABLISHMENT OF SALINE R&D CENTER AT RAMPAL, BAGERHAT --}}
     <div class="container-fluid" style="margin-top: 100px">
-        <div class="row px-4 align-items-stretch equal-height">
+        <div class="row px-4 align-items-stretch equal-height farmers-second-part-sec">
             <!-- First Column -->
             <div class="col-md-6 about-org-content d-flex">
                 <div class="w-100">

@@ -17,7 +17,7 @@
                         <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
                     </div>
                 </div>
-                <h2 class="text-success ms-5 mb-4">ABOUT OUR COMPANY</h2>
+                <h2 class="text-success ms-5 mb-4 about-text-section-h2">ABOUT OUR COMPANY</h2>
                 <h4 class="mb-4 custom-letter-spacing">
                     {{ $about->title }}
                 </h4>

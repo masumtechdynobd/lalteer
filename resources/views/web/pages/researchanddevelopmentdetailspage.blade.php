@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div>
-                            <h2 class="text-success mb-3 ms-5">RESEARCH AND DEVELOPMENT AREA</h2>
+                            <h2 class="text-success mb-3 ms-5 rd-details-research-textcontent-h2">RESEARCH AND DEVELOPMENT AREA</h2>
                         </div>
                     </div>
                 </div>
