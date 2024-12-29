@@ -1,5 +1,15 @@
 @extends('web.layouts.master')
 @section('content')
+    <style>
+        iframe {
+            width: 100% !important;
+            /* Make iframe fill the container */
+            height: 554px;
+            /* Set a fixed height */
+        }
+    </style>
+
+
     {{-- top image section --}}
     <div class="container-fluid bg-breadcrumb-newsletter">
         <div class="container text-center py-5" style="max-width: 900px">
@@ -41,7 +51,8 @@
     <div class="container-fluid" style="margin-top: 35px;">
         <div class="row">
             <div class="col-md-4 contact-us-get-in-touch">
-                <h1 class="contact-us-h1-title" style="color: #4D4C4C; font-weight: bold; font-size: 100px;">Get in Touch With us</h1>
+                <h1 class="contact-us-h1-title" style="color: #4D4C4C; font-weight: bold; font-size: 100px;">Get in Touch
+                    With us</h1>
                 <p>Have a question or inquiry about our programs, how to get involved, or anything else? We're just an email
                     away.</p>
                 <div class="d-flex">
@@ -98,7 +109,8 @@
                     <div class="row mt-4">
                         <div class="col">
                             <button type="submit"
-                                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 contact-us-send-msg-button">SEND US A
+                                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 contact-us-send-msg-button">SEND
+                                US A
                                 MESSAGE</button>
                         </div>
                     </div>
@@ -163,7 +175,7 @@
                                                     <div
                                                         class="text-content d-flex flex-column justify-content-center align-items-center h-100 py-4">
                                                         <h6 class="text-white">{{ $member->title }}</h6>
-                                                        <h5 class="mb-0 text-white">{{ $member->designation_id  }}</h5>
+                                                        <h5 class="mb-0 text-white">{{ $member->designation_id }}</h5>
                                                         <p class="mb-0 text-white">{{ $member->description }}</p>
                                                     </div>
                                                 </div>
@@ -196,8 +208,12 @@
                                                         <div
                                                             class="text-content-yo d-flex flex-column justify-content-center align-items-center h-100 py-4">
                                                             <h6 class="text-white">{{ $member->title }}</h6>
-                                                            <h5 class="mb-0 text-white">{{ $member->designation->title ?? 'N/A' }}</h5>
-                                                            <p class="mb-0 text-white px-4" style="color: white !important;">{{ \Illuminate\Support\Str::words(strip_tags($member->description), 20) }}</p>
+                                                            <h5 class="mb-0 text-white">
+                                                                {{ $member->designation->title ?? 'N/A' }}</h5>
+                                                            <p class="mb-0 text-white px-4"
+                                                                style="color: white !important;">
+                                                                {{ \Illuminate\Support\Str::words(strip_tags($member->description), 20) }}
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -217,11 +233,15 @@
     </div>
 
     {{-- map --}}
+    {{-- Dynamic Google Map --}}
     <div class="container-fluid" style="margin-top: 70px;">
-        @foreach ($contactmaps as $contactmap)
-            <img src="{{ asset($contactmap->photos_path) }}" alt="" style="width: 100%; height: 554px;">
-        @endforeach
+        @if (!empty($settings->google_map))
+            {!! $settings->google_map !!}
+        @else
+            <p>Google Map is not available. Please update your settings.</p>
+        @endif
     </div>
+
 
     <!-- jQuery script to handle the content toggling -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

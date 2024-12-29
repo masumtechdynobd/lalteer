@@ -152,6 +152,13 @@
         </li>
 
         <li>
+            <a href="{{ route('admin.catalogue.index') }}">
+                <span class="icon"><i class="fas fa-tags"></i></span>
+                <span> {{ trans_choice('Catalogue', 2) }} </span>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('admin.gallery.index') }}">
                 <span class="icon"><i class="fas fa-tags"></i></span>
                 <span> {{ trans_choice('Gallery', 2) }} </span>

@@ -35,6 +35,10 @@
                                      {{ \Illuminate\Support\Str::words(strip_tags($service->short_desc), 8) }}</p>
 
                              </div>
+                             <div
+                                 class="circle-bg position-absolute bottom-0 start-50 translate-middle-x d-flex justify-content-center align-items-center">
+                                 <i class="bi bi-arrow-up-left"></i>
+                             </div>
                          </div>
                      </a>
                  </div>
@@ -57,6 +61,3 @@
          <img src="{{ asset('/web/img/service-2-shape-3 1.png') }}" alt="" class="img-fluid img-full-img w-100">
      </div>
  </div>
-
-
-

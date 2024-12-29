@@ -13,6 +13,7 @@ use App\Models\Counter;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Variety;
+use App\Models\Catalogue;
 use App\Models\Portfolio;
 use App\Mail\Subscription;
 use App\Models\Subscriber;
@@ -97,6 +98,10 @@ class HomeController extends Controller
         
         // Clients
         $data['chairman_message'] = ChairmanMessage::first();
+
+        $data['catalogues'] = Catalogue::orderBy('id', 'desc')->get();
+
+        $data['dcatalogues'] = Setting::where('status', 1)->first();
 
         return view('web.index', $data);
     }

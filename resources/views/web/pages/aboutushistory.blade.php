@@ -9,13 +9,6 @@
             /* Updated size */
         }
 
-        @media (max-width: 500px) {
-            .wheel-slider {
-                width: 800px;
-                height: 800px;
-            }
-        }
-
         .circle {
             position: absolute;
             width: 100%;
@@ -39,8 +32,7 @@
         }
 
         .item img {
-            width: 280px;
-            /* Increased size */
+            width: 450px;
             height: 280px;
             /* Increased size */
             object-fit: contain;

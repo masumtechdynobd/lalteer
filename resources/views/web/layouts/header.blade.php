@@ -9,10 +9,13 @@
     <!-- Spinner Start -->
     <div id="spinner"
         class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+        <!-- Video Loader -->
+        <video autoplay muted loop playsinline style="max-width: 80%; max-height: 80%;">
+            <source src="/uploads/website-loading-video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
     </div>
+
     <!-- Spinner End -->
 
     <!-- Topbar Start -->
@@ -215,8 +218,10 @@
                                                 </a>
                                                 <div class="dropdown-menu m-0">
                                                     <a href="{{ route('projects') }}" class="dropdown-item">ALL</a>
-                                                    <a href="{{ route('projects') }}" class="dropdown-item">ON GOING</a>
-                                                    <a href="{{ route('projects') }}" class="dropdown-item">COMPLETE</a>
+                                                    <a href="{{ route('projects') }}" class="dropdown-item">ON
+                                                        GOING</a>
+                                                    <a href="{{ route('projects') }}"
+                                                        class="dropdown-item">COMPLETE</a>
                                                 </div>
                                             </div>
                                             <div class="nav-item dropdown">
@@ -224,19 +229,24 @@
                                                     <span class="dropdown-toggle">NEWSLETTER</span>
                                                 </a>
                                                 <div class="dropdown-menu m-0">
-                                                    <a href="{{ route('newsletter') }}" class="dropdown-item">PHOTOS</a>
-                                                    <a href="{{ route('newsletter') }}" class="dropdown-item">VIDEOS</a>
-                                                    <a href="{{ route('newsletter') }}" class="dropdown-item">NEWS & BLOGS</a>
+                                                    <a href="{{ route('newsletter') }}"
+                                                        class="dropdown-item">PHOTOS</a>
+                                                    <a href="{{ route('newsletter') }}"
+                                                        class="dropdown-item">VIDEOS</a>
+                                                    <a href="{{ route('newsletter') }}" class="dropdown-item">NEWS &
+                                                        BLOGS</a>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-3 text-center">
                                             <ul style="list-style: none; font-weight: bold;">
-                                                <li class="mb-3"><a href="{{ route('researchanddevelopment') }}">R & D</a></li>
+                                                <li class="mb-3"><a href="{{ route('researchanddevelopment') }}">R
+                                                        & D</a></li>
                                                 <li class="mb-3"><a href="{{ route('farmers') }}">Farmers</a></li>
                                                 <li class="mb-3"><a href="{{ route('gallery') }}">Gallery</a></li>
                                                 <li class="mb-3"><a href="#">Career</a></li>
-                                                <li class="mb-3"><a href="{{ route('contactus') }}">Contact Us</a></li>
+                                                <li class="mb-3"><a href="{{ route('contactus') }}">Contact Us</a>
+                                                </li>
                                             </ul>
 
                                         </div>
@@ -247,13 +257,17 @@
                                             <h5 class="my-3">FOLLOW US</h5>
                                             <div class="d-flex justify-content-center align-items-center">
                                                 <a class="btn btn-success btn-sm-square rounded-circle me-3"
-                                                    href="{{ $social->facebook }}"><i class="fab fa-facebook-f text-white"></i></a>
+                                                    href="{{ $social->facebook }}"><i
+                                                        class="fab fa-facebook-f text-white"></i></a>
                                                 <a class="btn btn-success btn-sm-square rounded-circle me-3"
-                                                    href="{{ $social->twitter }}"><i class="fab fa-twitter text-white"></i></a>
+                                                    href="{{ $social->twitter }}"><i
+                                                        class="fab fa-twitter text-white"></i></a>
                                                 <a class="btn btn-success btn-sm-square rounded-circle me-3"
-                                                    href="{{ $social->instagram }}"><i class="fab fa-instagram text-white"></i></a>
+                                                    href="{{ $social->instagram }}"><i
+                                                        class="fab fa-instagram text-white"></i></a>
                                                 <a class="btn btn-success btn-sm-square rounded-circle me-0"
-                                                    href="{{ $social->linkedin }}"><i class="fab fa-linkedin-in text-white"></i></a>
+                                                    href="{{ $social->linkedin }}"><i
+                                                        class="fab fa-linkedin-in text-white"></i></a>
                                             </div>
 
                                         </div>

@@ -73,7 +73,8 @@
                             </div>
                         </div>
                         <div>
-                            <h2 class="text-success mb-3 ms-5 rd-details-research-textcontent-h2">RESEARCH AND DEVELOPMENT AREA</h2>
+                            <h2 class="text-success mb-3 ms-5 rd-details-research-textcontent-h2">RESEARCH AND DEVELOPMENT
+                                AREA</h2>
                         </div>
                     </div>
                 </div>
@@ -97,7 +98,8 @@
                     </div>
                     <div class="wow fadeInLeft">
                         <div>
-                            <p>{{ strip_tags($data->description) }}</p>
+                            <p>{!! strip_tags($data->description, '<b><i><p><br><ul><li><strong>') !!}
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -70,8 +70,6 @@
     #magazine {
         width: 1152px;
         height: 752px;
-        background-size: cover;
-        background-position: center;
     }
 
     #magazine .turn-page {
@@ -82,7 +80,6 @@
 
 
 <div class="container-fluid">
-
     <div class="text-center crops-margin mb-3 wow fadeInUp">
         <div class="d-flex justify-content-center align-items-center custom-gap-newsletter">
             <div>
@@ -95,7 +92,7 @@
         <h3 class="text-success fw-bold pb-2">OUR CATALOGUE</h3>
     </div>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div id="pdfViewerContainer" class="text-center">
@@ -115,25 +112,36 @@
     <div class="footer-controls" class="text-center">
         <input type="file" id="fileInput" accept="application/pdf" style="display: none;">
         <span class="text-center">Page: <span id="currentPage">1</span> / <span id="totalPages">--</span></span>
-    </div>
+    </div> --}}
     {{-- 
 
     <div id="pdfViewerContainer" class="text-center">
         <canvas id="pdfCanvas"></canvas>
     </div> --}}
+
+
+    <div id="magazine">
+        @foreach ($catalogues as $catalogue)
+            <div style="background-image:url({{ asset($catalogue->photos_path) }});"></div>
+        @endforeach
+    </div>
+
+    <div class="text-center mt-4">
+        @if ($dcatalogues && $dcatalogues->pdf_path)
+            <a href="{{ asset($dcatalogues->pdf_path) }}" download
+                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">
+                Download Catalogue<i class="bi bi-file-earmark-arrow-down-fill ms-2"></i>
+            </a>
+        @else
+            <p>No catalogue available for download.</p>
+        @endif
+    </div>
+
+
 </div>
 
 
-{{-- <div class="container-fluid">
-    <div id="magazine">
-        <div style="background-image:url({{ asset('/web/img/01.jpg') }});"></div>
-        <div style="background-image:url({{ asset('/web/img/02.jpg') }});"></div>
-        <div style="background-image:url({{ asset('/web/img/03.jpg') }});"></div>
-        <div style="background-image:url({{ asset('/web/img/04.jpg') }});"></div>
-        <div style="background-image:url({{ asset('/web/img/05.jpg') }});"></div>
-        <div style="background-image:url({{ asset('/web/img/06.jpg') }});"></div>
-    </div>
-</div> --}}
+
 
 
 
@@ -231,28 +239,4 @@
 </script>
 
 
-<script type="text/javascript">
-    $(window).ready(function() {
-        $('#magazine').turn({
-            display: 'double',
-            acceleration: true,
-            gradients: !$.isTouch,
-            elevation: 50,
-            when: {
-                turned: function(e, page) {
-                    console.log('Current view: ', $(this).turn('view'));
-                }
-            }
-        });
-    });
-
-
-    $(window).bind('keydown', function(e) {
-
-        if (e.keyCode == 37)
-            $('#magazine').turn('previous');
-        else if (e.keyCode == 39)
-            $('#magazine').turn('next');
-
-    });
-</script>
+<script type="text/javascript"></script>

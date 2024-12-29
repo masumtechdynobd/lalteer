@@ -75,13 +75,14 @@
   .about-org-content {
     margin-top: 20px;
   }
-  .about-org-content-h2{
+
+  .about-org-content-h2 {
     margin-left: 0 !important;
   }
 }
 
 @media (max-width: 500px) {
-  .about-org-content-h3{
+  .about-org-content-h3 {
     margin-left: 0 !important;
     margin-top: 10px !important;
   }
@@ -110,7 +111,9 @@
   background-color: #04A652;
   width: 504px;
   height: 376px;
-  position: relative;
+  position: relative !important;
+  transition: height 0.3s ease;
+  border-radius: 30px !important;
 }
 
 .aboutus-image-container {
@@ -119,9 +122,7 @@
   left: 50%;
 }
 
-.text-content {
-  padding-top: 80px;
-  /* Space below the image */
+.text-content-sec {
   text-align: center;
   padding-top: 10rem !important;
 }
@@ -135,6 +136,10 @@
 
 .second-row-boardofdirectory {
   margin-top: 130px;
+}
+
+.first-row-boardofdirectory {
+  margin-top: 130px !important;
 }
 
 .red-bg-boardofdirectory {
@@ -812,8 +817,18 @@
 }
 
 @media (max-width: 500px) {
-  .rd-details-research-textcontent-h2{
+  .rd-details-research-textcontent-h2 {
     margin-left: 0 !important;
+  }
+
+  .rd-details-research-img2 {
+    margin-left: 160px !important;
+    width: 150px !important;
+    height: auto !important;
+  }
+
+  .rd-details-research-img4 {
+    width: 190px !important;
   }
 }
 
@@ -848,7 +863,7 @@
 }
 
 @media (max-width: 500px) {
-  .farmers-second-part-sec{
+  .farmers-second-part-sec {
     align-items: start;
   }
 }
@@ -956,6 +971,11 @@
 @media (max-width: 1400px) {
   .project-aims-text-title {
     margin-bottom: 210px !important;
+    width: 90%;
+  }
+
+  .project-aims-call {
+    margin-left: 22px;
   }
 }
 
@@ -963,6 +983,7 @@
 @media (max-width: 768px) {
   .project-aims-text-title {
     margin-bottom: 210px !important;
+    width: 80%;
   }
 
   .project-aims-text {
@@ -972,7 +993,8 @@
 
   .project-aims-call {
     padding: 15px;
-    /* Adjust padding for smaller screens */
+    width: 80%;
+    margin-left: 36px;
   }
 
   .project-aims-call-img {
@@ -1161,11 +1183,11 @@
 }
 
 @media (max-width: 500px) {
-  .contact-us-h1-title{
+  .contact-us-h1-title {
     font-size: 50px !important;
   }
-  .contact-us-send-msg-button{
+
+  .contact-us-send-msg-button {
     align-items: center !important;
   }
 }
-

@@ -36,7 +36,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <h3 class="text-success mb-3 ms-5 about-org-content-h">{{ $item->title }}
+                                        <h3 class="text-success mb-3 ms-5 about-org-content-h3">{{ $item->title }}
                                         </h3>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                             </div>
                             <div class="wow fadeInLeft">
                                 <p class="mb-4">
-                                    {{ \Illuminate\Support\Str::words(strip_tags($item->description), 170) }}
+                                    {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 170) }}
                                 </p>
 
                                 <a href="{{ route('researchanddevelopmentdetailspage', $item->slug) }}"
@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <h3 class="text-success mb-3 ms-5">{{ $item->title }}</h3>
+                                        <h3 class="text-success mb-3 ms-5 about-org-content-h3">{{ $item->title }}</h3>
                                     </div>
                                 </div>
                                 <h2 class="mb-4 custom-letter-spacing" style="font-weight: normal;">
@@ -96,7 +96,7 @@
                             </div>
                             <div class="wow fadeInRight">
                                 <p class="mb-4 text-justify">
-                                    {{ \Illuminate\Support\Str::words(strip_tags($item->description), 180) }}
+                                    {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 180) }}
                                 </p>
 
                                 <a href="{{ route('researchanddevelopmentdetailspage', $item->slug) }}"

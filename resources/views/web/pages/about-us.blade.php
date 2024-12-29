@@ -83,14 +83,20 @@
                                                 <h6 class="text-white">{{ $member->title }}</h6>
                                                 <h5 class="mb-0 text-white">{{ designationName($member->designation_id) }}
                                                 </h5>
-                                                <p class="mb-0 text-white">
-                                                    {{ \Illuminate\Support\Str::words(strip_tags($member->description), 20) }}
 
+                                                <!-- Description -->
+                                                <p class="mb-0 text-white short-text">
+                                                    {{ \Illuminate\Support\Str::words(strip_tags($member->description), 20) }}
                                                 </p>
+                                                <p class="mb-0 text-white full-text d-none">
+                                                    {{ strip_tags($member->description) }}
+                                                </p>
+
                                                 <div class="py-3">
-                                                    <a href=""
-                                                        class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">READ
-                                                        MORE</a>
+                                                    <button
+                                                        class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 read-more-btn">
+                                                        READ MORE
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +105,7 @@
                             @endif
                         @endforeach
                     </div>
-                    
+
 
                     <div class="row g-4 second-row-boardofdirectory">
                         @foreach ($members as $index => $member)
@@ -117,17 +123,27 @@
 
                                             <!-- Text content centered at the bottom -->
                                             <div
-                                                class="text-content d-flex flex-column justify-content-center align-items-center h-100 py-4">
+                                                class="text-content d-flex flex-column justify-content-center align-items-center h-100 py-4" style="position: absolute; z-index: 3; margin-bottom: 100px !important">
                                                 <h6 class="text-white">{{ $member->title }}</h6>
                                                 <h5 class="mb-0 text-white">{{ designationName($member->designation_id) }}
                                                 </h5>
-                                                <p class="mb-0 text-white">
+
+                                                <!-- Shortened Description -->
+                                                <p class="mb-0 text-white truncated-description">
                                                     {{ \Illuminate\Support\Str::words(strip_tags($member->description), 20) }}
                                                 </p>
+
+                                                <!-- Full Description (hidden initially) -->
+                                                <p class="full-description text-white" style="display: none;">
+                                                    {{ $member->description }}
+                                                </p>
+
+                                                <!-- Read More Button -->
                                                 <div class="py-3">
-                                                    <a href=""
-                                                        class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">READ
-                                                        MORE</a>
+                                                    <a href="javascript:void(0);"
+                                                        class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 read-more-btn">
+                                                        READ MORE
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -199,3 +215,39 @@
         </div>
     </div>
 @endsection
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Select all "READ MORE" buttons
+        const readMoreBtns = document.querySelectorAll(".read-more-btn");
+
+        // Loop through each button and add click event listener
+        readMoreBtns.forEach((btn) => {
+            btn.addEventListener("click", function() {
+                const parent = btn.closest(".text-content"); // Get the closest parent container
+                const shortText = parent.querySelector(".short-text"); // Short text element
+                const fullText = parent.querySelector(".full-text"); // Full text element
+                const card = parent.closest(
+                ".board-dicrescotry-sm-text"); // The container with the background
+
+                // Toggle visibility of short and full text
+                shortText.classList.toggle("d-none"); // Hide/show short text
+                fullText.classList.toggle("d-none"); // Hide/show full text
+
+                // Update the button text between "READ MORE" and "SHOW LESS"
+                btn.textContent = btn.textContent === "SHOW LESS" ? "READ MORE" : "SHOW LESS";
+
+                // Adjust the height of the card to fit the full text
+                if (!fullText.classList.contains("d-none")) {
+                    // If the full text is visible, expand the background
+                    card.style.height =
+                    `${card.scrollHeight}px`; // Set the height to the scrollHeight (full content height)
+                } else {
+                    // If the full text is hidden, revert to the original height
+                    card.style.height = '376px'; // Reset to default height
+                }
+            });
+        });
+    });
+</script>

@@ -11,6 +11,7 @@ use App\Models\Article;
 use App\Models\Gallery;
 use App\Models\Project;
 use App\Models\Service;
+use App\Models\Setting;
 use App\Models\Variety;
 use App\Models\ContactMap;
 use App\Models\Designation;
@@ -172,6 +173,7 @@ class HomeMasumController extends Controller
         $data['designations'] = Designation::orderBy('title', 'asc')->get(); // Fetch designations dynamically
         $data['rows'] = ContactMessageSubject::orderBy('id', 'desc')->get();
         $data['contactmaps'] = ContactMap::orderBy('id', 'desc')->get();
+        $data['settings'] = Setting::where('status', 1)->first();
 
         return view("web.pages.contactus", $data);
     }

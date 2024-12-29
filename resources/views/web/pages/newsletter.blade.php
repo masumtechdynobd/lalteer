@@ -79,6 +79,7 @@
                                             <p class="text-center">
                                                 {{ implode(' ', array_slice(explode(' ', strip_tags($blog->description)), 0, 10)) }}{{ strlen($blog->description) > 10 ? '...' : '' }}
                                             </p>
+                                            
                                         </div>
                                     </div>
                                 </div>

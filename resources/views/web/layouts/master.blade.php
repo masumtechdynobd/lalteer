@@ -29,8 +29,8 @@
     <link href="{{ asset('/web/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="{{ asset('/web/css/style.css?v2') }}" rel="stylesheet">
-    <link href="{{ asset('/web/css/masum.css') }}" rel="stylesheet">
+    <link href="{{ asset('/web/css/style.css?v3') }}" rel="stylesheet">
+    <link href="{{ asset('/web/css/masum.css?v3') }}" rel="stylesheet">
     <link href="{{ asset('/web/css/masumnew.css') }}" rel="stylesheet">
 
 
@@ -40,9 +40,7 @@
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.1.0/css/font-awesome.min.css" />
 
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="{{ asset('/web/js/turn.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('/web/js/turn.js') }}"></script>
+
 
     <style>
         .mt-5 {
@@ -232,7 +230,30 @@
 
 <script src="{{ asset('/web/js/slick.js') }}"></script>
 
+<script type="text/javascript" src="{{ asset('/web/js/turn.min.js') }}"></script>
+
 <script>
+    $(window).ready(function() {
+        $('#magazine').turn({
+            display: 'double',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation: 50,
+            when: {
+                turned: function(e, page) {
+                    console.log('Current view: ', $(this).turn('view'));
+                }
+            }
+        });
+    });
+    $(window).bind('keydown', function(e) {
+
+        if (e.keyCode == 37)
+            $('#magazine').turn('previous');
+        else if (e.keyCode == 39)
+            $('#magazine').turn('next');
+
+    });
     $(document).ready(function() {
         $('#slick1').slick({
             rows: 2, // Number of rows in the slider

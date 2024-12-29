@@ -306,14 +306,23 @@ body {
 }
 
 .header-carousel .owl-nav .owl-prev {
-    bottom: 160px;
+    bottom: 140px;
     left: 30px;
-    margin-left: 620px;
+    margin-left: 830px;
 }
 
 .header-carousel .owl-nav .owl-next {
-    bottom: 160px;
-    left: 740px;
+    bottom: 140px;
+    left: 970px;
+}
+
+@media (max-width: 1440px) {
+    .header-carousel .owl-nav .owl-next {
+        left: 730px;
+    }
+    .header-carousel .owl-nav .owl-prev {
+        margin-left: 620px;
+    }
 }
 
 @media (max-width: 1199px) {
