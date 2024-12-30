@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Models\Designation;
-use App\Models\Member;
-use Toastr;
-use Image;
 use File;
+use Image;
+use Toastr;
+use App\Models\Member;
+use App\Models\Designation;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MemberController extends Controller
 {
@@ -75,32 +75,36 @@ class MemberController extends Controller
             'title' => 'required|max:191|unique:members,title',
             'designation' => 'required',
             'image' => 'required|image',
+            'board_of_directory' => 'nullable|in:on', // Validate the new field (optional)
         ]);
-
 
         // image upload, fit and store inside public folder 
         if ($request->hasFile('image')) {
-            //Upload New Image
+            // Upload New Image
             $filenameWithExt = $request->file('image')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
 
-            //Crete Folder Location
+            // Create Folder Location
             $path = public_path('uploads/' . $this->path . '/');
-            if (! File::exists($path)) {
+            if (!File::exists($path)) {
                 File::makeDirectory($path, 0777, true, true);
             }
 
-            //Resize And Crop as Fit image here (400 width, 500 height)
+            // Resize and Crop image here (400 width, 500 height)
             $thumbnailpath = $path . $fileNameToStore;
-            $img = Image::make($request->file('image')->getRealPath())->fit(140, 140, function ($constraint) {
-                $constraint->upsize();
-            })->save($thumbnailpath);
+            $img = Image::make($request->file('image')->getRealPath())
+                ->fit(140, 140, function ($constraint) {
+                    $constraint->upsize();
+                })
+                ->save($thumbnailpath);
         } else {
-            $fileNameToStore = 'noimage.jpg'; // if no image selected this will be the default image
+            $fileNameToStore = 'noimage.jpg'; // If no image selected, use default image
         }
 
+        // Check if 'board_of_directory' checkbox is checked (will send 'on' if checked)
+        $boardOfDirectory = $request->has('board_of_directory') ? 1 : 0; // 1 for checked, 0 for unchecked
 
         // Insert Data
         $member = new Member;
@@ -117,13 +121,15 @@ class MemberController extends Controller
         $member->phone = $request->phone;
         $member->whatsapp = $request->whatsapp;
         $member->website = $request->website;
+        $member->board_of_directory = $boardOfDirectory; // Save the board_of_directory value
         $member->save();
-
 
         Toastr::success(__('dashboard.created_successfully'), __('dashboard.success'));
 
         return redirect()->route($this->route . '.index');
     }
+
+
 
     /**
      * Display the specified resource.
@@ -178,39 +184,43 @@ class MemberController extends Controller
             'title' => 'required|max:191|unique:members,title,' . $member->id,
             'designation' => 'required',
             'image' => 'nullable|image',
+            'board_of_directory' => 'nullable|in:on', // Validate the checkbox input (allows 'on')
         ]);
-
 
         // image upload, fit and store inside public folder 
         if ($request->hasFile('image')) {
 
+            // Delete existing image if it exists
             $file_path = public_path('uploads/' . $this->path . '/' . $member->image_path);
             if (File::isFile($file_path)) {
                 File::delete($file_path);
             }
 
-            //Upload New Image
+            // Upload New Image
             $filenameWithExt = $request->file('image')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('image')->getClientOriginalExtension();
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
 
-            //Crete Folder Location
+            // Create Folder Location
             $path = public_path('uploads/' . $this->path . '/');
-            if (! File::exists($path)) {
+            if (!File::exists($path)) {
                 File::makeDirectory($path, 0777, true, true);
             }
 
-            //Resize And Crop as Fit image here (400 width, 500 height)
+            // Resize and Crop image
             $thumbnailpath = $path . $fileNameToStore;
-            $img = Image::make($request->file('image')->getRealPath())->fit(140, 140, function ($constraint) {
-                $constraint->upsize();
-            })->save($thumbnailpath);
+            $img = Image::make($request->file('image')->getRealPath())
+                ->fit(140, 140, function ($constraint) {
+                    $constraint->upsize();
+                })
+                ->save($thumbnailpath);
         } else {
-
-            $fileNameToStore = $member->image_path;
+            $fileNameToStore = $member->image_path; // If no new image selected, retain old one
         }
 
+        // Check if 'board_of_directory' checkbox is checked (will send 'on' if checked)
+        $boardOfDirectory = $request->has('board_of_directory') ? 1 : 0; // 1 for checked, 0 for unchecked
 
         // Update Data
         $member->title = $request->title;
@@ -227,13 +237,14 @@ class MemberController extends Controller
         $member->whatsapp = $request->whatsapp;
         $member->website = $request->website;
         $member->status = $request->status;
+        $member->board_of_directory = $boardOfDirectory; // Save the board_of_directory value
         $member->save();
-
 
         Toastr::success(__('dashboard.updated_successfully'), __('dashboard.success'));
 
         return redirect()->back();
     }
+
 
     /**
      * Remove the specified resource from storage.

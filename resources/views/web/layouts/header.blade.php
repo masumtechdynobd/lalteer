@@ -107,11 +107,15 @@
                             <span class="dropdown-toggle">NEWSLETTER</span>
                         </a>
                         <div class="dropdown-menu m-0">
-                            <a href="{{ route('newsletter') }}" class="dropdown-item">PHOTOS</a>
-                            <a href="{{ route('newsletter') }}" class="dropdown-item">VIDEOS</a>
-                            <a href="{{ route('newsletter') }}" class="dropdown-item">NEWS & BLOGS</a>
+                            <a href="{{ route('newsletter', ['section' => 'photos']) }}"
+                                class="dropdown-item">PHOTOS</a>
+                            <a href="{{ route('newsletter', ['section' => 'videos']) }}"
+                                class="dropdown-item">VIDEOS</a>
+                            <a href="{{ route('newsletter', ['section' => 'news']) }}" class="dropdown-item">NEWS &
+                                BLOGS</a>
                         </div>
                     </div>
+
                     <a href="{{ route('gallery') }}" class="nav-item nav-link">GALERY</a>
                     <a href="{{ route('contactus') }}" class="nav-item nav-link">CONTACT US</a>
                 </div>

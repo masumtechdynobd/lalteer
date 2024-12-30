@@ -1,6 +1,6 @@
 @extends('web.layouts.master')
 @section('content')
-    {{-- top image section --}}
+    {{-- Top Image Section --}}
     <div class="container-fluid bg-breadcrumb-rd">
         <div class="container text-center py-5" style="max-width: 900px">
             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">
@@ -13,27 +13,33 @@
         </div>
     </div>
 
-    {{-- gallery section --}}
+    {{-- Gallery Section --}}
     <div class="container-fluid" style="margin-top: 80px;">
         <div class="row">
             @foreach ($rows as $row)
                 <div
                     class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
-                    <a href="{{ route('newsletter') }}">
+                    <a href="{{ route('gallerydetails', ['id' => $row->id]) }}">
                         <!-- Image -->
-                        <img src="{{ asset($row->photos_path) }}" class="img-fluid card-gallery-image" alt="..."
+                        <img src="{{ asset($row->image) }}" class="img-fluid card-gallery-image" alt="..."
                             style="width: 799px; height: 532px; object-fit: cover;">
 
                         <!-- Hidden Content (will show on hover) -->
                         <div
                             class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
-                            <h2 class="text-center text-white">{{ $row->text }}</h2>
+                            <h2 class="text-center text-white">{{ $row->title }}</h2>
                         </div>
 
                         <!-- Bottom Text (hidden when hovered) -->
-                        <h4 class="gallry-bottom-text text-center">{{ $row->text }}</h4>
+                        <h4 class="gallry-bottom-text text-center">{{ $row->title }}</h4>
                     </a>
                 </div>
             @endforeach
         </div>
-    @endsection
+
+        <!-- Pagination Links -->
+        <div class="d-flex justify-content-center mt-4">
+            {{ $rows->links() }}
+        </div>
+    </div>
+@endsection

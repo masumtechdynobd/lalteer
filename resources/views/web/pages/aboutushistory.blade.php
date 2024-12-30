@@ -4,9 +4,8 @@
         .wheel-slider {
             position: relative;
             width: 800px;
-            /* Updated size */
             height: 800px;
-            /* Updated size */
+            max-width: 1200px !important;
         }
 
         .circle {
@@ -78,6 +77,33 @@
         .right {
             right: 10px;
         }
+        
+        
+        
+        #carouselExample {
+            display: none; /* Hidden by default */
+        }
+        
+        @media (max-width: 767.98px) { /* Bootstrap's mobile breakpoint */
+            #carouselExample {
+                display: block; /* Show only on small devices */
+            }
+            #whell-slider {
+                display: none;
+            }
+        }
+        
+        
+        
+        #magazine {
+            width: 1152px;
+            height: 752px;
+        }
+    
+        #magazine .turn-page {
+            background-color: #ccc;
+            background-size: 100% 100%;
+        }
     </style>
 
 
@@ -127,7 +153,7 @@
     </div>
 
     {{-- collaborative works --}}
-    <div class="container-fluid" style="margin-top: 100px; margin-bottom: 100px;">
+    <div id="whell-slider" class="container-fluid" style="margin-top: 200px; margin-bottom: 200px;">
         <div class="wheel-slider mx-auto">
             <div class="circle">
                 @foreach ($data['rows'] as $index => $slider)
@@ -147,6 +173,27 @@
             <button class="nav-btn right" onclick="rotateWheel('right')">&#8594;</button>
         </div>
     </div>
+    
+    <div id="carouselExample" class="carousel slide">
+      <div class="carousel-inner">
+          @foreach ($data['rows'] as $index => $slider)
+        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+          <div class="d-flex justify-content-center">
+              <img src="{{ asset($slider->photos_path) }}" class="img-fluid d-block" alt="{{ $slider->title }}">
+          </div>
+        </div>
+          @endforeach
+      </div>
+      <button class="nav-btn left" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="nav-btn right" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
 
     {{-- Ours Sister concern --}}
     <div class="container-fluid" style="margin-top: 50px">
@@ -166,25 +213,21 @@
         </div>
 
         <div class="mt-3">
-            <div id="pdfViewerContainer" class="text-center">
-                <!-- Left navigation button -->
-                <button id="prevPage" class="navigation-btn left-btn">❮</button>
-
-                <!-- PDF canvas -->
-                <canvas id="pdfCanvas"></canvas>
-
-                <!-- Right navigation button -->
-                <button id="nextPage" class="navigation-btn right-btn">❯</button>
-            </div>
-
-            <div class="footer-controls" class="text-center">
-                <input type="file" id="fileInput" accept="application/pdf" style="display: none;">
-                <span class="text-center">Page: <span id="currentPage">1</span> / <span id="totalPages">--</span></span>
-            </div>
-
-
-            <div id="pdfViewerContainer" class="text-center">
-                <canvas id="pdfCanvas"></canvas>
+            <div class="row">
+                <div class="col-md-6">
+                     <div id="magazine">
+                        @foreach ($catalogues as $catalogue)
+                            <div style="background-image:url({{ asset($catalogue->photos_path) }});"></div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="col-md-6">
+                     <div id="magazine">
+                        @foreach ($catalogues as $catalogue)
+                            <div style="background-image:url({{ asset($catalogue->photos_path) }});"></div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
     </div>

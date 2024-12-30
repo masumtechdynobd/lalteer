@@ -206,6 +206,10 @@ Route::middleware(['auth:web', 'XSS'])->name('admin.')->namespace('Admin')->pref
 
     Route::resource('catalogue', 'CatalogueController');
 
+    Route::resource('newsletter_direct_video', 'NewsletterDirectVideoController');
+
+    Route::resource('gallery_section', 'GallerySectionController');
+
     // Route::get('newsletter_photos', [NewsletterPhotosController::class, 'index'])->name('newsletter_photos.index');
     // Route::get('newsletter_photos/create', [NewsletterPhotosController::class, 'create'])->name('newsletter_photos.create');
     // Route::post('newsletter_photos/store', [NewsletterPhotosController::class, 'store'])->name('newsletter_photos.store');

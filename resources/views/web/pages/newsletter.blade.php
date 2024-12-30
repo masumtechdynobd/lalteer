@@ -18,15 +18,15 @@
             <!-- Buttons to Toggle Content -->
             <p class="container d-inline-flex gap-4 justify-content-between newsletter-responsive-links-flex">
                 <a class="bg-danger text-white py-2 rounded-2" style="padding-left: 120px; padding-right: 120px;"
-                    href="#" id="showPhotos">Photos</a>
-                <a class="btn btn-danger py-2" style="padding-left: 120px; padding-right: 120px;" href="#"
+                    href="?section=photos" id="showPhotos">Photos</a>
+                <a class="btn btn-danger py-2" style="padding-left: 120px; padding-right: 120px;" href="?section=videos"
                     id="showVideos">Videos</a>
-                <a class="btn btn-danger py-2" style="padding-left: 120px; padding-right: 120px;" href="#"
+                <a class="btn btn-danger py-2" style="padding-left: 120px; padding-right: 120px;" href="?section=news"
                     id="showNews">News & Blogs</a>
             </p>
 
             <!-- Photos Section -->
-            <div class="collapse show" id="photos">
+            <div class="collapse {{ $section == 'photos' ? 'show' : '' }}" id="photos">
                 <div class="container-fluid">
                     <div class="row">
                         @foreach ($photos as $photo)
@@ -37,29 +37,37 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
-            </div>
 
-            <!-- Videos Section -->
-            <div class="collapse" id="videos">
-                <div class="container-fluid">
-                    <div class="row">
-                        @foreach ($videos as $video)
-                            <div class="col-md-3 mb-3">
-                                <iframe width="392" height="294"
-                                    src="https://www.youtube.com/embed/{{ $video->youtube_video_id }}" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                        @endforeach
+                    <!-- Pagination Links for Photos -->
+                    <div class="d-flex justify-content-center">
+                        {{ $photos->withQueryString()->links() }}
                     </div>
                 </div>
             </div>
 
+            <!-- Videos Section -->
+            <div class="collapse {{ $section == 'videos' ? 'show' : '' }}" id="videos">
+                <div class="container-fluid">
+                    <div class="row">
+                        @foreach ($directvideos as $video)
+                            <div class="col-md-3 mb-3">
+                                <video width="392" height="294" controls>
+                                    <source src="{{ asset($video->video) }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Pagination Links for Videos -->
+                    <div class="d-flex justify-content-center">
+                        {{ $directvideos->withQueryString()->links() }}
+                    </div>
+                </div>
+            </div>
 
             <!-- News & Blogs Section -->
-            <div class="collapse" id="news">
+            <div class="collapse {{ $section == 'news' ? 'show' : '' }}" id="news">
                 <div class="container-fluid">
                     <div class="row row-cols-1 row-cols-md-4 g-4 wow fadeInUp">
                         @foreach ($articles as $blog)
@@ -79,15 +87,26 @@
                                             <p class="text-center">
                                                 {{ implode(' ', array_slice(explode(' ', strip_tags($blog->description)), 0, 10)) }}{{ strlen($blog->description) > 10 ? '...' : '' }}
                                             </p>
-                                            
+                                            <div class="py-3">
+                                                <a href="{{ route('newsletterdetails', $blog->id) }}"
+                                                    class="newsletter-bg-success-hover"><i
+                                                        class="bi bi-arrow-right me-2 text-white p-2 rounded-pill"
+                                                        style="background-color: #28a745;"></i>Read More</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
+
+                    <!-- Pagination Links for News & Blogs -->
+                    <div class="d-flex justify-content-center">
+                        {{ $articles->withQueryString()->links() }}
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -113,6 +132,22 @@
                 $('#photos').collapse('hide');
                 $('#videos').collapse('hide');
             });
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Add active class to the current section link
+            const section = new URLSearchParams(window.location.search).get('section') || 'photos';
+            $('#showPhotos, #showVideos, #showNews').removeClass('active');
+            if (section === 'photos') {
+                $('#showPhotos').addClass('active');
+            } else if (section === 'videos') {
+                $('#showVideos').addClass('active');
+            } else if (section === 'news') {
+                $('#showNews').addClass('active');
+            }
         });
     </script>
 @endsection

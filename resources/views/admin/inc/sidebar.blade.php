@@ -77,7 +77,8 @@
                 <li>
                     <a href="{{ route('admin.article.index') }}">Index</a>
                     <a href="{{ route('admin.newsletter_photos.index') }}">Photos</a>
-                    <a href="{{ route('admin.newsletter_videos.index') }}">Videos</a>
+                    {{-- <a href="{{ route('admin.newsletter_videos.index') }}">Videos</a> --}}
+                    <a href="{{ route('admin.newsletter_direct_video.index') }}">Videos</a>
                     <a href="{{ route('admin.article-category.index') }}">{{ trans_choice('category', 2) }}</a>
                 </li>
             </ul>
@@ -162,6 +163,13 @@
             <a href="{{ route('admin.gallery.index') }}">
                 <span class="icon"><i class="fas fa-tags"></i></span>
                 <span> {{ trans_choice('Gallery', 2) }} </span>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('admin.gallery_section.index') }}">
+                <span class="icon"><i class="fas fa-tags"></i></span>
+                <span> {{ trans_choice('Gallery Section', 2) }} </span>
             </a>
         </li>
 

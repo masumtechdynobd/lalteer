@@ -13,6 +13,7 @@ use App\Models\Project;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Variety;
+use App\Models\Catalogue;
 use App\Models\ContactMap;
 use App\Models\Designation;
 use App\Models\Testimonial;
@@ -20,14 +21,16 @@ use App\Models\WheelSlider;
 use Illuminate\Http\Request;
 use App\Models\CompanyHistory;
 use App\Models\ContactMessage;
+use App\Models\GallerySection;
 use App\Models\MissionContent;
 use App\Models\NewsletterPhotos;
 use App\Models\NewsletterVideos;
 use App\Models\WheelSliderCenter;
 use App\Models\ResearchAndDevelop;
-
 use App\Http\Controllers\Controller;
+
 use App\Models\ContactMessageSubject;
+use App\Models\NewsletterDirectVideo;
 
 class HomeMasumController extends Controller
 {
@@ -35,9 +38,13 @@ class HomeMasumController extends Controller
     {
         $data['about'] = About::where('status', '1')
             ->first();
+
         $data['members'] = Member::where('status', '1')
+            ->where('board_of_directory', 1)  // Filter members who are part of the board of directory
             ->orderBy('id', 'asc')
             ->get();
+
+
         $data['missions'] = MissionContent::orderBy('id', 'desc')
             ->get();
         return view("web.pages.about-us", $data);
@@ -50,8 +57,11 @@ class HomeMasumController extends Controller
         $data['rows'] = WheelSlider::orderBy('id', 'desc')->get();
 
         $data['centers'] = WheelSliderCenter::orderBy('id', 'desc')->get();
-        
-        return view("web.pages.aboutushistory", compact('history', 'data'));
+
+        $data['catalogues'] = Catalogue::orderBy('id', 'desc')->get();
+        $catalogues = $data['catalogues'];
+
+        return view("web.pages.aboutushistory", compact('history', 'data', 'catalogues'));
     }
 
     public function CropsDetailsPage($slug)
@@ -137,10 +147,28 @@ class HomeMasumController extends Controller
 
     public function Gallery()
     {
-        $data['rows'] = Gallery::orderBy('id', 'desc')->get();
-
+        $data['rows'] = GallerySection::orderBy('id', 'desc')->paginate(6); // 6 items per page
         return view("web.pages.gallery", $data);
     }
+
+
+    public function GalleryDetails($id)
+    {
+        // Fetch the specific gallery section by ID
+        $gallerySection = GallerySection::findOrFail($id);
+
+        // Decode the multiple images and videos from JSON
+        $photos = json_decode($gallerySection->multiple_images, true) ?? [];
+        $directvideos = json_decode($gallerySection->multiple_videos, true) ?? [];
+
+        // Pass the data to the view
+        return view('web.pages.gallerydetails', [
+            'gallerySection' => $gallerySection,
+            'photos' => $photos,
+            'directvideos' => $directvideos,
+        ]);
+    }
+
 
     public function ProjectsDetails($slug)
     {
@@ -148,18 +176,47 @@ class HomeMasumController extends Controller
         return view("web.pages.projectsdetails", compact('project'));
     }
 
-    public function Newsletter()
+    public function Newsletter(Request $request)
     {
+        $data['section'] = $request->query('section', 'photos'); // Default to 'photos'
+
+        // Paginate articles (News & Blogs)
         $data['articles'] = Article::where('status', '1')
+            ->orderBy('id', 'desc')
+            ->paginate(12);
+
+        // Paginate photos
+        $data['photos'] = NewsletterPhotos::orderBy('id', 'desc')
+            ->paginate(12);
+
+        // Paginate direct videos
+        $data['directvideos'] = NewsletterDirectVideo::orderBy('id', 'desc')
+            ->paginate(12);
+
+        // Capture the current URL (including query string)
+        $data['currentUrl'] = url()->current();
+
+        return view("web.pages.newsletter", $data);
+    }
+
+
+    public function NewsletterDetails($id)
+    {
+        // Fetch the article by ID
+        $article = Article::where('id', $id)->where('status', '1')->firstOrFail();
+
+        // Optionally, fetch related articles if needed
+        $relatedArticles = Article::where('status', '1')
+            ->where('id', '!=', $id)
             ->orderBy('id', 'desc')
             ->take(4)
             ->get();
 
-        $data['photos'] = NewsletterPhotos::orderBy('id', 'desc')->get();
-
-        $data['videos'] = NewsletterVideos::orderBy('id', 'desc')->get();
-
-        return view("web.pages.newsletter", $data);
+        // Pass the data to the view
+        return view("web.pages.newsletterdetails", [
+            'article' => $article,
+            'relatedArticles' => $relatedArticles,
+        ]);
     }
 
     public function ContactUs(Request $request)
@@ -170,10 +227,12 @@ class HomeMasumController extends Controller
             ? Member::where('designation_id', $designationId)->get()
             : Member::all();
 
-        $data['designations'] = Designation::orderBy('title', 'asc')->get(); // Fetch designations dynamically
         $data['rows'] = ContactMessageSubject::orderBy('id', 'desc')->get();
         $data['contactmaps'] = ContactMap::orderBy('id', 'desc')->get();
         $data['settings'] = Setting::where('status', 1)->first();
+        $data['designations'] = Designation::whereIn('id', Member::where('board_of_directory', 0)->pluck('designation_id'))
+            ->orderBy('title', 'asc')
+            ->get();
 
         return view("web.pages.contactus", $data);
     }
@@ -212,5 +271,8 @@ class HomeMasumController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+
+
 
 }

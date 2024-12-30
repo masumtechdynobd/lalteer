@@ -112,9 +112,16 @@
   width: 504px;
   height: 376px;
   position: relative !important;
-  transition: height 0.3s ease;
+  transition: height 0.3s ease, padding 0.3s ease;
   border-radius: 30px !important;
+  overflow: hidden;
 }
+
+.board-dicrescotry-sm-text.expanded {
+  height: auto;
+  padding-bottom: 20px;
+}
+
 
 .aboutus-image-container {
   top: -60px;
@@ -1161,6 +1168,13 @@
   background-color: green;
   padding: 10px;
   border-radius: 5px;
+}
+
+.newsletter-bg-success-hover:hover {
+  background-color: #28a745;
+  padding: 10px;
+  border-radius: 20px;
+  color: white;
 }
 
 

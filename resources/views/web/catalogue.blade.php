@@ -128,9 +128,9 @@
 
     <div class="text-center mt-4">
         @if ($dcatalogues && $dcatalogues->pdf_path)
-            <a href="{{ asset($dcatalogues->pdf_path) }}" download
+            <a href="{{ asset($dcatalogues->pdf_path) }}" download="{{ basename($dcatalogues->pdf_path) }}"
                 class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">
-                Download Catalogue<i class="bi bi-file-earmark-arrow-down-fill ms-2"></i>
+                Download Catalogue <i class="bi bi-file-earmark-arrow-down-fill ms-2"></i>
             </a>
         @else
             <p>No catalogue available for download.</p>
