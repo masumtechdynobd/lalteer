@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Setting;
-use App\Models\Social;
-use App\User;
-use Toastr;
-use Image;
-use File;
 use Auth;
+use File;
 use Hash;
+use Image;
+use Toastr;
+use App\User;
+use App\Models\Social;
+use App\Models\Setting;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SettingController extends Controller
 {

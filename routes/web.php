@@ -216,6 +216,9 @@ Route::middleware(['auth:web', 'XSS'])->name('admin.')->namespace('Admin')->pref
 });
 Route::get('/about-us', [HomeMasumController::class, 'AboutUs'])->name('aboutus');
 Route::get('/about-us/history', [HomeMasumController::class, 'AboutUsHistory'])->name('aboutushistory');
+Route::get('/slider-details/{id}', [HomeMasumController::class, 'getSliderDetails']);
+
+
 Route::get('/crops-details-page/{slug}', [HomeMasumController::class, 'CropsDetailsPage'])->name('cropsdetailspage');
 Route::get('/research-and-development', [HomeMasumController::class, 'ResearchAndDevelopment'])->name('researchanddevelopment');
 Route::get('/research-and-development/detailspage/{slug}', [HomeMasumController::class, 'ResearchAndDevelopmentDetailspage'])->name('researchanddevelopmentdetailspage');

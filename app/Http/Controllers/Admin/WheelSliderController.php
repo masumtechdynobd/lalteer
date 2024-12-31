@@ -49,51 +49,54 @@ class WheelSliderController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the image input
+        // Validate the input fields
         $request->validate([
             'photos_path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for the image
+            'title' => 'required|string|max:255', // Validation for title
+            'description' => 'nullable|string', // Validation for description
         ]);
-
+    
         // Handle the file upload
+        $fileNameToStore = 'noimage.jpg'; // Default placeholder if no file is uploaded
         if ($request->hasFile('photos_path')) {
             // Get the original filename and extension
             $filenameWithExt = $request->file('photos_path')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('photos_path')->getClientOriginalExtension();
-
+    
             // Create a unique filename to store
             $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-
+    
             // Create the upload directory if it doesn't exist
             $path = public_path('uploads/wheel_slider/');
             if (!File::exists($path)) {
                 File::makeDirectory($path, 0777, true, true);
             }
-
+    
             // Resize and save the image using Intervention Image
             $thumbnailPath = $path . $fileNameToStore;
-            $img = Image::make($request->file('photos_path')->getRealPath())
+            Image::make($request->file('photos_path')->getRealPath())
                 ->resize(448, 420, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
                 ->save($thumbnailPath);
-        } else {
-            $fileNameToStore = 'noimage.jpg'; // Default placeholder if no file is uploaded
         }
-
-        // Optional: Save the file path to the database
-        // Replace `NewsletterPhoto` with your model name if necessary
+    
+        // Save the data to the database
         $newsletterPhoto = new WheelSlider();
         $newsletterPhoto->photos_path = 'uploads/wheel_slider/' . $fileNameToStore;
+        $newsletterPhoto->title = $request->title;
+        $newsletterPhoto->description = $request->description;
         $newsletterPhoto->save();
-
+    
         // Display success message
         Toastr::success(__('dashboard.image uploaded successfully'), __('dashboard.success'));
-
+    
         // Redirect back
         return redirect()->route($this->route . '.index');
     }
+
 
     public function show(WheelSlider $article, $id)
     {
@@ -112,7 +115,7 @@ class WheelSliderController extends Controller
 
 
 
-    public function edit(WheelSlider $newsletter_photo)
+    public function edit(WheelSlider $newsletter_photo, $id)
     {
         $data['title'] = $this->title;
         $data['route'] = $this->route;
@@ -120,65 +123,79 @@ class WheelSliderController extends Controller
         $data['path'] = $this->path;
 
         // Pass the resolved model as $row
-        $data['row'] = $newsletter_photo;
+        $data['row'] = $newsletter_photo->find($id);
         $data['newsletter_photos'] = WheelSlider::where('status', '1')->get();
 
         return view($this->view . '.edit', $data);
     }
 
 
-    public function update(Request $request, WheelSlider $newsletterPhoto)
-    {
-        // Validate the image input
-        $request->validate([
-            'photos_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image is optional for update
-        ]);
+    public function update(Request $request, $id)
+{
+    // Retrieve the existing record
+    $newsletterPhoto = WheelSlider::findOrFail($id); // This ensures we get the existing record
 
-        // Handle image upload if a new file is provided
-        if ($request->hasFile('photos_path')) {
-            // Delete the old image if it exists
-            $oldFilePath = public_path($newsletterPhoto->photos_path);
-            if (File::exists($oldFilePath) && $newsletterPhoto->photos_path !== 'uploads/wheel_slider/noimage.jpg') {
-                File::delete($oldFilePath);
-            }
+    // Validate the input fields
+    $request->validate([
+        'photos_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image is optional for update
+        'title' => 'required|string|max:255', // Validation for title
+        'description' => 'nullable|string', // Validation for description
+    ]);
 
-            // Process the new file upload
-            $filenameWithExt = $request->file('photos_path')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            $extension = $request->file('photos_path')->getClientOriginalExtension();
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
-
-            // Create the upload directory if it doesn't exist
-            $path = public_path('uploads/wheel_slider/');
-            if (!File::exists($path)) {
-                File::makeDirectory($path, 0777, true, true);
-            }
-
-            // Resize and save the image
-            $thumbnailPath = $path . $fileNameToStore;
-            $img = Image::make($request->file('photos_path')->getRealPath())
-                ->resize(448, 420, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save($thumbnailPath);
-
-            // Update the database path
-            $newsletterPhoto->photos_path = 'uploads/wheel_slider/' . $fileNameToStore;
+    // Handle the file upload if a new image is provided
+    if ($request->hasFile('photos_path')) {
+        // Delete the old image if it exists and is not the default placeholder
+        $oldFilePath = public_path($newsletterPhoto->photos_path);
+        if (File::exists($oldFilePath) && $newsletterPhoto->photos_path !== 'uploads/wheel_slider/noimage.jpg') {
+            File::delete($oldFilePath);
         }
 
-        // If no new image is uploaded, keep the current image
-        // No action needed here since `$newsletterPhoto->photos_path` already contains the existing value
+        // Get the original filename and extension
+        $filenameWithExt = $request->file('photos_path')->getClientOriginalName();
+        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        $extension = $request->file('photos_path')->getClientOriginalExtension();
 
-        // Save the updated data
-        $newsletterPhoto->save();
+        // Create a unique filename to store
+        $fileNameToStore = $filename . '_' . time() . '.' . $extension;
 
-        // Display success message
-        Toastr::success(__('dashboard.updated_successfully'), __('dashboard.success'));
+        // Create the upload directory if it doesn't exist
+        $path = public_path('uploads/wheel_slider/');
+        if (!File::exists($path)) {
+            File::makeDirectory($path, 0777, true, true);
+        }
 
-        // Redirect back
-        return redirect()->route($this->route . '.index');
+        // Resize and save the image using Intervention Image
+        $thumbnailPath = $path . $fileNameToStore;
+        Image::make($request->file('photos_path')->getRealPath())
+            ->resize(448, 420, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })
+            ->save($thumbnailPath);
+
+        // Update the new image path in the database
+        $newsletterPhoto->photos_path = 'uploads/wheel_slider/' . $fileNameToStore;
     }
+
+    // Update title and description
+    $newsletterPhoto->title = $request->title;
+    $newsletterPhoto->description = $request->description;
+
+    // Save the updated data
+    $newsletterPhoto->save();
+
+    // Display success message
+    Toastr::success(__('dashboard.updated_successfully'), __('dashboard.success'));
+
+    // Redirect back
+    return redirect()->route($this->route . '.index');
+}
+
+
+
+
+
+
 
 
     public function destroy(WheelSlider $article, $id)

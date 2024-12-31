@@ -7,7 +7,8 @@
     </style>
 
     {{-- top image section --}}
-    <div class="container-fluid bg-breadcrumb">
+    <div class="container-fluid"
+        style="background: url('{{ asset('uploads/section/' . $section->image_path) }}'); position: relative; overflow: hidden; width: auto; height: 637px; background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 140px 0 60px 0; transition: 0.5s;">
         <div class="container text-center py-5" style="max-width: 900px">
             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">
                 About Us
@@ -184,7 +185,7 @@
                 button.addEventListener("click", function() {
                     const parent = this.closest(".text-content-sec");
                     const container = parent.closest(
-                    ".board-dicrescotry-sm-text"); // Get the container
+                        ".board-dicrescotry-sm-text"); // Get the container
                     const shortText = parent.querySelector(".short-text");
                     const fullText = parent.querySelector(".full-text");
 

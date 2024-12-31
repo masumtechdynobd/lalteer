@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class WheelSlider extends Model
 {
     use HasFactory;
+    
+    protected $fillable = ['photos_path', 'title', 'description'];
+
 }

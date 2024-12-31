@@ -10,6 +10,7 @@ use App\Models\Member;
 use App\Models\Slider;
 use App\Models\Article;
 use App\Models\Counter;
+use App\Models\Section;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Variety;
@@ -95,7 +96,7 @@ class HomeController extends Controller
         $data['infos'] = CompanyInfo::orderBy('id', 'desc')
             ->take(8)
             ->get();
-        
+
         // Clients
         $data['chairman_message'] = ChairmanMessage::first();
 
@@ -160,19 +161,21 @@ class HomeController extends Controller
         return view('web.page-single', $data);
     }
     public function crops($slug)
-{
-    $category = CropsCategory::where('slug', $slug)->first();
-    $crops = Service::where('category_id', $category->id)->get();
+    {
+        $category = CropsCategory::where('slug', $slug)->first();
+        $crops = Service::where('category_id', $category->id)->get();
 
-    $varieties = collect();
+        $section = Section::where('slug', 'crops')->first();
 
-    if ($crops->isNotEmpty()) {
-        $serviceIds = $crops->pluck('id');
-        
-        $varieties = Variety::whereIn('crop_id', $serviceIds)->get();
+        $varieties = collect();
+
+        if ($crops->isNotEmpty()) {
+            $serviceIds = $crops->pluck('id');
+
+            $varieties = Variety::whereIn('crop_id', $serviceIds)->get();
+        }
+
+        return view('web.pages.crops', compact('category', 'crops', 'varieties', 'section'));
     }
-
-    return view('web.pages.crops', compact('category', 'crops', 'varieties'));
-}
 
 }

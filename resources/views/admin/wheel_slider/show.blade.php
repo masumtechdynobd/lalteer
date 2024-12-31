@@ -10,8 +10,7 @@
         @include('admin.inc.breadcrumb')
         <!-- end page title -->
 
-
-        <div class="row">
+        <div class="row mb-3">
             <div class="col-12">
                 <a href="{{ route($route . '.index') }}" class="btn btn-info">{{ __('dashboard.back') }}</a>
             </div>
@@ -24,29 +23,38 @@
                         <h4 class="header-title">{{ __('dashboard.view') }} {{ $title }}</h4>
                     </div>
                     <div class="card-body">
-                        {{-- {{ dd($row->photos_path) }} --}}
-                        @if(is_file(public_path($row->photos_path)))
+                        <!-- Thumbnail -->
+                        @if (is_file(public_path($row->photos_path)))
                             <p><span class="text-highlight">{{ __('dashboard.thumbnail') }}:</span></p>
-                            <img src="{{ asset($row->photos_path) }}" class="img-fluid" alt="Newsletter Photo">
+                            <img src="{{ asset($row->photos_path) }}" class="img-fluid mb-3" alt="Thumbnail">
                         @endif
 
-                        <hr />
+                        <!-- Title -->
+                        <p>
+                            <span class="text-highlight">{{ __('dashboard.title') }}:</span>
+                            {{ $row->title }}
+                        </p>
 
-                        <hr />
-                        <p><span class="text-highlight">{{ __('dashboard.status') }}:</span>
+                        <!-- Description -->
+                        <p>
+                            <span class="text-highlight">{{ __('dashboard.description') }}:</span>
+                            {!! $row->description !!}
+                        </p>
+
+                        <!-- Status -->
+                        <p>
+                            <span class="text-highlight">{{ __('dashboard.status') }}:</span>
                             @if ($row->status == 1)
                                 <span class="badge badge-success badge-pill">{{ __('dashboard.active') }}</span>
                             @else
                                 <span class="badge badge-danger badge-pill">{{ __('dashboard.inactive') }}</span>
                             @endif
                         </p>
-                        <!-- Details View End -->
                     </div>
                 </div>
             </div><!-- end col-->
         </div>
         <!-- end row-->
-
 
     </div> <!-- container -->
     <!-- End Content-->

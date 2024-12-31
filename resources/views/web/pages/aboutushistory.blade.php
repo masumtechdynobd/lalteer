@@ -1,239 +1,6 @@
 @extends('web.layouts.master')
 @section('content')
     <style>
-        .wheel-slider {
-            position: relative;
-            width: 800px;
-            height: 800px;
-            max-width: 1200px !important;
-        }
-
-        .circle {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border: 1 qpx solid red;
-            /* Outer wheel border */
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.5s ease;
-            /* Smooth transition for rotation */
-        }
-
-        .item {
-            position: absolute;
-            transform-origin: center;
-            transform: rotate(calc(360deg / 15 * var(--i))) translate(230px)
-                /* Items moved to the corners */
-                rotate(calc(-360deg / 15 * var(--i)));
-        }
-
-        .item img {
-            width: 450px;
-            height: 280px;
-            /* Increased size */
-            object-fit: contain;
-            padding: 10px;
-        }
-
-        .center-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .center-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Button styles */
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            font-size: 30px;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .left {
-            left: 10px;
-        }
-
-        .right {
-            right: 10px;
-        }
-        
-        
-        
-        #carouselExample {
-            display: none; /* Hidden by default */
-        }
-        
-        @media (max-width: 767.98px) { /* Bootstrap's mobile breakpoint */
-            #carouselExample {
-                display: block; /* Show only on small devices */
-            }
-            #whell-slider {
-                display: none;
-            }
-        }
-        
-        
-        
-        #magazine {
-            width: 1152px;
-            height: 752px;
-        }
-    
-        #magazine .turn-page {
-            background-color: #ccc;
-            background-size: 100% 100%;
-        }
-    </style>
-
-
-    {{-- top image section --}}
-    <div class="container-fluid bg-breadcrumb">
-        <div class="container text-center py-5" style="max-width: 900px">
-            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">
-                About Us
-            </h4>
-            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">About</a></li>
-                <li class="breadcrumb-item active text-primary">History</li>
-            </ol>
-        </div>
-    </div>
-
-    {{-- company history --}}
-    <div class="container-fluid organization-top-margin">
-        <div class="row px-4">
-
-            <div class="col-md-6 about-org-content wow fadeInLeft">
-                <div>
-                    <div class="d-flex about-history-custom-gap">
-                        <div>
-                            <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
-                        </div>
-                        <div>
-                            <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
-                        </div>
-                    </div>
-                    <h2 class="text-success mb-3 ms-5 about-org-content-h2">COMPANY HISTORY</h2>
-                    <h2 class="mb-4 custom-letter-spacing about-org-content-h2" style="font-weight: normal;">
-                        {{ @$history->title }}
-                    </h2>
-                    <p class="mb-4">
-                        {{ strip_tags(@$history->description) }}
-                    </p>
-                </div>
-            </div>
-
-            <div class="col-md-6 wow fadeInRight d-flex justify-content-center align-items-center">
-                <img src="{{ asset('/uploads/history/' . @$history->image_path) }}" alt="" class="img-fluid"
-                    style="width: 733px; height: 464px" />
-            </div>
-        </div>
-    </div>
-
-    {{-- collaborative works --}}
-    <div id="whell-slider" class="container-fluid" style="margin-top: 200px; margin-bottom: 200px;">
-        <div class="wheel-slider mx-auto">
-            <div class="circle">
-                @foreach ($data['rows'] as $index => $slider)
-                    <div class="item p-4" style="--i: {{ $index }};">
-                        <img src="{{ asset($slider->photos_path) }}" alt="{{ $slider->title }}">
-                    </div>
-                @endforeach
-            </div>
-            <div class="center-image">
-                @foreach ($data['centers'] as $center)
-                    <img src="{{ asset($center->photos_path) }}" alt="{{ $center->name }}">
-                @endforeach
-            </div>
-
-            <!-- Navigation Buttons -->
-            <button class="nav-btn left" onclick="rotateWheel('left')">&#8592;</button>
-            <button class="nav-btn right" onclick="rotateWheel('right')">&#8594;</button>
-        </div>
-    </div>
-    
-    <div id="carouselExample" class="carousel slide">
-      <div class="carousel-inner">
-          @foreach ($data['rows'] as $index => $slider)
-        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-          <div class="d-flex justify-content-center">
-              <img src="{{ asset($slider->photos_path) }}" class="img-fluid d-block" alt="{{ $slider->title }}">
-          </div>
-        </div>
-          @endforeach
-      </div>
-      <button class="nav-btn left" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="nav-btn right" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-
-
-    {{-- Ours Sister concern --}}
-    <div class="container-fluid" style="margin-top: 50px">
-        <div class="text-center">
-            <div class="d-flex about-history-sister-custom-gap justify-content-center">
-                <div>
-                    <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
-                </div>
-                <div>
-                    <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
-                </div>
-            </div>
-            <h2 class="text-success">OUR SISTER CONCERN</h2>
-            <h2 class="px-4" style="letter-spacing: 2px; font-weight: normal;">Lal Teer Seed Limited got Standard
-                Chartered Bank Agro
-                Award 2015 for its Research and Development (R&D) wing engaged </h2>
-        </div>
-
-        <div class="mt-3">
-            <div class="row">
-                <div class="col-md-6">
-                     <div id="magazine">
-                        @foreach ($catalogues as $catalogue)
-                            <div style="background-image:url({{ asset($catalogue->photos_path) }});"></div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="col-md-6">
-                     <div id="magazine">
-                        @foreach ($catalogues as $catalogue)
-                            <div style="background-image:url({{ asset($catalogue->photos_path) }});"></div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <style>
-        /* Adjusting the PDF viewer container */
         #pdfViewerContainer {
             width: 100%;
             height: auto;
@@ -356,7 +123,452 @@
         .upload-btn:hover {
             background-color: #218838;
         }
+
+
+
+
+        .wheel-slider {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            max-width: 1200px !important;
+        }
+
+        .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1 qpx solid red;
+            /* Outer wheel border */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.5s ease;
+            /* Smooth transition for rotation */
+        }
+
+        .item {
+            position: absolute;
+            transform-origin: center;
+            transform: rotate(calc(360deg / 15 * var(--i))) translate(230px)
+                /* Items moved to the corners */
+                rotate(calc(-360deg / 15 * var(--i)));
+        }
+
+        .item img {
+            width: 450px;
+            height: 280px;
+            /* Increased size */
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .center-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .center-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Button styles */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            font-size: 30px;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .left {
+            left: 10px;
+        }
+
+        .right {
+            right: 10px;
+        }
+
+
+
+        #carouselExampleM {
+            display: none; /* Hidden by default */
+        }
+        
+        @media (max-width: 767.98px) { /* Bootstrap's mobile breakpoint */
+            #carouselExampleM {
+                display: block; /* Show only on small devices */
+            }
+            #whell-slider {
+                display: none;
+            }
+        }
+
+
+
+        #carouselExample {
+            position: relative;
+            /* Required for absolute positioning of controls */
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            /* Vertically center */
+            transform: translateY(-50%);
+            /* Correct the exact middle position */
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Optional: make the buttons semi-transparent */
+            border: none;
+            padding: 10px;
+            z-index: 5;
+            /* Ensure buttons are on top */
+        }
+
+        /* Left button positioning */
+        .carousel-control-prev {
+            left: 390px;
+            top: 30px;
+            /* Adjust this for desired distance from the left */
+        }
+
+        /* Right button positioning */
+        .carousel-control-next {
+            right: -420px;
+            top: 30px;
+            /* Adjust this for desired distance from the right */
+        }
+
+        @media (max-width: 1400px) {
+
+            .carousel-control-prev {
+                left: 270px;
+            }
+
+            /* Right button positioning */
+            .carousel-control-next {
+                right: -290px;
+            }
+        }
+
+        @media (max-width: 991px) {
+
+            .carousel-control-prev {
+                left: 175px;
+            }
+
+            /* Right button positioning */
+            .carousel-control-next {
+                right: -185px;
+            }
+        }
+
+        /* Ensure the buttons look good on mobile too */
+        @media (max-width: 768px) {
+
+            .carousel-control-next {
+                padding: 2px;
+                align-items: center;
+                justify-content: center;
+                right: -340px;
+                top: 30px;
+            }
+
+            .carousel-control-prev {
+                padding: 2px;
+                align-items: center;
+                justify-content: center;
+                left: 310px;
+                top: 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .carousel-control-next {
+                padding: 2px;
+                align-items: center;
+                justify-content: center;
+                right: -200px;
+                top: 30px;
+            }
+
+            .carousel-control-prev {
+                padding: 2px;
+                align-items: center;
+                justify-content: center;
+                left: 185px;
+                top: 30px;
+            }
+        }
+
+        @media (max-width: 375px) {
+
+            .carousel-control-next {
+                padding: 2px;
+                align-items: center;
+                justify-content: center;
+                right: -135px;
+                top: 30px;
+            }
+
+            .carousel-control-prev {
+                padding: 2px;
+                align-items: center;
+                justify-content: center;
+                left: 125px;
+                top: 30px;
+            }
+        }
+
+        .btn-check:focus+.btn,
+        .btn:focus {
+            outline: 0;
+            box-shadow: 0 0 0 .25rem #F3F7FF;
+        }
     </style>
+
+
+    {{-- top image section --}}
+    <div class="container-fluid"
+        style="background: url('{{ asset('uploads/section/' . $section->image_path) }}'); position: relative; overflow: hidden; width: auto; height: 637px; background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 140px 0 60px 0; transition: 0.5s;">
+        <div class="container text-center py-5" style="max-width: 900px">
+            <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">
+                About Us
+            </h4>
+            <ol class="breadcrumb d-flex justify-content-center mb-0 wow fadeInDown" data-wow-delay="0.3s">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">About</a></li>
+                <li class="breadcrumb-item active text-primary">History</li>
+            </ol>
+        </div>
+    </div>
+
+    {{-- company history --}}
+    <div class="container-fluid organization-top-margin">
+        <div class="row px-4">
+
+            <div class="col-md-6 about-org-content wow fadeInLeft">
+                <div>
+                    <div class="d-flex about-history-custom-gap">
+                        <div>
+                            <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
+                        </div>
+                        <div>
+                            <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <h2 class="text-success mb-3 ms-5 about-org-content-h2">COMPANY HISTORY</h2>
+                    <h2 class="mb-4 custom-letter-spacing about-org-content-h2" style="font-weight: normal;">
+                        {{ @$history->title }}
+                    </h2>
+                    <p class="mb-4">
+                        {{ strip_tags(@$history->description) }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6 wow fadeInRight d-flex justify-content-center align-items-center">
+                <img src="{{ asset('/uploads/history/' . @$history->image_path) }}" alt="" class="img-fluid"
+                    style="width: 733px; height: 464px" />
+            </div>
+        </div>
+    </div>
+
+    {{-- collaborative works --}}
+    <div id="whell-slider" class="container-fluid" style="margin-top: 200px; margin-bottom: 200px;">
+        <div class="wheel-slider mx-auto">
+            <div class="circle">
+                @foreach ($data['rows'] as $index => $slider)
+                    <div class="item p-4" style="--i: {{ $index }};">
+                        <!-- Image with data attributes for modal -->
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"
+                            onclick="updatedata('{{ $slider->id }}','{{ $slider->photos_path }}','{{ $slider->title }}','{{ $slider->description }}')"
+                            class="btn btn-sm"><img src="{{ asset($slider->photos_path) }}" alt="{{ $slider->title }}"
+                                class="" /></a>
+                    </div>
+                @endforeach
+            </div>
+            <div class="center-image">
+                @foreach ($data['centers'] as $center)
+                    <img src="{{ asset($center->photos_path) }}" alt="{{ $center->name }}">
+                @endforeach
+            </div>
+
+            <!-- Navigation Buttons -->
+            <button class="nav-btn left" onclick="rotateWheel('left')">&#8592;</button>
+            <button class="nav-btn right" onclick="rotateWheel('right')">&#8594;</button>
+        </div>
+    </div>
+
+    <script>
+        function updatedata(id, photos_path, title, description) {
+            // Set the modal content dynamically
+            $('#myModal img').attr('src', '{{ asset('') }}' + photos_path); // Set the image source
+            $('#myModal h1').text(title); // Set the title
+            $('#myModal p').html(description); // Set the description
+        }
+    </script>
+
+    <!-- sample modal content -->
+    <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex justify-content-center">
+                        <img src="" alt="" class="img-fluid" /> <!-- Image will be set dynamically -->
+                    </div>
+                    <h1 class="text-center"></h1> <!-- Title will be set dynamically -->
+                    <p class="text-center"></p> <!-- Description will be set dynamically -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+
+    <div id="carouselExampleM" class="carousel slide">
+        <div class="carousel-inner">
+            @foreach ($data['rows'] as $index => $slider)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset($slider->photos_path) }}" class="img-fluid d-block" alt="{{ $slider->title }}">
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <button class="nav-btn left" type="button" data-bs-target="#carouselExampleM" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="nav-btn right" type="button" data-bs-target="#carouselExampleM" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    {{-- Ours Sister concern --}}
+    <div class="container-fluid" style="margin-top: 50px">
+        <div class="text-center">
+            <div class="d-flex about-history-sister-custom-gap justify-content-center">
+                <div>
+                    <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
+                </div>
+                <div>
+                    <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            <h2 class="text-success">OUR SISTER CONCERN</h2>
+            <h2 class="px-4" style="letter-spacing: 2px; font-weight: normal;">Lal Teer Seed Limited got Standard
+                Chartered Bank Agro
+                Award 2015 for its Research and Development (R&D) wing engaged </h2>
+        </div>
+
+        <div class="container-fluid" style="margin-top: 35px !important;">
+            <div class="row">
+                <!-- Carousel for larger screens -->
+                <div class="col-md-6">
+                    <div id="carouselExampleLarge" class="carousel slide">
+                        <div class="carousel-inner">
+                            @foreach ($catalogues as $index => $catalogue)
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                    <img src="{{ asset($catalogue->photos_path) }}" class="d-block w-100"
+                                        alt="Catalogue Image">
+                                </div>
+                            @endforeach
+                        </div>
+                        <!-- Left control button -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleLarge"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <!-- Right control button -->
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleLarge"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Carousel for smaller screens -->
+                <div class="col-md-6 mt-md-4">
+                    <div id="carouselExampleSmall" class="carousel slide">
+                        <div class="carousel-inner">
+                            @foreach ($catalogues as $index => $catalogue)
+                                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                    <img src="{{ asset($catalogue->photos_path) }}" class="d-block w-100"
+                                        alt="Catalogue Image">
+                                </div>
+                            @endforeach
+                        </div>
+                        <!-- Left control button -->
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSmall"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <!-- Right control button -->
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSmall"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {{-- <script>
+        $(document).ready(function() {
+            $('.slider-image').on('click', function() {
+                var sliderId = $(this).data('id');
+                $.ajax({
+                    url: '/slider-details/' + sliderId,
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.photos_path && response.title && response.description) {
+                            $('#modalImage').attr('src', response.photos_path);
+                            $('#modalTitle').text(response.title);
+                            $('#modalDescription').text(response.description);
+                            $('#exampleModal2').modal('show');
+                        } else {
+                            alert('Incomplete data received.');
+                        }
+                    },
+                    error: function() {
+                        alert('Failed to fetch slider details. Please try again.');
+                    }
+                });
+            });
+        });
+    </script> --}}
+
+
 
 
     <script>

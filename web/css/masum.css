@@ -16,16 +16,7 @@
 
 /*** Single Page Hero Header Start ***/
 .bg-breadcrumb {
-  position: relative;
-  overflow: hidden;
-  background: url('/web//img/Group 51.png');
-  width: auto;
-  height: 637px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  padding: 140px 0 60px 0;
-  transition: 0.5s;
+ 
 }
 
 @media (min-width: 992px) {
@@ -584,7 +575,7 @@
 /* Research And Development */
 
 /* top image section */
-.bg-breadcrumb-rd {
+/* .bg-breadcrumb-rd {
   position: relative;
   overflow: hidden;
   background: url('/web//img/Group 51.png');
@@ -595,7 +586,7 @@
   background-size: cover;
   padding: 140px 0 60px 0;
   transition: 0.5s;
-}
+} */
 
 @media (min-width: 992px) {
   .bg-breadcrumb-rd {

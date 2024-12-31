@@ -36,6 +36,8 @@
                                     <tr>
                                         <th>{{ __('dashboard.no') }}</th>
                                         <th>{{ __('dashboard.thumbnail') }}</th>
+                                        <th>{{ __('dashboard.title') }}</th>
+                                        <th>{{ __('dashboard.description') }}</th>
                                         <th>{{ __('dashboard.status') }}</th>
                                         <th>{{ __('dashboard.action') }}</th>
                                     </tr>
@@ -53,6 +55,8 @@
                                                         alt="No Image">
                                                 @endif
                                             </td>
+                                            <td>{{ $row->title }}</td>
+                                            <td>{!! Str::limit($row->description, 50) !!}</td>
 
                                             <td>
                                                 @if ($row->status == 1)
@@ -67,6 +71,11 @@
                                                 <a href="{{ route($route . '.show', [$row->id]) }}"
                                                     class="btn btn-success btn-sm">
                                                     <i class="fas fa-eye"></i>
+                                                </a>
+                                                
+                                                <a href="{{ route($route . '.edit', [$row->id]) }}"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="far fa-edit"></i>
                                                 </a>
 
                                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"

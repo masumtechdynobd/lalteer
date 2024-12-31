@@ -68,13 +68,123 @@
 
 
     #magazine {
-        width: 1152px;
-        height: 752px;
+        width: 100%;
+        max-width: 1152px;
+        height: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
     }
 
-    #magazine .turn-page {
-        background-color: #ccc;
-        background-size: 100% 100%;
+    #magazine div {
+        width: 33%;
+        /* Default 3-column layout */
+    }
+
+    #magazine img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+        #magazine {
+            display: none;
+        }
+    }
+
+
+    #carouselExample {
+        position: relative;
+        /* Required for absolute positioning of controls */
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        position: absolute;
+        top: 50%;
+        /* Vertically center */
+        transform: translateY(-50%);
+        /* Correct the exact middle position */
+        background-color: rgba(0, 0, 0, 0.5);
+        /* Optional: make the buttons semi-transparent */
+        border: none;
+        padding: 10px;
+        z-index: 5;
+        /* Ensure buttons are on top */
+    }
+
+    /* Left button positioning */
+    .carousel-control-prev {
+        left: 10px;
+        /* Adjust this for desired distance from the left */
+    }
+
+    /* Right button positioning */
+    .carousel-control-next {
+        right: 10px;
+        /* Adjust this for desired distance from the right */
+    }
+
+    /* Ensure the buttons look good on mobile too */
+    @media (max-width: 768px) {
+
+        .carousel-control-next {
+            padding: 2px;
+            align-items: center;
+            justify-content: center;
+            right: -340px;
+            top: 30px;
+        }
+
+        .carousel-control-prev {
+            padding: 2px;
+            align-items: center;
+            justify-content: center;
+            left: 310px;
+            top: 30px;
+        }
+    }
+
+    @media (max-width: 500px) {
+
+        .carousel-control-next {
+            padding: 2px;
+            align-items: center;
+            justify-content: center;
+            right: -200px;
+            top: 30px;
+        }
+
+        .carousel-control-prev {
+            padding: 2px;
+            align-items: center;
+            justify-content: center;
+            left: 185px;
+            top: 30px;
+        }
+    }
+
+    @media (max-width: 375px) {
+
+        .carousel-control-next {
+            padding: 2px;
+            align-items: center;
+            justify-content: center;
+            right: -135px;
+            top: 30px;
+        }
+
+        .carousel-control-prev {
+            padding: 2px;
+            align-items: center;
+            justify-content: center;
+            left: 125px;
+            top: 30px;
+        }
     }
 </style>
 
@@ -122,9 +232,35 @@
 
     <div id="magazine">
         @foreach ($catalogues as $catalogue)
-            <div style="background-image:url({{ asset($catalogue->photos_path) }});"></div>
+            <div>
+                <img src="{{ asset($catalogue->photos_path) }}" alt="Catalogue Image">
+            </div>
         @endforeach
     </div>
+
+    <div id="carouselExample" class="carousel slide d-md-none">
+        <div class="carousel-inner">
+            @foreach ($catalogues as $index => $catalogue)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                    <img src="{{ asset($catalogue->photos_path) }}" class="d-block w-100" alt="Catalogue Image">
+                </div>
+            @endforeach
+        </div>
+        <!-- Left control button -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+
+        <!-- Right control button -->
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+
 
     <div class="text-center mt-4">
         @if ($dcatalogues && $dcatalogues->pdf_path)
@@ -136,7 +272,6 @@
             <p>No catalogue available for download.</p>
         @endif
     </div>
-
 
 </div>
 

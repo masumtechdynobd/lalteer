@@ -218,8 +218,8 @@
 
 
 <!-- JavaScript Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>  <!-- Only one jQuery version -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap 5 with Popper.js included -->
 <script src="{{ asset('/web/lib/wow/wow.min.js') }}"></script>
 <script src="{{ asset('/web/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('/web/lib/waypoints/waypoints.min.js') }}"></script>
@@ -231,6 +231,7 @@
 <script src="{{ asset('/web/js/slick.js') }}"></script>
 
 <script type="text/javascript" src="{{ asset('/web/js/turn.min.js') }}"></script>
+
 
 <script>
     $(window).ready(function() {

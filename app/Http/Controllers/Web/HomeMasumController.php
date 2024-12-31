@@ -10,6 +10,7 @@ use App\Models\Member;
 use App\Models\Article;
 use App\Models\Gallery;
 use App\Models\Project;
+use App\Models\Section;
 use App\Models\Service;
 use App\Models\Setting;
 use App\Models\Variety;
@@ -44,9 +45,12 @@ class HomeMasumController extends Controller
             ->orderBy('id', 'asc')
             ->get();
 
-
         $data['missions'] = MissionContent::orderBy('id', 'desc')
             ->get();
+
+        $section = Section::where('slug', 'about-us')->first();
+        $data['section'] = $section;
+
         return view("web.pages.about-us", $data);
     }
 
@@ -54,15 +58,36 @@ class HomeMasumController extends Controller
     {
         $history = CompanyHistory::first();
 
-        $data['rows'] = WheelSlider::orderBy('id', 'desc')->get();
-
         $data['centers'] = WheelSliderCenter::orderBy('id', 'desc')->get();
 
         $data['catalogues'] = Catalogue::orderBy('id', 'desc')->get();
         $catalogues = $data['catalogues'];
 
-        return view("web.pages.aboutushistory", compact('history', 'data', 'catalogues'));
+        $data['rows'] = WheelSlider::orderBy('id', 'desc')->get();
+
+        $section = Section::where('slug', 'about-us')->first();
+
+        return view("web.pages.aboutushistory", compact('history', 'data', 'catalogues', 'section'));
     }
+
+    public function getSliderDetails($id)
+    {
+        // Fetch the WheelSlider data by ID
+        $slider = WheelSlider::find($id);
+
+        if (!$slider) {
+            return response()->json(['error' => 'Slider not found'], 404);
+        }
+
+        // Return the slider data as JSON
+        return response()->json([
+            'photos_path' => asset($slider->photos_path), // Ensure it's the full URL
+            'title' => $slider->title,
+            'description' => $slider->description,
+        ]);
+
+    }
+
 
     public function CropsDetailsPage($slug)
     {
@@ -80,42 +105,56 @@ class HomeMasumController extends Controller
         }
         $faqs = Faq::where('service_id', $crops->id)->get();
         $services = Service::get();
-        return view("web.pages.cropsdetailspage", compact('crops', 'varieties', 'faqs', 'services'));
+
+        $section = Section::where('slug', 'crops')->first();
+        
+        return view("web.pages.cropsdetailspage", compact('crops', 'varieties', 'faqs', 'services', 'section'));
     }
 
     public function ResearchAndDevelopment()
     {
         $data = ResearchAndDevelop::get();
+
+        $section = Section::where('slug', 'r&d')->first();
         // dd($data);
-        return view("web.pages.researchanddevelopment", compact('data'));
+        return view("web.pages.researchanddevelopment", compact('data', 'section'));
     }
 
     public function ResearchAndDevelopmentDetailspage($slug)
     {
         $data = ResearchAndDevelop::where('slug', $slug)->first();
+
+        $section = Section::where('slug', 'r&d')->first();
         // dd($data);
-        return view("web.pages.researchanddevelopmentdetailspage", compact('data'));
+        return view("web.pages.researchanddevelopmentdetailspage", compact('data', 'section'));
     }
 
     public function Farmers()
     {
         $data = Farmer::get();
+
+        $section = Section::where('slug', 'farmers')->first();
         // dd($data);
-        return view("web.pages.farmers", compact('data'));
+        return view("web.pages.farmers", compact('data', 'section'));
     }
 
     public function FilterFeatures($slug)
     {
         $features = Testimonial::where('slug', $slug)->first();
         $crops = Service::where('feature_id', @$features->id)->get();
-        return view("web.pages.filterfeatures", compact('crops'));
+
+        $section = Section::where('slug', 'farmers')->first();
+
+        return view("web.pages.filterfeatures", compact('crops', 'section'));
     }
 
     public function FarmersDetails($slug)
     {
         $data = Farmer::where('slug', $slug)->first();
 
-        return view("web.pages.farmersdetails", compact('data'));
+        $section = Section::where('slug', 'farmers')->first();
+
+        return view("web.pages.farmersdetails", compact('data', 'section'));
     }
 
     public function Projects(Request $request)
@@ -139,8 +178,10 @@ class HomeMasumController extends Controller
             default => 'All Projects',
         };
 
+        $section = Section::where('slug', 'projects')->first();
+
         // Pass paginated data to the view
-        return view('web.pages.projects', compact('data', 'title'));
+        return view('web.pages.projects', compact('data', 'title', 'section'));
     }
 
 
@@ -148,6 +189,10 @@ class HomeMasumController extends Controller
     public function Gallery()
     {
         $data['rows'] = GallerySection::orderBy('id', 'desc')->paginate(6); // 6 items per page
+
+        $section = Section::where('slug', 'gallery')->first();
+        $data['section'] = $section;
+        
         return view("web.pages.gallery", $data);
     }
 
@@ -161,11 +206,14 @@ class HomeMasumController extends Controller
         $photos = json_decode($gallerySection->multiple_images, true) ?? [];
         $directvideos = json_decode($gallerySection->multiple_videos, true) ?? [];
 
+        $section = Section::where('slug', 'projects')->first();
+
         // Pass the data to the view
         return view('web.pages.gallerydetails', [
             'gallerySection' => $gallerySection,
             'photos' => $photos,
             'directvideos' => $directvideos,
+            'section' => $section,
         ]);
     }
 
@@ -173,7 +221,10 @@ class HomeMasumController extends Controller
     public function ProjectsDetails($slug)
     {
         $project = Project::where('slug', $slug)->first();
-        return view("web.pages.projectsdetails", compact('project'));
+
+        $section = Section::where('slug', 'projects')->first();
+        
+        return view("web.pages.projectsdetails", compact('project', 'section'));
     }
 
     public function Newsletter(Request $request)
@@ -193,8 +244,12 @@ class HomeMasumController extends Controller
         $data['directvideos'] = NewsletterDirectVideo::orderBy('id', 'desc')
             ->paginate(12);
 
+        $section = Section::where('slug', 'subscribe')->first();
+        $data['section'] = $section;
+
         // Capture the current URL (including query string)
         $data['currentUrl'] = url()->current();
+        
 
         return view("web.pages.newsletter", $data);
     }
@@ -212,10 +267,14 @@ class HomeMasumController extends Controller
             ->take(4)
             ->get();
 
+        $section = Section::where('slug', 'subscribe')->first();
+
+        
         // Pass the data to the view
         return view("web.pages.newsletterdetails", [
             'article' => $article,
             'relatedArticles' => $relatedArticles,
+            'section' => $section,
         ]);
     }
 
@@ -233,6 +292,10 @@ class HomeMasumController extends Controller
         $data['designations'] = Designation::whereIn('id', Member::where('board_of_directory', 0)->pluck('designation_id'))
             ->orderBy('title', 'asc')
             ->get();
+
+            
+        $section = Section::where('slug', 'contact_us')->first();
+        $data['section'] = $section;
 
         return view("web.pages.contactus", $data);
     }
