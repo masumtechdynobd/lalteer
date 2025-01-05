@@ -12,6 +12,10 @@
 
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     <div class="container-fluid" style="margin-top: 80px">
@@ -24,7 +28,7 @@
                                 alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-center text-danger">{{ $crop->title }}</h5>
-                                <p class="card-text mb-4">{{ strip_tags($crop->short_desc) }}</p>
+                                <p class="card-text mb-4">{!! strip_tags($crop->short_desc) !!}</p>
                             </div>
                             <!-- Circle positioned at the bottom and centered -->
                             <div
@@ -65,7 +69,7 @@
                             <div class="row g-0">
                                 <div class="col-md-6 bg-light pumpkins-sm-row-content text-center">
                                     <img src="{{ asset('/uploads/varieties/' . $varity->image) }}"
-                                        class="img-fluid rounded-start" alt="..." style="width: 400px; height: 305px">
+                                        class="img-fluid rounded-3" alt="..." style="width: 400px; height: 305px">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="card-body">

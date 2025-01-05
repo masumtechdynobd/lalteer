@@ -51,7 +51,7 @@ class CatalogueController extends Controller
     {
         // Validate the image input
         $request->validate([
-            'photos_path' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for the image
+            'photos_path' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // Validation for the image
         ]);
 
         // Handle the file upload
@@ -70,23 +70,17 @@ class CatalogueController extends Controller
                 File::makeDirectory($path, 0777, true, true);
             }
 
-            // Resize and save the image using Intervention Image
-            $thumbnailPath = $path . $fileNameToStore;
-            $img = Image::make($request->file('photos_path')->getRealPath())
-                ->resize(448, 420, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save($thumbnailPath);
+            // Move the uploaded file to the destination directory without resizing
+            $request->file('photos_path')->move($path, $fileNameToStore);
         } else {
             $fileNameToStore = 'noimage.jpg'; // Default placeholder if no file is uploaded
         }
 
         // Optional: Save the file path to the database
-        // Replace `NewsletterPhoto` with your model name if necessary
-        $newsletterPhoto = new Catalogue();
-        $newsletterPhoto->photos_path = 'uploads/catalogue/' . $fileNameToStore;
-        $newsletterPhoto->save();
+        // Replace `Catalogue` with your model name if necessary
+        $catalogue = new Catalogue();
+        $catalogue->photos_path = 'uploads/catalogue/' . $fileNameToStore;
+        $catalogue->save();
 
         // Display success message
         Toastr::success(__('dashboard.image uploaded successfully'), __('dashboard.success'));
@@ -94,6 +88,7 @@ class CatalogueController extends Controller
         // Redirect back
         return redirect()->route($this->route . '.index');
     }
+
 
     public function show(Catalogue $article, $id)
     {
@@ -130,7 +125,7 @@ class CatalogueController extends Controller
     {
         // Validate the image input
         $request->validate([
-            'photos_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validation for the image
+            'photos_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120', // Validation for the image
         ]);
 
         // Find the existing record by ID
@@ -158,14 +153,8 @@ class CatalogueController extends Controller
                 File::makeDirectory($path, 0777, true, true);
             }
 
-            // Resize and save the image using Intervention Image
-            $thumbnailPath = $path . $fileNameToStore;
-            $img = Image::make($request->file('photos_path')->getRealPath())
-                ->resize(448, 420, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                })
-                ->save($thumbnailPath);
+            // Move the uploaded file to the destination directory without resizing
+            $request->file('photos_path')->move($path, $fileNameToStore);
 
             // Update the path in the database
             $catalogue->photos_path = 'uploads/catalogue/' . $fileNameToStore;
@@ -180,6 +169,7 @@ class CatalogueController extends Controller
         // Redirect back
         return redirect()->route($this->route . '.index');
     }
+
 
 
 

@@ -20,12 +20,14 @@ use App\Models\Designation;
 use App\Models\Testimonial;
 use App\Models\WheelSlider;
 use Illuminate\Http\Request;
+use App\Models\AboutCatalogue;
 use App\Models\CompanyHistory;
 use App\Models\ContactMessage;
 use App\Models\GallerySection;
 use App\Models\MissionContent;
 use App\Models\NewsletterPhotos;
 use App\Models\NewsletterVideos;
+use App\Models\AboutCatalogueTwo;
 use App\Models\WheelSliderCenter;
 use App\Models\ResearchAndDevelop;
 use App\Http\Controllers\Controller;
@@ -67,6 +69,12 @@ class HomeMasumController extends Controller
 
         $section = Section::where('slug', 'about-us')->first();
 
+        $data['aboutcatalogues'] = AboutCatalogue::orderBy('id', 'desc')->get();
+        // $aboutcatalogues = $data['aboutcatalogues'];
+
+        $data['aboutcataloguetwos'] = AboutCatalogueTwo::orderBy('id', 'desc')->get();
+        // $aboutcataloguetwos = $data['aboutcataloguetwos'];
+
         return view("web.pages.aboutushistory", compact('history', 'data', 'catalogues', 'section'));
     }
 
@@ -107,7 +115,7 @@ class HomeMasumController extends Controller
         $services = Service::get();
 
         $section = Section::where('slug', 'crops')->first();
-        
+
         return view("web.pages.cropsdetailspage", compact('crops', 'varieties', 'faqs', 'services', 'section'));
     }
 
@@ -192,7 +200,7 @@ class HomeMasumController extends Controller
 
         $section = Section::where('slug', 'gallery')->first();
         $data['section'] = $section;
-        
+
         return view("web.pages.gallery", $data);
     }
 
@@ -223,7 +231,7 @@ class HomeMasumController extends Controller
         $project = Project::where('slug', $slug)->first();
 
         $section = Section::where('slug', 'projects')->first();
-        
+
         return view("web.pages.projectsdetails", compact('project', 'section'));
     }
 
@@ -249,7 +257,7 @@ class HomeMasumController extends Controller
 
         // Capture the current URL (including query string)
         $data['currentUrl'] = url()->current();
-        
+
 
         return view("web.pages.newsletter", $data);
     }
@@ -269,7 +277,7 @@ class HomeMasumController extends Controller
 
         $section = Section::where('slug', 'subscribe')->first();
 
-        
+
         // Pass the data to the view
         return view("web.pages.newsletterdetails", [
             'article' => $article,
@@ -290,10 +298,11 @@ class HomeMasumController extends Controller
         $data['contactmaps'] = ContactMap::orderBy('id', 'desc')->get();
         $data['settings'] = Setting::where('status', 1)->first();
         $data['designations'] = Designation::whereIn('id', Member::where('board_of_directory', 0)->pluck('designation_id'))
-            ->orderBy('title', 'asc')
-            ->get();
+        ->orderBy('title', 'asc')
+        ->get();
+    
 
-            
+
         $section = Section::where('slug', 'contact_us')->first();
         $data['section'] = $section;
 

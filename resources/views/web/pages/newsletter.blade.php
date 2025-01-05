@@ -12,6 +12,10 @@
                 <li class="breadcrumb-item"><a href="#">Newsletter</a></li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     <div class="container-fluid d-flex justify-content-center align-items-center" style="margin-top: 80px">
@@ -32,7 +36,7 @@
                     <div class="row">
                         @foreach ($photos as $photo)
                             <div class="col-md-3">
-                                <img src="{{ asset($photo->photos_path) }}" alt="Image" class="img-thumbnail"
+                                <img src="{{ asset($photo->photos_path) }}" alt="Image" class="img-thumbnail" style="width: 392px; height: 294px;"
                                     data-bs-toggle="modal" data-bs-target="#imageModal"
                                     data-bs-img="{{ asset($photo->photos_path) }}">
                             </div>
@@ -107,48 +111,41 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
+
 
     <!-- jQuery script to handle the content toggling -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Initially, show photos and hide others
-            $("#showPhotos").click(function() {
-                $('#photos').collapse('show');
-                $('#videos').collapse('hide');
-                $('#news').collapse('hide');
-            });
-
-            $("#showVideos").click(function() {
-                $('#videos').collapse('show');
-                $('#photos').collapse('hide');
-                $('#news').collapse('hide');
-            });
-
-            $("#showNews").click(function() {
-                $('#news').collapse('show');
-                $('#photos').collapse('hide');
-                $('#videos').collapse('hide');
-            });
-        });
-    </script>
-
-
-    <script>
-        $(document).ready(function() {
-            // Add active class to the current section link
+            // Add active class to the current section link based on URL
             const section = new URLSearchParams(window.location.search).get('section') || 'photos';
             $('#showPhotos, #showVideos, #showNews').removeClass('active');
             if (section === 'photos') {
                 $('#showPhotos').addClass('active');
+                $('#photos').collapse('show');
             } else if (section === 'videos') {
                 $('#showVideos').addClass('active');
+                $('#videos').collapse('show');
             } else if (section === 'news') {
                 $('#showNews').addClass('active');
+                $('#news').collapse('show');
             }
+
+            // Toggle content sections based on button click
+            $("#showPhotos").click(function() {
+                window.location.search = '?section=photos'; // Change URL
+            });
+
+            $("#showVideos").click(function() {
+                window.location.search = '?section=videos'; // Change URL
+            });
+
+            $("#showNews").click(function() {
+                window.location.search = '?section=news'; // Change URL
+            });
         });
     </script>
 @endsection

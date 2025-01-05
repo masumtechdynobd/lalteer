@@ -8,7 +8,7 @@
 
     {{-- top image section --}}
     <div class="container-fluid"
-        style="background: url('{{ asset('uploads/section/' . $section->image_path) }}'); position: relative; overflow: hidden; width: auto; height: 637px; background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 140px 0 60px 0; transition: 0.5s;">
+        style="background: url('{{ asset('uploads/section/' . $section->image_path) }}'); position: relative; overflow: hidden; width: auto; height: 596px; background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 140px 0 60px 0; transition: 0.5s;">
         <div class="container text-center py-5" style="max-width: 900px">
             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">
                 About Us
@@ -19,7 +19,11 @@
                 <li class="breadcrumb-item active text-primary">About Us</li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt="" style="width: 100%;">
+        </div>
     </div>
+    
 
     <!-- about our organization -->
     <div class="container-fluid organization-top-margin">
@@ -93,7 +97,7 @@
                                                 {!! \Illuminate\Support\Str::words(strip_tags($member->description, '<b><i><u><br>'), 20) !!}
                                             </p>
                                             <p class="mb-0 text-white full-text d-none">
-                                                {{ strip_tags($member->description) }}
+                                                {!! strip_tags($member->description) !!}
                                             </p>
 
                                             <!-- Read More Button -->

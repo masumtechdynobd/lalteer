@@ -22,6 +22,10 @@
                 <li class="breadcrumb-item"><a href="#">Contact Us</a></li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     {{-- address, phone, email --}}
@@ -142,22 +146,22 @@
 
         <div class="page">
 
-            <!-- tabs -->
+            <!-- Tabs -->
             <div class="pcss3t pcss3t-effect-scale pcss3t-theme-1">
                 <!-- Default "All" option -->
-                <input type="radio" name="pcss3t" id="tab0" class="tab-content-all" checked>
-                <label for="tab0">ALL</label>
+                <input type="radio" name="pcss3t" id="tab5" class="tab-content-all" checked>
+                <label for="tab5">ALL</label>
 
                 <!-- Generate radio buttons dynamically -->
                 @foreach ($designations as $index => $designation)
-                    <input type="radio" name="pcss3t" id="tab{{ $index + 1 }}"
-                        class="tab-content-{{ $index + 1 }}">
-                    <label for="tab{{ $index + 1 }}">{{ strtoupper($designation->title) }}</label>
+                    <input type="radio" name="pcss3t" id="tab{{ $index + 6 }}"
+                        class="tab-content-{{ $index + 6 }}">
+                    <label for="tab{{ $index + 6 }}">{{ strtoupper($designation->title) }}</label>
                 @endforeach
 
                 <ul>
                     <!-- All Members Tab -->
-                    <li class="tab-content tab-content-all typography">
+                    <li class="tab-content tab-content-5 typography">
                         <div class="total-boarddirectory-content">
                             <div class="px-4 combined-row-boardofdirectory">
                                 <div class="row g-1 mt-4 justify-content-center">
@@ -177,7 +181,9 @@
                                                         class="text-content d-flex flex-column justify-content-center align-items-center h-100 py-4">
                                                         <h6 class="text-white">{{ $member->title }}</h6>
                                                         <h5 class="mb-0 text-white">{{ $member->designation_id }}</h5>
-                                                        <p class="mb-0 text-white">{{ $member->description }}</p>
+                                                        <p class="mb-0 text-white">
+                                                            {{ \Illuminate\Support\Str::words(strip_tags($member->description), 20) }}
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +196,7 @@
 
                     <!-- Dynamic Tabs for Each Designation -->
                     @foreach ($designations as $index => $designation)
-                        <li class="tab-content tab-content-{{ $index + 1 }} typography">
+                        <li class="tab-content tab-content-{{ $index + 6 }} typography">
                             <div class="total-boarddirectory-content">
                                 <div class="px-4 combined-row-boardofdirectory">
                                     <div class="row g-1 mt-4 justify-content-center">
@@ -227,6 +233,7 @@
                     @endforeach
                 </ul>
             </div>
+
 
 
             <!--/ tabs -->

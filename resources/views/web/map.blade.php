@@ -1,4 +1,4 @@
-<div class="container-fluid maps-margin-top">
+<div class="maps-margin-top">
     <div class="text-center crops-margin mb-3 wow fadeInUp">
         <div class="d-flex justify-content-center align-items-center custom-gap-newsletter">
             <div>

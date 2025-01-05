@@ -49,7 +49,7 @@
 
 
                         <div class="form-group">
-                            <label for="image">{{ __('dashboard.photo') }} <span>*</span></label>
+                            <label for="image">{{ __('dashboard.photo') }} [450px*275px] <span>*</span></label>
                             <input type="file" class="form-control" name="image" id="image" required>
                             <div class="invalid-feedback">
                                 {{ __('dashboard.please_provide') }} {{ __('dashboard.photo') }}

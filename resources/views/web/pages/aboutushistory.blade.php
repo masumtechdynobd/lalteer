@@ -207,13 +207,18 @@
 
 
         #carouselExampleM {
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
         }
-        
-        @media (max-width: 767.98px) { /* Bootstrap's mobile breakpoint */
+
+        @media (max-width: 767.98px) {
+
+            /* Bootstrap's mobile breakpoint */
             #carouselExampleM {
-                display: block; /* Show only on small devices */
+                display: block;
+                /* Show only on small devices */
             }
+
             #whell-slider {
                 display: none;
             }
@@ -358,6 +363,10 @@
                 <li class="breadcrumb-item active text-primary">History</li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     {{-- company history --}}
@@ -490,9 +499,9 @@
                 <div class="col-md-6">
                     <div id="carouselExampleLarge" class="carousel slide">
                         <div class="carousel-inner">
-                            @foreach ($catalogues as $index => $catalogue)
+                            @foreach ($data['aboutcatalogues'] as $index => $aboutcatalogue)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset($catalogue->photos_path) }}" class="d-block w-100"
+                                    <img src="{{ asset($aboutcatalogue->photos_path) }}" class="d-block w-100"
                                         alt="Catalogue Image">
                                 </div>
                             @endforeach
@@ -513,12 +522,12 @@
                 </div>
 
                 <!-- Carousel for smaller screens -->
-                <div class="col-md-6 mt-md-4">
+                <div class="col-md-6">
                     <div id="carouselExampleSmall" class="carousel slide">
                         <div class="carousel-inner">
-                            @foreach ($catalogues as $index => $catalogue)
+                            @foreach ($data['aboutcataloguetwos'] as $index => $aboutcataloguetwo)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset($catalogue->photos_path) }}" class="d-block w-100"
+                                    <img src="{{ asset($aboutcataloguetwo->photos_path) }}" class="d-block w-100"
                                         alt="Catalogue Image">
                                 </div>
                             @endforeach

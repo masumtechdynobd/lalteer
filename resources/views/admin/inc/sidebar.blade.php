@@ -158,13 +158,27 @@
                 <span> {{ trans_choice('Catalogue', 2) }} </span>
             </a>
         </li>
-
+        
         <li>
-            <a href="{{ route('admin.gallery.index') }}">
-                <span class="icon"><i class="fas fa-tags"></i></span>
-                <span> {{ trans_choice('Gallery', 2) }} </span>
+            <a href="javascript: void(0);">
+                <span class="icon"><i class="fas fa-comments"></i></span>
+                <span> {{ trans_choice('About Catalogue', 2) }} </span>
+                <span class="menu-arrow"></span>
             </a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li>
+                    <a href="{{ route('admin.about_catalogue.index') }}">{{ trans_choice('First Catalogue', 2) }}</a>
+                    <a href="{{ route('admin.about_catalogue_two.index') }}">{{ trans_choice('Second Catalogue', 2) }}</a>
+                </li>
+            </ul>
         </li>
+
+        <!--<li>-->
+        <!--    <a href="{{ route('admin.gallery.index') }}">-->
+        <!--        <span class="icon"><i class="fas fa-tags"></i></span>-->
+        <!--        <span> {{ trans_choice('Gallery', 2) }} </span>-->
+        <!--    </a>-->
+        <!--</li>-->
 
         <li>
             <a href="{{ route('admin.gallery_section.index') }}">

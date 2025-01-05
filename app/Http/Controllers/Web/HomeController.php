@@ -24,6 +24,7 @@ use App\Models\WorkProcess;
 use Illuminate\Http\Request;
 use App\Models\CropsCategory;
 use App\Models\EmailTemplate;
+use App\Models\AboutCatalogue;
 use App\Models\ChairmanMessage;
 use App\Models\PortfolioCategory;
 use App\Http\Controllers\Controller;
@@ -77,10 +78,10 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->get();
 
-        // Articles                                
-        $data['articles'] = Article::where('status', '1')
-            ->orderBy('id', 'desc')
-            ->take(4)
+        // Articles                                 
+        $data['articles'] = Article::where('status', '1')  // Only active articles
+            ->orderBy('id', 'asc')  // Order by ascending article ID to get the last articles
+            ->take(4)  // Limit to the last 4 articles
             ->get();
 
         // Processes
@@ -103,6 +104,8 @@ class HomeController extends Controller
         $data['catalogues'] = Catalogue::orderBy('id', 'desc')->get();
 
         $data['dcatalogues'] = Setting::where('status', 1)->first();
+
+        $data['aboutcatalogues'] = AboutCatalogue::orderBy('id', 'desc')->get();
 
         return view('web.index', $data);
     }

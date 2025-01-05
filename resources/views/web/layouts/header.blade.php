@@ -127,7 +127,7 @@
 
 
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        <div class="modal fade h-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
@@ -200,18 +200,16 @@
                                                 </div>
                                             </div>
                                             <div class="nav-item dropdown">
-                                                <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                                                    <span class="dropdown-toggle">CROPS</span>
+                                                <a href="#" class="nav-link dropdown-toggle"
+                                                    id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
+                                                    CROPS
                                                 </a>
-                                                <div class="dropdown-menu m-0">
+                                                <div class="dropdown-menu m-0 dropdown-grid" aria-labelledby="navbarDropdown">
                                                     @foreach ($categories as $category)
                                                         <a href="{{ route('crops', $category->slug) }}"
-                                                            class="dropdown-item">{{ $category->title }}</a>
+                                                            class="dropdown-item text-start">{{ $category->title }}</a>
                                                     @endforeach
-                                                    {{-- <a href="feature.html" class="dropdown-item">BITTER GOURD</a>
-                                                    <a href="team.html" class="dropdown-item">PUMPKIN</a>
-                                                    <a href="feature.html" class="dropdown-item">BITTER GOURD</a>
-                                                    <a href="team.html" class="dropdown-item">PUMPKIN</a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -243,7 +241,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-3 text-center">
-                                            <ul style="list-style: none; font-weight: bold;">
+                                            <ul style="list-style: none;">
                                                 <li class="mb-3"><a href="{{ route('researchanddevelopment') }}">R
                                                         & D</a></li>
                                                 <li class="mb-3"><a href="{{ route('farmers') }}">Farmers</a></li>
@@ -289,3 +287,7 @@
 
     </div>
     <!-- Navbar & Hero End -->
+
+
+
+    

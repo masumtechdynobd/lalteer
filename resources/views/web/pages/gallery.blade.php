@@ -12,6 +12,10 @@
                 <li class="breadcrumb-item"><a href="#">Gallery</a></li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     {{-- Gallery Section --}}
@@ -19,15 +23,15 @@
         <div class="row">
             @foreach ($rows as $row)
                 <div
-                    class="col-md-6 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
+                    class="col-md-6 col-lg-4 card-gallery-hover-content position-relative d-flex flex-column align-items-center justify-content-center">
                     <a href="{{ route('gallerydetails', ['id' => $row->id]) }}">
                         <!-- Image -->
-                        <img src="{{ asset($row->image) }}" class="img-fluid card-gallery-image" alt="..."
-                            style="width: 799px; height: 532px; object-fit: cover;">
+                        <img src="{{ asset($row->image) }}" class="img-fluid card-gallery-image" alt="{{ $row->title }}"
+                            style="width: 100%; height: auto; object-fit: cover;">
 
                         <!-- Hidden Content (will show on hover) -->
-                        <div
-                            class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">
+                        <div class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center"
+                            style="color: white;">
                             <h2 class="text-center text-white">{{ $row->title }}</h2>
                         </div>
 
@@ -37,6 +41,7 @@
                 </div>
             @endforeach
         </div>
+
 
         <!-- Pagination Links -->
         <div class="d-flex justify-content-center mt-4">

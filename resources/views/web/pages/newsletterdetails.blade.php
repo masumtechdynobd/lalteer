@@ -14,6 +14,10 @@
                 <li class="breadcrumb-item active" aria-current="page">{{ $article->title }}</li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     {{-- Article Details Section --}}

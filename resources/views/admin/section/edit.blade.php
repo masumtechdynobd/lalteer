@@ -32,7 +32,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="image">Bradcamp</label>
+                            <label for="image">Bradcamp [1728x596]</label>
                             <input type="file" class="form-control" name="image" id="image">
 
                             <div class="invalid-feedback">

@@ -40,19 +40,17 @@
                                     {{ implode(' ', array_slice(explode(' ', strip_tags($blog->description)), 0, 10)) }}{{ strlen($blog->description) > 10 ? '...' : '' }}
                                 </p>
 
-                                {{-- <div class="text-center py-4">
-                                    <a href="#" class="text-white text-center custom-hover-button">
-                                        <i class="bi bi-arrow-right news-read-bg-success rounded-pill p-1 me-2"></i>
-                                        Read More
-                                    </a>
-                                </div> --}}
+                                <div class="py-3">
+                                    <a href="{{ route('newsletterdetails', $blog->id) }}"
+                                        class="newsletter-bg-success-hover"><i
+                                            class="bi bi-arrow-right me-2 text-white p-2 rounded-pill"
+                                            style="background-color: #28a745;"></i>Read More</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
-
-
         </div>
     </div>
 </div>

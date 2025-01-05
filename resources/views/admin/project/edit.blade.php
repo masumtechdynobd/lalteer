@@ -56,7 +56,7 @@
 
                     <!-- Single Image (Photo) -->
                     <div class="form-group">
-                        <label for="image">{{ __('dashboard.photo') }} </label>
+                        <label for="image">{{ __('dashboard.photo') }}[450px*275px] </label>
                         <input type="file" class="form-control" name="image" id="image">
 
                         <div class="invalid-feedback">

@@ -12,6 +12,10 @@
                 <li class="breadcrumb-item"><a href="#">Gallery</a></li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     <div class="container-fluid d-flex justify-content-center align-items-center" style="margin-top: 80px">

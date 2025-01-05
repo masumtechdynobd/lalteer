@@ -15,9 +15,7 @@
 
 
 /*** Single Page Hero Header Start ***/
-.bg-breadcrumb {
- 
-}
+.bg-breadcrumb {}
 
 @media (min-width: 992px) {
   .bg-breadcrumb {
@@ -105,7 +103,6 @@
   position: relative !important;
   transition: height 0.3s ease, padding 0.3s ease;
   border-radius: 30px !important;
-  overflow: hidden;
 }
 
 .board-dicrescotry-sm-text.expanded {
@@ -425,6 +422,13 @@
   margin-right: 0;
 }
 
+.bredcrumb-bottom-img-div{
+  width: 100%;
+  position: absolute;
+  z-index: 99;
+  bottom: 0;
+}
+
 
 
 
@@ -512,7 +516,10 @@
 
 /* Varieties Of pumpkins seed */
 .pumpkins-sm-row-content {
-  border-radius: 15px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .pumpkins-table {
@@ -874,40 +881,72 @@
 /* galley */
 /* Hover Content Styling */
 .gallery-hover-content {
-  background-color: rgba(255, 0, 0, 0.377);
-  /* Semi-transparent black background */
   opacity: 0;
-  /* Hidden initially */
-  transition: opacity 0.3s ease-in-out;
+  /* Initially hidden */
+  transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+  /* Smooth opacity and color transition */
   top: 0;
-  /* Covers the image entirely */
+  /* Ensures it covers the image */
   bottom: 0;
-  left: 80px;
+  left: 0;
   right: 0;
-  width: 799px;
-  height: 532px;
+  width: 100%;
+  height: 100%;
   z-index: 2;
+  color: transparent;
+  /* Initially hide text color */
 }
 
 /* Show hover content on hover */
 .card-gallery-hover-content:hover .gallery-hover-content {
   opacity: 1;
-  /* Makes hover content visible */
+  /* Shows content */
+  color: white !important;
+  /* Text color becomes white */
 }
 
 /* Hide bottom text on hover */
 .card-gallery-hover-content:hover .gallry-bottom-text {
   visibility: hidden;
-  /* Hides the text without disrupting layout */
+  /* Hide without disrupting layout */
   opacity: 0;
   /* Smooth fade-out effect */
   transition: opacity 0.3s ease-in-out;
 }
 
-.card-gallery-image:hover {
-  width: 100%;
-  height: auto;
+/* Bottom text visibility and transition */
+.gallry-bottom-text {
+  transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+  /* Smooth color transition */
+  color: #333;
+  /* Default color */
 }
+
+/* Change color of bottom text when hovering the entire card */
+.card-gallery-hover-content:hover .gallry-bottom-text {
+  color: white;
+  /* Change to white when hovering */
+}
+
+/* Card image hover effect */
+.card-gallery-image {
+  transition: transform 0.3s ease;
+}
+
+.card-gallery-hover-content:hover .card-gallery-image {
+  transform: scale(1.1);
+  /* Slight zoom effect */
+}
+
+/* Ensure proper spacing and scaling for smaller screens */
+@media (max-width: 768px) {
+  .card-gallery-hover-content {
+    padding: 10px;
+  }
+}
+
+
+
 
 
 
@@ -958,7 +997,7 @@
   /* Makes text stand out */
   text-align: center;
   /* Center align the text */
-  font-size: 16px;
+  font-size: 14px;
   /* Adjust font size as needed */
   display: block;
   /* Ensure each span is on a new line */

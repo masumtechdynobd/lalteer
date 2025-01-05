@@ -11,6 +11,10 @@
                 <li class="breadcrumb-item"><a href="{{ route('projects') }}">Projects</a></li>
             </ol>
         </div>
+        <div class="bredcrumb-bottom-img-div">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+                style="width: 100%;">
+        </div>
     </div>
 
     <div class="container-fluid" style="margin-top: 80px">
@@ -21,7 +25,7 @@
                         <div class="col-md-6">
                             <div>
                                 <img src="{{ asset('uploads/project/' . $item->image_path) }}" alt=""
-                                    class="img-fluid" style="width: 450px; height: auto;">
+                                    class="img-fluid" style="width: 450px; height: 275px;">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -34,7 +38,7 @@
                             style="margin-left: 12px; width: 600px;">
                             <h5 class="text-white">{{ $item->title }}</h5>
                         </div>
-                        <hr style="border: 2px solid #026431; margin-left: 12px !important;">
+                        <hr style="border: 2px solid #026431; margin-left: 12px !important; width: 97%;">
                     </div>
                 </div>
             @endforeach
