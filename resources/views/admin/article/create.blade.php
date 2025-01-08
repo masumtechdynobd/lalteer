@@ -66,6 +66,14 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="board_of_directory"
+                                        name="board_of_directory" {{ old('board_of_directory') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="board_of_directory">Add Home Page</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="description">{{ __('dashboard.description') }} <span>*</span></label>
                                 <textarea class="form-control textMediaEditor" name="description" id="description" rows="8" required>{{ old('description') }}</textarea>
 
@@ -83,16 +91,6 @@
                                     {{ __('dashboard.please_provide') }} {{ __('dashboard.thumbnail') }}
                                 </div>
                             </div>
-
-                            {{-- <div class="form-group">
-                        <label for="video_id">{{ __('dashboard.youtube_video_id') }}</label>
-                        <input type="text" class="form-control" name="video_id" id="video_id" value="{{ old('video_id') }}">
-
-                        <div class="invalid-feedback">
-                          {{ __('dashboard.please_provide') }} {{ __('dashboard.youtube_video_id') }}
-                        </div>
-                    </div> --}}
-                            <!-- Form End -->
 
                         </div>
                         <div class="card-footer">

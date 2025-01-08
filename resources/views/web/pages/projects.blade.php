@@ -1,7 +1,8 @@
 @extends('web.layouts.master')
 @section('content')
     {{-- top image section --}}
-    <div class="container-fluid" style="background: url('{{ asset('uploads/section/' . $section->image_path) }}'); position: relative; overflow: hidden; width: auto; height: 637px; background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 140px 0 60px 0; transition: 0.5s;">
+    <div class="container-fluid"
+        style="background: url('{{ asset('uploads/section/' . $section->image_path) }}'); position: relative; overflow: hidden; width: auto; height: 637px; background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 140px 0 60px 0; transition: 0.5s;">
         <div class="container text-center py-5" style="max-width: 900px">
             <h4 class="text-white display-4 mb-4 wow fadeInDown" data-wow-delay="0.1s">
                 {{ $title }}
@@ -12,7 +13,7 @@
             </ol>
         </div>
         <div class="bredcrumb-bottom-img-div">
-            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/bredcrumb-footer-new.png') }}" alt=""
                 style="width: 100%;">
         </div>
     </div>
@@ -29,13 +30,13 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p>{{ \Illuminate\Support\Str::words(strip_tags($item->description2), 60) }}</p>
+                            <p style="text-align: justify !important;">
+                                {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 40) }}</p>
                             <a href="{{ route('projectsdetails', $item->slug) }}"
-                                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">READ
+                                class="btn buynow-btn rounded-pill farmers-btn-read-more my-lg-0 flex-shrink-0">READ
                                 MORE</a>
                         </div>
-                        <div class="bg-success py-4 success-story-rounded-pill-end"
-                            style="margin-left: 12px; width: 600px;">
+                        <div class="bg-success py-4 success-story-rounded-pill-end">
                             <h5 class="text-white">{{ $item->title }}</h5>
                         </div>
                         <hr style="border: 2px solid #026431; margin-left: 12px !important; width: 97%;">

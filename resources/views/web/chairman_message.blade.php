@@ -36,14 +36,14 @@
                           <h4 class="text-danger">{{ $chairman_message->designation }}</h4>
                       </div>
                       <div class="mt-3" id="description">
-                          <span class="short-description">
+                          <p class="short-description" style="text-align: justify !important;">
                               {{ \Illuminate\Support\Str::words(strip_tags($chairman_message->description), 60) }}
-                          </span>
-                          <span class="full-description" style="display: none;">
+                          </p>
+                          <p class="full-description" style="display: none; text-align: justify !important;">
                               {{ strip_tags($chairman_message->description) }}
-                          </span>
+                          </p>
                       </div>
-                      <div class="mb-4 mt-2">
+                      <div class="mb-4 mt-3">
                           <a href="javascript:void(0);" id="read-more-btn"
                               class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">READ MORE</a>
                       </div>

@@ -50,7 +50,7 @@
                                 </h2>
                             </div>
                             <div class="wow fadeInLeft">
-                                <p class="mb-4">
+                                <p class="mb-4" style="text-align: justify !important;">
                                     {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 170) }}
                                 </p>
 
@@ -100,7 +100,7 @@
                                 </h2>
                             </div>
                             <div class="wow fadeInRight">
-                                <p class="mb-4 text-justify">
+                                <p class="mb-4 text-justify" style="text-align: justify !important;">
                                     {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 180) }}
                                 </p>
 

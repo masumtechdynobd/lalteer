@@ -78,6 +78,7 @@ class ArticleController extends Controller
             'image' => 'required|image',
             'video_id' => 'nullable|max:100',
             'date' => 'date', // Validation for date
+            'board_of_directory' => 'nullable|in:on', // Validate the new field (optional)
         ]);
 
 
@@ -148,6 +149,9 @@ class ArticleController extends Controller
         } // <!-
 
 
+        // Check if 'board_of_directory' checkbox is checked (will send 'on' if checked)
+        $boardOfDirectory = $request->has('board_of_directory') ? 1 : 0; // 1 for checked, 0 for unchecked
+
         // Insert Data
         $article = new Article;
         $article->title = $request->title;
@@ -157,6 +161,7 @@ class ArticleController extends Controller
         $article->description = $dom->saveHTML();
         $article->image_path = $fileNameToStore;
         $article->video_id = $request->video_id;
+        $article->board_of_directory = $boardOfDirectory; // Save the board_of_directory value
         $article->save();
 
 
@@ -220,6 +225,7 @@ class ArticleController extends Controller
             'description' => 'required',
             'image' => 'nullable|image',
             'video_id' => 'nullable|max:100',
+            'board_of_directory' => 'nullable|in:on', // Validate the checkbox input (allows 'on')
         ]);
 
 
@@ -297,6 +303,9 @@ class ArticleController extends Controller
         } // <!-
 
 
+        // Check if 'board_of_directory' checkbox is checked (will send 'on' if checked)
+        $boardOfDirectory = $request->has('board_of_directory') ? 1 : 0; // 1 for checked, 0 for unchecked
+
         // Update Data
         $article->title = $request->title;
         $article->slug = Str::slug($request->title, '-');
@@ -306,6 +315,7 @@ class ArticleController extends Controller
         $article->image_path = $fileNameToStore;
         $article->video_id = $request->video_id;
         $article->status = $request->status;
+        $article->board_of_directory = $boardOfDirectory; // Save the board_of_directory value
         $article->save();
 
 

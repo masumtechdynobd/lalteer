@@ -14,7 +14,7 @@
             </ol>
         </div>
         <div class="bredcrumb-bottom-img-div">
-            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/bredcrumb-footer-new.png') }}" alt=""
                 style="width: 100%;">
         </div>
     </div>
@@ -32,16 +32,16 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <p> {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 60) }}</p>
+                            <p style="text-align: justify !important;">
+                                {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 40) }}</p>
                             <a href="{{ route('farmersdetails', $item->slug) }}"
-                                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">READ
+                                class="btn buynow-btn farmers-btn-read-more rounded-pill my-lg-0 flex-shrink-0">READ
                                 MORE</a>
                         </div>
-                        <div class="bg-success py-4 success-story-rounded-pill-end"
-                            style="margin-left: 12px; width: 600px;">
+                        <div class="bg-success py-4 success-story-rounded-pill-end">
                             <h5 class="text-white">{{ $item->title }}</h5>
                         </div>
-                        <hr style="border: 2px solid #026431; margin-left: 12px !important;">
+                        <hr style="border: 2px solid #026431; margin-left: 12px !important; width: 97%;">
                     </div>
                 </div>
             @endforeach

@@ -61,9 +61,8 @@
                         @endif
                     </div>
                 </div>
-                <div class="rd-details-research-bg">
-                    <img src="{{ asset('/web/img/Ellipse 4.png') }}" alt="" class="img-fluid"
-                        style="width: 500px; height: 465px;">
+                <div class="">
+                    <img src="{{ asset('/web/img/Ellipse 4.png') }}" alt="" class="img-fluid rd-details-research-bg">
                 </div>
             </div>
             <div class="col-md-6 rd-details-research-textcontent">
@@ -83,7 +82,7 @@
                         </div>
                     </div>
                 </div>
-                <p>{{ strip_tags($data->description2) }}</p>
+                <p style="text-align: justify !important;">{{ strip_tags($data->description2) }}</p>
             </div>
         </div>
     </div>
@@ -102,7 +101,7 @@
                         </div>
                     </div>
                     <div class="wow fadeInLeft">
-                        <div>
+                        <div style="text-align: justify !important;">
                             <p>{!! strip_tags($data->description, '<b><i><p><br><ul><li><strong>') !!}
                             </p>
                         </div>

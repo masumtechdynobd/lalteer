@@ -13,7 +13,7 @@
             </ol>
         </div>
         <div class="bredcrumb-bottom-img-div">
-            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/bredcrumb-footer-new.png') }}" alt=""
                 style="width: 100%;">
         </div>
     </div>
@@ -35,7 +35,7 @@
                         </div>
                         <h2 class="text-success mb-4">{{ $crops->title }}</h2>
                     </div>
-                    <p class="mb-4">
+                    <p class="mb-4" style="text-align: justify !important;">
                         {{ strip_tags($crops->description) }}
                     </p>
                 </div>

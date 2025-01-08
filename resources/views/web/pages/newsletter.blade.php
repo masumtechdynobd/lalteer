@@ -13,7 +13,7 @@
             </ol>
         </div>
         <div class="bredcrumb-bottom-img-div">
-            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/bredcrumb-footer-new.png') }}" alt=""
                 style="width: 100%;">
         </div>
     </div>
@@ -36,8 +36,8 @@
                     <div class="row">
                         @foreach ($photos as $photo)
                             <div class="col-md-3">
-                                <img src="{{ asset($photo->photos_path) }}" alt="Image" class="img-thumbnail" style="width: 392px; height: 294px;"
-                                    data-bs-toggle="modal" data-bs-target="#imageModal"
+                                <img src="{{ asset($photo->photos_path) }}" alt="Image" class="img-thumbnail"
+                                    style="width: 392px; height: 294px;" data-bs-toggle="modal" data-bs-target="#imageModal"
                                     data-bs-img="{{ asset($photo->photos_path) }}">
                             </div>
                         @endforeach

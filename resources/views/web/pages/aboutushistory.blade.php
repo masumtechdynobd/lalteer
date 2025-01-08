@@ -22,10 +22,7 @@
         /* Wheel slider container */
         .wheel-slider {
             position: relative;
-            width: 100%;
-            max-width: 1070px;
-            /* Increase size for bigger display */
-            margin: auto;
+            height: 791px;
         }
 
         /* Circular item container */
@@ -127,12 +124,7 @@
 
 
 
-        .wheel-slider {
-            position: relative;
-            width: 800px;
-            height: 800px;
-            max-width: 1200px !important;
-        }
+
 
         .circle {
             position: absolute;
@@ -364,7 +356,7 @@
             </ol>
         </div>
         <div class="bredcrumb-bottom-img-div">
-            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/bredcrumb-footer-new.png') }}" alt=""
                 style="width: 100%;">
         </div>
     </div>
@@ -387,7 +379,7 @@
                     <h2 class="mb-4 custom-letter-spacing about-org-content-h2" style="font-weight: normal;">
                         {{ @$history->title }}
                     </h2>
-                    <p class="mb-4">
+                    <p class="mb-4" style="text-align: justify !important;">
                         {{ strip_tags(@$history->description) }}
                     </p>
                 </div>
@@ -403,15 +395,19 @@
     {{-- collaborative works --}}
     <div id="whell-slider" class="container-fluid" style="margin-top: 200px; margin-bottom: 200px;">
         <div class="wheel-slider mx-auto">
-            <div class="circle">
+            <div class="circle" style="transform: rotate(-30deg);">
+                @php
+                    $base = 30;
+                @endphp
                 @foreach ($data['rows'] as $index => $slider)
                     <div class="item p-4" style="--i: {{ $index }};">
                         <!-- Image with data attributes for modal -->
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal"
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#myModal" data-base="{{ $base }}"
                             onclick="updatedata('{{ $slider->id }}','{{ $slider->photos_path }}','{{ $slider->title }}','{{ $slider->description }}')"
-                            class="btn btn-sm"><img src="{{ asset($slider->photos_path) }}" alt="{{ $slider->title }}"
-                                class="" /></a>
+                            class="btn btn-sm " style="transform :rotate({{ $base }}deg)"><img
+                                src="{{ asset($slider->photos_path) }}" alt="{{ $slider->title }}" class="" /></a>
                     </div>
+                    @php $base = $base-30; @endphp
                 @endforeach
             </div>
             <div class="center-image">
@@ -582,21 +578,42 @@
 
     <script>
         let angle = 0; // Keeps track of the current rotation angle
+        let click = 0;
 
-        const rotateWheel = (direction) => {
+
+        function rotateWheel(direction) {
+            console.log(direction);
             // Update the angle based on direction
             angle += direction === 'left' ? 30 : -30; // Rotate by 30 degrees in either direction
-
             // Apply the rotation to the circle (wheel) element
             const circle = document.querySelector('.circle');
             circle.style.transform = `rotate(${angle}deg)`;
-        };
 
-        // Add event listeners for left and right arrow keys
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') rotateWheel('right');
-            if (e.key === 'ArrowRight') rotateWheel('left');
-        });
+            const items = document.querySelectorAll('.circle .item');
+            if (click > 0) {
+                items.forEach((item, index) => {
+                    const anchor = item.querySelector('a');
+                    console.log(anchor);
+                    if (anchor) {
+                        const baseRotation = parseInt(anchor.getAttribute('data-base'), 10) ||
+                            0; // Get data-base value
+                        let rotationAngle = baseRotation;
+
+                        if (direction == "right") {
+                            console.log(baseRotation);
+                            rotationAngle = baseRotation + 30;
+                            anchor.setAttribute('data-base', baseRotation + 30);
+                        } else {
+                            rotationAngle = baseRotation - 30;
+                            anchor.setAttribute('data-base', baseRotation - 30);
+                        }
+                        anchor.style.transform = `rotate(${rotationAngle}deg)`; // Apply rotation
+                    }
+                });
+            }
+            click = click + 1;
+
+        };
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
@@ -611,7 +628,7 @@
 
         // Select HTML elements
         const pdfCanvas = document.getElementById('pdfCanvas');
-        const ctx = pdfCanvas.getContext('2d');
+        // const ctx = pdfCanvas.getContext('2d');
         const prevPageBtn = document.getElementById('prevPage');
         const nextPageBtn = document.getElementById('nextPage');
         const currentPageSpan = document.getElementById('currentPage');
@@ -622,6 +639,7 @@
         let currentPage = 1;
         let totalPages = 0;
         let pdfScale = 1.5; // Scale factor
+
 
         // Render the PDF page
         function renderPage(pageNumber) {
@@ -652,51 +670,62 @@
             });
         }
 
-        // Handle Previous Page button click
-        prevPageBtn.addEventListener('click', () => {
-            if (currentPage <= 1) return;
-            currentPage--;
-            renderPage(currentPage);
-        });
+        if (prevPageBtn) {
+            // Handle Previous Page button click
+            prevPageBtn.addEventListener('click', () => {
+                if (currentPage <= 1) return;
+                currentPage--;
+                renderPage(currentPage);
+            });
+        }
 
-        // Handle Next Page button click
-        nextPageBtn.addEventListener('click', () => {
-            if (currentPage >= totalPages) return;
-            currentPage++;
-            renderPage(currentPage);
-        });
+        if (nextPageBtn) {
+            // Handle Next Page button click
+            nextPageBtn.addEventListener('click', () => {
+                if (currentPage >= totalPages) return;
+                currentPage++;
+                renderPage(currentPage);
+            });
+        }
 
-        // Handle file upload
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file && file.type === 'application/pdf') {
-                const fileReader = new FileReader();
-                fileReader.onload = (e) => {
-                    const arrayBuffer = e.target.result;
-                    pdfjsLib.getDocument({
-                        data: arrayBuffer
-                    }).promise.then((doc) => {
-                        pdfDoc = doc;
-                        currentPage = 1;
-                        totalPages = doc.numPages;
-                        totalPagesSpan.textContent = totalPages;
-                        renderPage(currentPage);
-                    });
-                };
-                fileReader.readAsArrayBuffer(file);
-            }
-        });
+        // Handle file upload\
+        if (fileInput) {
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file && file.type === 'application/pdf') {
+                    const fileReader = new FileReader();
+                    fileReader.onload = (e) => {
+                        const arrayBuffer = e.target.result;
+                        pdfjsLib.getDocument({
+                            data: arrayBuffer
+                        }).promise.then((doc) => {
+                            pdfDoc = doc;
+                            currentPage = 1;
+                            totalPages = doc.numPages;
+                            totalPagesSpan.textContent = totalPages;
+                            renderPage(currentPage);
+                        });
+                    };
+                    fileReader.readAsArrayBuffer(file);
+                }
+            });
+        }
 
         // Load a default PDF
+
+
+
         loadPDF('{{ asset('/uploads/setting/' . $setting->pdf_path) }}');
+        rotateWheel('right');
 
 
 
 
-        function rotateWheel(direction) {
-            const circle = document.querySelector('.circle');
-            const rotation = parseInt(getComputedStyle(circle).getPropertyValue('--rotation')) || 0;
-            circle.style.setProperty('--rotation', rotation + (direction === 'left' ? -30 : 30));
-        }
+
+        // function rotateWheel(direction) {
+        //     const circle = document.querySelector('.circle');
+        //     const rotation = parseInt(getComputedStyle(circle).getPropertyValue('--rotation')) || 0;
+        //     circle.style.setProperty('--rotation', rotation + (direction === 'left' ? -30 : 30));
+        // }
     </script>
 @endsection

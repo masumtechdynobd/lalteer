@@ -32,9 +32,9 @@
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#" class="me-3 text-dark text-decoration-none">
-                            <small>CATALOGUE</small>
-                        </a>
+                        <span id="catalogue-id" class="me-3 text-dark text-decoration-none">
+                            <a href="#catalogue-section" class="text-black">CATALOGUE</a>
+                        </span>
                         <div class="bg-white px-4 py-1 rounded d-flex justify-content-between align-items-center">
                             <span class="me-2">EN</span>
                             <div class="vr mx-2"></div>
@@ -138,14 +138,15 @@
 
                     <div class="modal-body">
                         <div class="text-center">
-                            <img src="{{ asset('/web/img/lal teer logo.png') }}" alt="">
-                            <h2 class="text-success mt-3">{{ $setting->tag_line ?? 'Write Your Tag Line Here' }}</h2>
+                            <img src="{{ asset('/uploads/setting/' . $setting->logo_path) }}" alt=""
+                                style="width: 100px; height: auto;">
+                            <h4 class="text-success mt-3">{{ $setting->tag_line ?? 'Write Your Tag Line Here' }}</h4>
                         </div>
                         <div style="margin-top: 50px;">
                             <div class="row">
                                 <div class="col-md-3" style="border-right: 3px solid red;">
                                     <div>
-                                        <h3 style="color: #4D4C4C;">Our Certification</h3>
+                                        <h4 style="color: #4D4C4C;">Our Certification</h4>
                                         <div>
                                             @php
                                                 $images = json_decode($setting->certification_multiple_images, true); // Decode the JSON string to an array
@@ -153,14 +154,15 @@
                                             @if (!empty($images) && is_array($images))
                                                 @forelse ($images as $index=>$image)
                                                     <img src="{{ asset('/uploads/certifications/' . $image) }}"
-                                                        alt="" class="img-fluid">
+                                                        alt="" class="img-fluid"
+                                                        style="width: 50px; height: auto;">
                                                 @empty
                                                 @endforelse
                                             @endif
                                         </div>
                                     </div>
                                     <div style="margin-top: 50px;">
-                                        <h3 style="color: #4D4C4C;">Our Achievements</h3>
+                                        <h4 style="color: #4D4C4C;">Our Achievements</h4>
                                         <div class="mt-3 bg-light rounded-2 border-1 text-center p-2">
                                             <div class="row">
                                                 @php
@@ -169,9 +171,10 @@
 
                                                 @if (!empty($images) && is_array($images))
                                                     @forelse ($images as $index=>$image)
-                                                        <div class="col-md-6">
+                                                        <div class="col-md-6 d-flex justify-content-center mt-2">
                                                             <img src="{{ asset('/uploads/achievements/' . $image) }}"
-                                                                alt="" class="img-fluid">
+                                                                alt="" class="img-fluid"
+                                                                style="width: 175px; height: 154px;">
                                                         </div>
                                                     @empty
                                                     @endforelse
@@ -199,17 +202,20 @@
                                                         class="dropdown-item">HISTORY</a>
                                                 </div>
                                             </div>
+
                                             <div class="nav-item dropdown">
                                                 <a href="#" class="nav-link dropdown-toggle"
                                                     id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                                                     aria-expanded="false">
                                                     CROPS
                                                 </a>
-                                                <div class="dropdown-menu m-0 dropdown-grid" aria-labelledby="navbarDropdown">
-                                                    @foreach ($categories as $category)
-                                                        <a href="{{ route('crops', $category->slug) }}"
-                                                            class="dropdown-item text-start">{{ $category->title }}</a>
-                                                    @endforeach
+                                                <div class="dropdown-menu m-0" aria-labelledby="navbarDropdown">
+                                                    <div class="dropdown__grid">
+                                                        @foreach ($categories as $category)
+                                                            <a href="{{ route('crops', $category->slug) }}"
+                                                                class="dropdown-item text-start">{{ $category->title }}</a>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -287,7 +293,3 @@
 
     </div>
     <!-- Navbar & Hero End -->
-
-
-
-    

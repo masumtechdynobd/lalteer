@@ -20,10 +20,11 @@
             </ol>
         </div>
         <div class="bredcrumb-bottom-img-div">
-            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt="" style="width: 100%;">
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/bredcrumb-footer-new.png') }}" alt=""
+                style="width: 100%;">
         </div>
     </div>
-    
+
 
     <!-- about our organization -->
     <div class="container-fluid organization-top-margin">
@@ -46,7 +47,7 @@
                     <h4 class="mb-4 custom-letter-spacing">
                         {{ $about->title }}
                     </h4>
-                    <p class="mb-4">
+                    <p class="mb-4" style="text-align: justify !important;">
                         {{ strip_tags($about->description) }}
                     </p>
                 </div>
@@ -115,10 +116,7 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-
     </div>
     </div>
 

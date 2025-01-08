@@ -938,7 +938,7 @@ body {
 
 /*** Footer Start ***/
 .footer {
-    background: url('/web/img/footer-bg-3.jpg');
+    background: url('/web/img/Frame 1171276440.png');
     background-size: cover;
     /* Ensures the image covers the entire section */
     background-position: initial;
@@ -1185,7 +1185,7 @@ body {
 }
 
 .crops-margin {
-    margin-top: 60px;
+    margin-top: 30px;
 }
 
 .custom-gap {
@@ -1271,6 +1271,8 @@ body {
 .see-all-btn {
     margin-top: 85px;
     text-align: center;
+    position: relative;
+    z-index: 9999999999;
 }
 
 
@@ -1610,7 +1612,7 @@ body {
 
 .dropdown-menu.dropdown-grid {
     display: grid !important;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 10px;
     padding: 10px;
     min-width: 600px;
@@ -1654,7 +1656,7 @@ body {
 }
 
 .slick-prev {
-    left: 48%;
+    left: 47%;
 }
 
 @media (max-width: 1024px) {
@@ -1678,7 +1680,7 @@ body {
 }
 
 .slick-next {
-    left: 52%;
+    left: 53%;
     /* Slight adjustment to place the next arrow */
 }
 
@@ -1692,4 +1694,14 @@ body {
 .slick-next i {
     color: #fff;
     /* Ensure icon color matches the button */
+}
+
+
+
+
+
+@media (max-width: 1400px) {
+    .farmers-btn-read-more {
+        margin-bottom: 10px !important;
+    }
 }

@@ -80,6 +80,7 @@ class HomeController extends Controller
 
         // Articles                                 
         $data['articles'] = Article::where('status', '1')  // Only active articles
+            ->where('board_of_directory', 1)
             ->orderBy('id', 'asc')  // Order by ascending article ID to get the last articles
             ->take(4)  // Limit to the last 4 articles
             ->get();

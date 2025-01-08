@@ -119,14 +119,18 @@
 
     /* Left button positioning */
     .carousel-control-prev {
-        left: 10px;
+        left: -5px;
         /* Adjust this for desired distance from the left */
     }
 
     /* Right button positioning */
     .carousel-control-next {
-        right: 10px;
+        right: -5px;
         /* Adjust this for desired distance from the right */
+    }
+
+    .caresouel-img-class {
+        width: 25%;
     }
 
     /* Ensure the buttons look good on mobile too */
@@ -147,6 +151,10 @@
             left: 310px;
             top: 30px;
         }
+
+        .caresouel-img-class {
+            width: 100%;
+        }
     }
 
     @media (max-width: 500px) {
@@ -165,6 +173,10 @@
             justify-content: center;
             left: 185px;
             top: 30px;
+        }
+
+        .caresouel-img-class {
+            width: 100%;
         }
     }
 
@@ -185,11 +197,24 @@
             left: 125px;
             top: 30px;
         }
+
+        .caresouel-img-class {
+            width: 100%;
+        }
+    }
+
+
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        font-size: 14px;
+        width: 10px;
+        height: 22px !important;
     }
 </style>
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="catalogue-section">
     <div class="text-center crops-margin mb-3 wow fadeInUp">
         <div class="d-flex justify-content-center align-items-center custom-gap-newsletter">
             <div>
@@ -238,36 +263,63 @@
         @endforeach
     </div>
 
-    <div id="carouselExample" class="carousel slide d-md-none">
-        <div class="carousel-inner">
-            @foreach ($catalogues as $index => $catalogue)
-                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                    <img src="{{ asset($catalogue->photos_path) }}" class="d-block w-100" alt="Catalogue Image">
-                </div>
-            @endforeach
-        </div>
+    <div class="d-flex justify-content-center">
         <!-- Left control button -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSmall" data-bs-slide="prev"
+            onclick="turn_now('previous')">
+
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
 
         <!-- Right control button -->
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSmall" data-bs-slide="next"
+            onclick="turn_now('next')">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+
+    {{-- <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner d-flex justify-content-center">
+            @foreach ($catalogues as $index => $catalogue)
+                <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                    <img src="{{ asset($catalogue->photos_path) }}" class="d-block img-fluid" alt="Catalogue Image">
+                </div>
+            @endforeach
+        </div>
+        <div class="d-flex justify-content-center" style="margin-top: 35px;">
+            <!-- Left control button -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <!-- Right control button -->
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div> --}}
 
 
 
 
     <div class="text-center mt-4">
         @if ($dcatalogues && $dcatalogues->pdf_path)
-            <a href="{{ asset($dcatalogues->pdf_path) }}" download="{{ basename($dcatalogues->pdf_path) }}"
-                class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">
-                Download Catalogue <i class="bi bi-file-earmark-arrow-down-fill ms-2"></i>
-            </a>
+            <div>
+                <a href="{{ asset('/uploads/setting/' . $dcatalogues->pdf_path) }}"
+                    download="{{ basename('/uploads/setting/' . $dcatalogues->pdf_path) }}"
+                    class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">
+                    Downlaod<i class="bi bi-file-earmark-arrow-down-fill ms-2"></i>
+                </a>
+
+                <a href="{{ route('cataloguepreview') }}"
+                    class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0">
+                    Preview<i class="bi bi-file-break ms-3"></i>
+                </a>
+            </div>
         @else
             <p>No catalogue available for download.</p>
         @endif

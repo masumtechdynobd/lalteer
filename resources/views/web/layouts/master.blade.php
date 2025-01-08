@@ -8,6 +8,8 @@
     <meta content="" name="keywords">
     <meta content="" name="description">
 
+    <link rel="icon" href="{{ asset('/uploads/setting/' . $setting->logo_path) }}" type="image/png">
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +32,7 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('/web/css/style.css?v3') }}" rel="stylesheet">
-    <link href="{{ asset('/web/css/masum.css?v3') }}" rel="stylesheet">
+    <link href="{{ asset('/web/css/masum.css?v4') }}" rel="stylesheet">
     <link href="{{ asset('/web/css/masumnew.css') }}" rel="stylesheet">
 
 
@@ -218,7 +220,7 @@
 
 
 <!-- JavaScript Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>  <!-- Only one jQuery version -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> <!-- Only one jQuery version -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script> <!-- Bootstrap 5 with Popper.js included -->
 <script src="{{ asset('/web/lib/wow/wow.min.js') }}"></script>
 <script src="{{ asset('/web/lib/easing/easing.min.js') }}"></script>
@@ -247,6 +249,10 @@
             }
         });
     });
+
+    function turn_now(val) {
+        $('#magazine').turn(val);
+    }
     $(window).bind('keydown', function(e) {
 
         if (e.keyCode == 37)

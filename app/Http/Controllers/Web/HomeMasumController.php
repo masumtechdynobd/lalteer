@@ -298,9 +298,9 @@ class HomeMasumController extends Controller
         $data['contactmaps'] = ContactMap::orderBy('id', 'desc')->get();
         $data['settings'] = Setting::where('status', 1)->first();
         $data['designations'] = Designation::whereIn('id', Member::where('board_of_directory', 0)->pluck('designation_id'))
-        ->orderBy('title', 'asc')
-        ->get();
-    
+            ->orderBy('title', 'asc')
+            ->get();
+
 
 
         $section = Section::where('slug', 'contact_us')->first();
@@ -342,6 +342,14 @@ class HomeMasumController extends Controller
             Toastr::error(__('dashboard.something_went_wrong'), __('dashboard.error'));
             return redirect()->back()->withInput();
         }
+    }
+
+
+
+    public function CataloguePreview(){
+        $data['catalogues'] = Catalogue::orderBy('id', 'desc')->get();
+        
+        return view("web.pages.catalogue-preview", $data);
     }
 
 

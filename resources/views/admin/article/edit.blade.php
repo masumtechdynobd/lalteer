@@ -66,6 +66,16 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="board_of_directory"
+                                        name="board_of_directory"
+                                        {{ old('board_of_directory', $row->board_of_directory) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="board_of_directory">Enable Board Of
+                                        Directory</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="description">{{ __('dashboard.description') }} <span>*</span></label>
                                 <textarea class="form-control textMediaEditor" name="description" id="description" rows="8" required>{{ $row->description }}</textarea>
 

@@ -233,3 +233,6 @@ Route::get('/crops/{slug}', [HomeController::class, 'crops'])->name('crops');
 Route::post('/subscribe', [SubscribeUserController::class, 'store'])->name('subscribe.store');
 
 Route::post('sendMail', [HomeContactController::class, 'html_email'])->name('sendMail');
+
+
+Route::get('catalogue-preview', [HomeMasumController::class, 'CataloguePreview'])->name('cataloguepreview');

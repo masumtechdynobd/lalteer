@@ -14,7 +14,7 @@
             </ol>
         </div>
         <div class="bredcrumb-bottom-img-div">
-            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/Group 49.png') }}" alt=""
+            <img class="bredcrumb-bottom-img" src="{{ asset('/web/img/bredcrumb-footer-new.png') }}" alt=""
                 style="width: 100%;">
         </div>
     </div>
@@ -52,7 +52,7 @@
                                         @elseif ($index == 3)
                                             <img src="{{ asset('/uploads/farmer/' . $image) }}" alt=""
                                                 class="img-fluid rd-details-research-img4"
-                                                style="width: 438px; height: 292px">
+                                                style="width: 410px; height: 265px">
                                         @endif
                                     </div>
                                 @endif
@@ -61,9 +61,9 @@
                         @endif
                     </div>
                 </div>
-                <div class="rd-details-research-bg">
-                    <img src="{{ asset('/web/img/Ellipse 4.png') }}" alt="" class="img-fluid"
-                        style="width: 500px; height: 465px;">
+                <div class="">
+                    <img src="{{ asset('/web/img/Ellipse 4.png') }}" alt=""
+                        class="img-fluid rd-details-research-bg">
                 </div>
             </div>
             <div class="col-md-6 rd-details-research-textcontent">
@@ -83,7 +83,7 @@
                         </div>
                     </div>
                 </div>
-                <p>{{ strip_tags(@$data->description2) }}</p>
+                <p style="text-align: justify !important;">{{ strip_tags(@$data->description2) }}</p>
             </div>
         </div>
     </div>
@@ -102,7 +102,7 @@
                         </div>
                     </div>
                     <div class="wow fadeInLeft">
-                        <div>
+                        <div style="text-align: justify !important;">
                             <p>{{ strip_tags(@$data->description) }}</p>
                         </div>
                     </div>
