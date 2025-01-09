@@ -132,7 +132,7 @@
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item">
                     <h4 class="text-white mb-4">LINKS</h4>
-                    <a href="#">CAREER</a>
+                    <a href="{{ route('career') }}">CAREER</a>
                     <a href="#">BUY NOW</a>
                     <a href="{{ route('contactus') }}">CONTACT US</a>
                     <a href="#">Certificate </a>

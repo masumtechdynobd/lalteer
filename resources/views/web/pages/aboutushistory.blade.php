@@ -124,8 +124,6 @@
 
 
 
-
-
         .circle {
             position: absolute;
             width: 100%;
@@ -189,11 +187,11 @@
         }
 
         .left {
-            left: 10px;
+            left: 50px;
         }
 
         .right {
-            right: 10px;
+            right: 50px;
         }
 
 
@@ -338,6 +336,14 @@
         .btn:focus {
             outline: 0;
             box-shadow: 0 0 0 .25rem #F3F7FF;
+        }
+
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            font-size: 14px;
+            width: 10px;
+            height: 22px !important;
         }
     </style>
 

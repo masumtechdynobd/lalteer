@@ -80,31 +80,33 @@
                                 <div class="text-center position-relative">
                                     <div class="board-dicrescotry-sm-text rounded-3 position-relative mx-auto">
                                         <!-- Image positioned at the top -->
-                                        <div
-                                            class="aboutus-image-container position-absolute top-0 start-50 translate-middle">
+                                        <div class="aboutus-image-container position-absolute top-0 start-50 translate-middle">
                                             <img src="{{ asset('/uploads/member/' . $member->image_path) }}"
                                                 class="img-fluid rounded-circle border-white" alt=""
                                                 style="width: 323px; height: auto; border: 5px solid white; object-fit: cover;" />
                                         </div>
-
+                    
                                         <!-- Text content centered at the bottom -->
-                                        <div
-                                            class="text-content-sec d-flex flex-column justify-content-center align-items-center h-100 py-4">
+                                        <div class="text-content-sec d-flex flex-column justify-content-center align-items-center h-100 py-4">
                                             <h6 class="text-white">{{ $member->title }}</h6>
                                             <h5 class="mb-0 text-white">{{ designationName($member->designation_id) }}</h5>
-
-                                            <!-- Short and Full Description -->
+                    
+                                            <!-- Short Description -->
                                             <p class="mb-0 text-white short-text">
                                                 {!! \Illuminate\Support\Str::words(strip_tags($member->description, '<b><i><u><br>'), 20) !!}
                                             </p>
-                                            <p class="mb-0 text-white full-text d-none">
-                                                {!! strip_tags($member->description) !!}
-                                            </p>
-
+                    
                                             <!-- Read More Button -->
                                             <div class="py-3">
                                                 <button
-                                                    class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 read-more-btn">
+                                                    class="btn buynow-btn rounded-pill py-2 px-4 my-3 my-lg-0 flex-shrink-0 read-more-btn"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#memberModal"
+                                                    data-id="{{ $member->id }}"
+                                                    data-title="{{ $member->title }}"
+                                                    data-designation="{{ designationName($member->designation_id) }}"
+                                                    data-image="{{ asset('/uploads/member/' . $member->image_path) }}"
+                                                    data-description="{{ $member->description }}">
                                                     READ MORE
                                                 </button>
                                             </div>
@@ -120,6 +122,25 @@
     </div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="memberModal" tabindex="-1" aria-labelledby="memberModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="memberModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img id="memberImage" src="" class="img-fluid rounded-circle mb-3" style="width: 200px; height: 200px; object-fit: cover;" alt="Member Image">
+                    </div>
+                    <p id="memberDescription"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- our mission and vission -->
     <div class="container-fluid">
@@ -133,7 +154,7 @@
                         <img src="{{ asset('/web/img/loader 2.png') }}" alt="" class="img-fluid">
                     </div>
                 </div>
-                <h2 class="text-success mb-4">OUR MISSION & VISION</h2>
+                <h2 class="text-success mb-4 ms-5">OUR MISSION & VISION</h2>
                 <img src="{{ asset('/web/img/vision 1.png') }}" alt="" class="img-fluid mb-4">
                 <h1 class="mb-4" style="color: #4D4C4C;">{{ $about->mission_title }}</h1>
                 {{ strip_tags($about->mission_desc) }}
@@ -179,31 +200,20 @@
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            // Select all read-more buttons
-            const buttons = document.querySelectorAll(".read-more-btn");
-
-            buttons.forEach(button => {
-                button.addEventListener("click", function() {
-                    const parent = this.closest(".text-content-sec");
-                    const container = parent.closest(
-                        ".board-dicrescotry-sm-text"); // Get the container
-                    const shortText = parent.querySelector(".short-text");
-                    const fullText = parent.querySelector(".full-text");
-
-                    // Toggle visibility of short and full text
-                    if (fullText.classList.contains("d-none")) {
-                        fullText.classList.remove("d-none");
-                        shortText.classList.add("d-none");
-                        this.textContent = "SHOW LESS"; // Change button text
-                        container.classList.add("expanded"); // Expand container
-                    } else {
-                        fullText.classList.add("d-none");
-                        shortText.classList.remove("d-none");
-                        this.textContent = "READ MORE"; // Change button text
-                        container.classList.remove("expanded"); // Shrink container
-                    }
-                });
+        document.addEventListener("DOMContentLoaded", function () {
+            const memberModal = document.getElementById("memberModal");
+        
+            memberModal.addEventListener("show.bs.modal", function (event) {
+                const button = event.relatedTarget; // Button that triggered the modal
+                const title = button.getAttribute("data-title");
+                const designation = button.getAttribute("data-designation");
+                const image = button.getAttribute("data-image");
+                const description = button.getAttribute("data-description");
+        
+                // Update the modal content
+                memberModal.querySelector(".modal-title").textContent = `${title} - ${designation}`;
+                memberModal.querySelector("#memberImage").src = image;
+                memberModal.querySelector("#memberDescription").innerHTML = description;
             });
         });
     </script>

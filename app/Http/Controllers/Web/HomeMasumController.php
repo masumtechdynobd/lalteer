@@ -354,5 +354,14 @@ class HomeMasumController extends Controller
 
 
 
+    public function Career(){
+        $section = Section::where('slug', 'about-us')->first();
+        $data['section'] = $section;
+        
+        return view("web.pages.career", $data);
+    }
+
+
+
 
 }

@@ -236,3 +236,5 @@ Route::post('sendMail', [HomeContactController::class, 'html_email'])->name('sen
 
 
 Route::get('catalogue-preview', [HomeMasumController::class, 'CataloguePreview'])->name('cataloguepreview');
+
+Route::get('career', [HomeMasumController::class, 'Career'])->name('career');
