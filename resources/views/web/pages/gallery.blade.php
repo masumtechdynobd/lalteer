@@ -27,7 +27,7 @@
                     <a href="{{ route('gallerydetails', ['id' => $row->id]) }}">
                         <!-- Image -->
                         <img src="{{ asset($row->image) }}" class="img-fluid card-gallery-image" alt="{{ $row->title }}"
-                            style="width: 100%; height: auto; object-fit: cover;">
+                            style="width: 799px; height: 532px; object-fit: cover;">
 
                         <!-- Hidden Content (will show on hover) -->
                         <div class="gallery-hover-content position-absolute d-flex flex-column justify-content-center align-items-center"

@@ -203,7 +203,7 @@
         }
     }
 
-
+    
 
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
@@ -305,7 +305,6 @@
 
 
 
-
     <div class="text-center mt-4">
         @if ($dcatalogues && $dcatalogues->pdf_path)
             <div>
@@ -326,10 +325,6 @@
     </div>
 
 </div>
-
-
-
-
 
 
 

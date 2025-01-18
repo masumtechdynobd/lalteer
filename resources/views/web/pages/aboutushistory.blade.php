@@ -445,9 +445,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex justify-content-center">
+                    {{-- <div class="d-flex justify-content-center">
                         <img src="" alt="" class="img-fluid" /> <!-- Image will be set dynamically -->
-                    </div>
+                    </div> --}}
                     <h1 class="text-center"></h1> <!-- Title will be set dynamically -->
                     <p class="text-center"></p> <!-- Description will be set dynamically -->
                 </div>

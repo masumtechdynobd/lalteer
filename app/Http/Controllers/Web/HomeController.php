@@ -54,6 +54,7 @@ class HomeController extends Controller
 
         // Services                                
         $data['services'] = Service::where('status', '1')
+            ->where('board_of_directory', 1)
             ->orderBy('id', 'asc')
             ->get();
 

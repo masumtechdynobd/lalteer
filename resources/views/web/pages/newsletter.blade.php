@@ -79,7 +79,7 @@
                             <div class="col">
                                 <div class="card position-relative">
                                     <img src="{{ asset('/uploads/article/' . $blog->image_path) }}" class="img-fluid"
-                                        alt="{{ $blog->title }}">
+                                        style="width: 100%; height: 570px;" alt="{{ $blog->title }}">
                                     <div class="px-3">
                                         <div
                                             class="news-hover-content position-absolute d-flex flex-column justify-content-center align-items-center text-white">

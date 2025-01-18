@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Models\CropsCategory;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+use File;
+use Image;
+use Toastr;
 use App\Models\Service;
 use App\Models\Testimonial;
-use Toastr;
-use Image;
-use File;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use App\Models\CropsCategory;
+use App\Http\Controllers\Controller;
 
 class ServiceController extends Controller
 {
@@ -78,6 +78,7 @@ class ServiceController extends Controller
             'title2' => 'nullable|max:191',
             'description2' => 'nullable',
             'image2' => 'nullable|image',
+            'board_of_directory' => 'nullable|in:on',
         ]);
 
         // Upload `image`
@@ -158,6 +159,9 @@ class ServiceController extends Controller
             }
         }
 
+        // Check if 'board_of_directory' checkbox is checked (will send 'on' if checked)
+        $boardOfDirectory = $request->has('board_of_directory') ? 1 : 0; // 1 for checked, 0 for unchecked
+        
         // Insert Data
         $service = new Service;
         $service->title = $request->title;
@@ -172,6 +176,7 @@ class ServiceController extends Controller
         $service->image_path2 = $fileNameToStore2;
         $service->feature_id = $request->feature_id;
         $service->category_id = $request->category_id;
+        $service->board_of_directory = $boardOfDirectory; // Save the board_of_directory value
 
         $service->save();
 
@@ -238,6 +243,7 @@ class ServiceController extends Controller
             'description2' => 'nullable',
             'image' => 'nullable|image',
             'image2' => 'nullable|image',
+            'board_of_directory' => 'nullable|in:on', // Validate the checkbox input (allows 'on')
         ]);
 
         // Image upload for the first image
@@ -325,6 +331,9 @@ class ServiceController extends Controller
             }
         }
 
+        // Check if 'board_of_directory' checkbox is checked (will send 'on' if checked)
+        $boardOfDirectory = $request->has('board_of_directory') ? 1 : 0; // 1 for checked, 0 for unchecked
+
         // Update Data
         $service->title = $request->title;
         $service->slug = Str::slug($request->title, '-');
@@ -337,6 +346,7 @@ class ServiceController extends Controller
         $service->feature_id = $request->feature_id;
         $service->category_id = $request->category_id;
         $service->status = 1;
+        $service->board_of_directory = $boardOfDirectory; // Save the board_of_directory value
         $service->save();
 
         Toastr::success(__('dashboard.updated_successfully'), __('dashboard.success'));

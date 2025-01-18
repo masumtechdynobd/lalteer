@@ -23,7 +23,7 @@
             @foreach ($data as $item)
                 <div class="col-md-6 pe-3 wow fadeInLeft">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-6 h-100">
                             <div>
                                 <img src="{{ asset('uploads/project/' . $item->image_path) }}" alt=""
                                     class="img-fluid" style="width: 450px; height: 275px;">
@@ -31,13 +31,13 @@
                         </div>
                         <div class="col-md-6">
                             <p style="text-align: justify !important;">
-                                {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 40) }}</p>
+                                {{ \Illuminate\Support\Str::words(strip_tags($item->description2), 35) }}</p>
                             <a href="{{ route('projectsdetails', $item->slug) }}"
                                 class="btn buynow-btn rounded-pill farmers-btn-read-more my-lg-0 flex-shrink-0">READ
                                 MORE</a>
                         </div>
                         <div class="bg-success py-4 success-story-rounded-pill-end">
-                            <h5 class="text-white">{{ $item->title }}</h5>
+                            <h5 class="text-white">{{ \Illuminate\Support\Str::limit($item->title, 35) }}</h5>
                         </div>
                         <hr style="border: 2px solid #026431; margin-left: 12px !important; width: 97%;">
                     </div>

@@ -126,7 +126,7 @@
                     <a href="{{ route('projects') }}">PROJECTS</a>
                     <a href="{{ route('researchanddevelopment') }}">RESERACH CENTER</a>
                     <a href="{{ route('gallery') }}">GALLRY</a>
-                    <a href="#">OUR CROPS</a>
+                    <a href="{{ url('/crops/pumpkin') }}">OUR CROPS</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">

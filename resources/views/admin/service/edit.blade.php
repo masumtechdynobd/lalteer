@@ -62,6 +62,14 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="board_of_directory"
+                                        name="board_of_directory" {{ old('board_of_directory') ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="board_of_directory">Enable as Popular Items</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="short_desc">{{ __('dashboard.short_desc') }} <span>*</span></label>
                                 <textarea class="form-control summernote" name="short_desc" id="short_desc" rows="4" required>{{ $row->short_desc }}</textarea>
 
